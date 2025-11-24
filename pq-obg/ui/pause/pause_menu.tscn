@@ -1,0 +1,80 @@
+[gd_scene load_steps=7 format=3 uid="uid://ddcriby0xa2bw"]
+
+[ext_resource type="Theme" uid="uid://ba2lixeo4d30y" path="res://pq-obg/ui/default_theme.tres" id="1_bbfh5"]
+[ext_resource type="Script" uid="uid://6v4if0eefs5c" path="res://pq-obg/ui/pause/pause_menu.gd" id="1_uv1md"]
+[ext_resource type="PackedScene" uid="uid://dgfewhemw8ofh" path="res://pq-obg/ui/pause/pause_overlay.tscn" id="2_r0jos"]
+[ext_resource type="Texture2D" uid="uid://b3xoiwk76ch5f" path="res://pq-obg/ui/styles/icon_quit.tres" id="3_r0jos"]
+[ext_resource type="FontFile" uid="uid://r4wr5f23gxn5" path="res://pq-obg/ui/fonts/heading.otf" id="4_r0jos"]
+[ext_resource type="Texture2D" uid="uid://cikhqhc0hfaxm" path="res://pq-obg/ui/styles/icon_play.tres" id="4_xq5ji"]
+
+[node name="PauseMenu" type="Control" unique_id=1738070768]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uv1md")
+
+[node name="Overlay" parent="." unique_id=790026089 instance=ExtResource("2_r0jos")]
+layout_mode = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=210268845]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -213.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer" unique_id=764114137]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer" unique_id=442149747]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=2117264079]
+layout_mode = 2
+theme = ExtResource("1_bbfh5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer/VBoxContainer/PanelContainer" unique_id=1223472333]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+
+[node name="Heading" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer" unique_id=445842411]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_r0jos")
+theme_override_font_sizes/font_size = 38
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="Explanation" type="RichTextLabel" parent="CenterContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer" unique_id=1206168888]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+theme = ExtResource("1_bbfh5")
+bbcode_enabled = true
+text = "[center][b]Login/Logout[/b] players now by pressing the button indicated.[/center]"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=1723074134]
+layout_mode = 2
+alignment = 1
+
+[node name="Backward" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=689196749]
+layout_mode = 2
+theme = ExtResource("1_bbfh5")
+icon = ExtResource("3_r0jos")
+
+[node name="Forward" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=613390938]
+layout_mode = 2
+theme = ExtResource("1_bbfh5")
+icon = ExtResource("4_xq5ji")
+
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer/Backward" to="." method="_on_backward_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer/Forward" to="." method="_on_forward_pressed"]

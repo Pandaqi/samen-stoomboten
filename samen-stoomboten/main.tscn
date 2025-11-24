@@ -1,0 +1,428 @@
+[gd_scene load_steps=36 format=3 uid="uid://dfx4jfjdgb1bo"]
+
+[ext_resource type="Script" uid="uid://dt8klrrk4jcu1" path="res://pq-obg/tools/players/player_spawner.gd" id="1_nm4aa"]
+[ext_resource type="Script" uid="uid://etlf0pw8dpks" path="res://samen-stoomboten/main.gd" id="1_xwbea"]
+[ext_resource type="PackedScene" uid="uid://dn7g2jfclep18" path="res://samen-stoomboten/player/player.tscn" id="2_xwbea"]
+[ext_resource type="Resource" uid="uid://cqn477x4eqflj" path="res://pq-obg/tools/players/player_data.tres" id="3_v45t5"]
+[ext_resource type="Script" uid="uid://iifbsghejpcv" path="res://samen-stoomboten/boat/boat.gd" id="5_2lr7a"]
+[ext_resource type="Texture2D" uid="uid://bvjuy2gfiyaid" path="res://samen-stoomboten/boat/stoomboot.webp" id="5_ccyv6"]
+[ext_resource type="PackedScene" uid="uid://cqj81oyms0c7s" path="res://samen-stoomboten/boat/arrow.tscn" id="7_1i7mk"]
+[ext_resource type="Script" uid="uid://h24y60ceg8ri" path="res://samen-stoomboten/boat/module_collider.gd" id="8_76csb"]
+[ext_resource type="Script" uid="uid://cs3muutjej8yc" path="res://samen-stoomboten/map/map.gd" id="8_ktfvn"]
+[ext_resource type="PackedScene" uid="uid://c1jxins265xwr" path="res://samen-stoomboten/map/gift/gift.tscn" id="9_11fih"]
+[ext_resource type="Script" uid="uid://cm1nrb2p83rl8" path="res://samen-stoomboten/map/camera.gd" id="9_jdhg8"]
+[ext_resource type="Script" uid="uid://dyrsjs7xgrhjq" path="res://samen-stoomboten/boat/module_gifts.gd" id="9_xwjm6"]
+[ext_resource type="PackedScene" uid="uid://d3tvtcu27fhwm" path="res://samen-stoomboten/map/obstacle/obstacle.tscn" id="10_76csb"]
+[ext_resource type="PackedScene" uid="uid://ck85k1tbyif1j" path="res://samen-stoomboten/map/finish/finish.tscn" id="12_7xrjc"]
+[ext_resource type="Script" uid="uid://cuo58m8732osp" path="res://samen-stoomboten/boat/module_visuals.gd" id="13_rxg8p"]
+[ext_resource type="PackedScene" uid="uid://c3mew7u5cevle" path="res://pq-obg/state/state.tscn" id="15_k6u8g"]
+[ext_resource type="Script" uid="uid://bog0m3bhuc2mp" path="res://pq-obg/ui/button_instructions/button_instructions.gd" id="17_edjgo"]
+[ext_resource type="Texture2D" uid="uid://bq30jmlxewohk" path="res://samen-stoomboten/ui/staf-back.webp" id="18_agstb"]
+[ext_resource type="Script" uid="uid://b4xlx5a2ve4mx" path="res://samen-stoomboten/ui/ui.gd" id="18_ccyv6"]
+[ext_resource type="PackedScene" uid="uid://bws1bg4b1iswl" path="res://pq-obg/ui/button_instructions/button_instruction.tscn" id="18_v738m"]
+[ext_resource type="Texture2D" uid="uid://cg0sp4j7g0hc4" path="res://samen-stoomboten/ui/staf-front.webp" id="19_ccyv6"]
+[ext_resource type="Texture2D" uid="uid://i3krb5yjl1fy" path="res://samen-stoomboten/ui/staf-mid.webp" id="20_rxg8p"]
+[ext_resource type="PackedScene" uid="uid://v86e6jsutbpa" path="res://samen-stoomboten/shared/asset_sprite.tscn" id="21_hrw0s"]
+[ext_resource type="FontFile" uid="uid://lofab0amxyfr" path="res://pq-obg/ui/fonts/heading.otf" id="24_hrw0s"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_11fih"]
+bounce = 1.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rxg8p"]
+radius = 23.0
+height = 120.0
+
+[sub_resource type="Animation" id="Animation_hrw0s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteContainer:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_4rd1r"]
+resource_name = "boat_float"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 0.4033333, 0.50333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -10), Vector2(0, 2), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteContainer:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 0.4033333, 0.50333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.12217305, 0.034906585, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lxryk"]
+_data = {
+&"RESET": SubResource("Animation_hrw0s"),
+&"boat_float": SubResource("Animation_4rd1r")
+}
+
+[sub_resource type="Animation" id="Animation_ccyv6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-4.544922, -7.576172)]
+}
+
+[sub_resource type="Animation" id="Animation_rxg8p"]
+resource_name = "boat_bob"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-4.544922, -7.576172), Vector2(-3.5, -9), Vector2(-4.544922, -7.576172)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hrw0s"]
+_data = {
+&"RESET": SubResource("Animation_ccyv6"),
+&"boat_bob": SubResource("Animation_rxg8p")
+}
+
+[sub_resource type="Animation" id="Animation_ayi0h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Staff/Gift:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-179.99998, -11.000002)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Staff/GiftCounter:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-178.66667, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Staff/Gift:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.13572301]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Staff/GiftCounter:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Staff/GiftCounter:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3fh5a"]
+resource_name = "gifts_change"
+length = 0.37
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Staff/Gift:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.23333333, 0.36666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-179.99998, -11.000002), Vector2(-186.66666, -18.666668), Vector2(-170.66666, -1.3333521), Vector2(-179.99998, -11.000002)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Staff/GiftCounter:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.23333333, 0.36666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-178.66667, 0), Vector2(-173.33334, -9.333334), Vector2(-180.00002, 8), Vector2(-178.66667, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Staff/Gift:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.12, 0.23, 0.36),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-0.13572301, -0.2904231, -0.010353863, -0.13613568]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Staff/GiftCounter:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.11, 0.24, 0.36),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.12160378, -0.105950125, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Staff/GiftCounter:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.37),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4rd1r"]
+_data = {
+&"RESET": SubResource("Animation_ayi0h"),
+&"gifts_change": SubResource("Animation_3fh5a")
+}
+
+[node name="Main" type="Node2D" unique_id=1012339941]
+script = ExtResource("1_xwbea")
+
+[node name="Background" type="CanvasLayer" parent="." unique_id=982345403]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Background" unique_id=482515937]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1.347661e-06, 0.8748613, 0.8783399, 1)
+
+[node name="PlayerSpawner" type="Node2D" parent="." unique_id=152209881]
+script = ExtResource("1_nm4aa")
+player_scene = ExtResource("2_xwbea")
+player_data = ExtResource("3_v45t5")
+metadata/_custom_type_script = "uid://dt8klrrk4jcu1"
+
+[node name="Map" type="Node2D" parent="." unique_id=2035257427]
+y_sort_enabled = true
+script = ExtResource("8_ktfvn")
+gift_scene = ExtResource("9_11fih")
+obstacle_scene = ExtResource("10_76csb")
+finish_scene = ExtResource("12_7xrjc")
+
+[node name="Boat" type="RigidBody2D" parent="Map" unique_id=1182241835 node_paths=PackedStringArray("arrow_container", "module_gifts", "ui")]
+position = Vector2(476, 225)
+mass = 50.0
+physics_material_override = SubResource("PhysicsMaterial_11fih")
+gravity_scale = 0.0
+lock_rotation = true
+continuous_cd = 2
+contact_monitor = true
+max_contacts_reported = 4
+linear_damp = 1.0
+script = ExtResource("5_2lr7a")
+player_data = ExtResource("3_v45t5")
+arrow_scene = ExtResource("7_1i7mk")
+arrow_container = NodePath("Arrows")
+module_gifts = NodePath("ModuleGifts")
+ui = NodePath("../../UI")
+debug_input = true
+
+[node name="Arrows" type="Node2D" parent="Map/Boat" unique_id=239573415]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Boat" unique_id=1930748269]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_rxg8p")
+
+[node name="ModuleCollider" type="Node2D" parent="Map/Boat" unique_id=1908503357]
+script = ExtResource("8_76csb")
+
+[node name="ModuleGifts" type="Node2D" parent="Map/Boat" unique_id=536841193]
+script = ExtResource("9_xwjm6")
+
+[node name="ModuleVisuals" type="Node2D" parent="Map/Boat" unique_id=741150603 node_paths=PackedStringArray("sprite", "anim_player")]
+script = ExtResource("13_rxg8p")
+sprite = NodePath("SpriteContainer/Sprite2D")
+anim_player = NodePath("AnimationPlayer")
+
+[node name="SpriteContainer" type="Node2D" parent="Map/Boat/ModuleVisuals" unique_id=1078531427]
+
+[node name="Sprite2D" type="Sprite2D" parent="Map/Boat/ModuleVisuals/SpriteContainer" unique_id=399379437]
+position = Vector2(-6, -40)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_ccyv6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Map/Boat/ModuleVisuals" unique_id=1289975425]
+libraries = {
+&"": SubResource("AnimationLibrary_lxryk")
+}
+autoplay = &"boat_float"
+
+[node name="Camera" type="Camera2D" parent="." unique_id=8323382 node_paths=PackedStringArray("target")]
+process_mode = 3
+position_smoothing_enabled = true
+script = ExtResource("9_jdhg8")
+target = NodePath("../Map/Boat")
+
+[node name="State" parent="." unique_id=1145839826 instance=ExtResource("15_k6u8g")]
+
+[node name="ButtonInstructions" type="CanvasLayer" parent="." unique_id=1572046177]
+script = ExtResource("17_edjgo")
+button_instruction_scene = ExtResource("18_v738m")
+margin_off_edge = Vector2(50, 50)
+metadata/_custom_type_script = "uid://bog0m3bhuc2mp"
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1420793677 node_paths=PackedStringArray("staff_container", "gift_counter", "progress_bar", "map", "boat_start_pos", "boat_end_pos", "boat", "anim_player")]
+script = ExtResource("18_ccyv6")
+staff_container = NodePath("Staff")
+gift_counter = NodePath("Staff/GiftCounter/GiftCounter")
+progress_bar = NodePath("Staff/TextureProgressBar")
+map = NodePath("../Map")
+boat_start_pos = NodePath("Staff/BoatStartPos")
+boat_end_pos = NodePath("Staff/BoatEndPos")
+boat = NodePath("Staff/Boat")
+anim_player = NodePath("AnimationPlayer")
+
+[node name="Staff" type="Node2D" parent="UI" unique_id=1533973978]
+position = Vector2(572, 569)
+scale = Vector2(0.75, 0.75)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UI/Staff" unique_id=477575988]
+offset_left = -242.0
+offset_top = -68.0
+offset_right = 270.0
+offset_bottom = 60.0
+max_value = 1.0
+step = 0.01
+value = 1.0
+texture_under = ExtResource("18_agstb")
+texture_over = ExtResource("19_ccyv6")
+texture_progress = ExtResource("20_rxg8p")
+
+[node name="Gift" parent="UI/Staff" unique_id=1984321564 instance=ExtResource("21_hrw0s")]
+position = Vector2(-179.99998, -11.000002)
+rotation = -0.13572301
+scale = Vector2(0.39953613, 0.39953613)
+
+[node name="GiftCounter" type="Node2D" parent="UI/Staff" unique_id=380222544]
+position = Vector2(-178.66667, 0)
+
+[node name="GiftCounter" type="Label" parent="UI/Staff/GiftCounter" unique_id=1953146093]
+offset_left = -38.666683
+offset_top = -47.99998
+offset_right = 43.333317
+offset_bottom = 40.00002
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("24_hrw0s")
+theme_override_font_sizes/font_size = 64
+text = "22"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Boat" type="Node2D" parent="UI/Staff" unique_id=181046629]
+position = Vector2(-59.09091, -1.5151978)
+rotation = -0.090925984
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/Staff/Boat" unique_id=471549859]
+position = Vector2(-4.544922, -7.576172)
+scale = Vector2(0.06599999, 0.06599999)
+texture = ExtResource("5_ccyv6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Staff/Boat" unique_id=808150767]
+libraries = {
+&"": SubResource("AnimationLibrary_hrw0s")
+}
+autoplay = &"boat_bob"
+
+[node name="BoatStartPos" type="Node2D" parent="UI/Staff" unique_id=553327117]
+position = Vector2(-72.727264, 3.1471252e-05)
+
+[node name="BoatEndPos" type="Node2D" parent="UI/Staff" unique_id=229828204]
+position = Vector2(256.06058, 3.1471252e-05)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI" unique_id=14428085]
+libraries = {
+&"": SubResource("AnimationLibrary_4rd1r")
+}

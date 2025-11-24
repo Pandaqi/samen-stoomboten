@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://v86e6jsutbpa"]
+
+[ext_resource type="Texture2D" uid="uid://bprs1cwxq4tyd" path="res://samen-stoomboten/shared/assets.webp" id="1_x8uru"]
+
+[node name="Sprite2D" type="Sprite2D" unique_id=1984321564]
+texture = ExtResource("1_x8uru")
+hframes = 4
+vframes = 2

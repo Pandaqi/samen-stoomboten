@@ -1,0 +1,123 @@
+[gd_scene load_steps=8 format=3 uid="uid://c1jxins265xwr"]
+
+[ext_resource type="Script" uid="uid://c0tlfvv14ckxu" path="res://samen-stoomboten/map/gift/gift.gd" id="1_mesli"]
+[ext_resource type="PackedScene" uid="uid://v86e6jsutbpa" path="res://samen-stoomboten/shared/asset_sprite.tscn" id="2_mesli"]
+[ext_resource type="Texture2D" uid="uid://bprs1cwxq4tyd" path="res://samen-stoomboten/shared/assets.webp" id="3_7we27"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mesli"]
+radius = 37.107952
+
+[sub_resource type="Animation" id="Animation_mesli"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/WaterCover:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4.8469334, 140.47581)]
+}
+
+[sub_resource type="Animation" id="Animation_7we27"]
+resource_name = "gift_float"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -10)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.02),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.17453292, 0.17453292]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/WaterCover:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.98, 1.83),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(4.8469334, 140.47581), Vector2(4.847, 240), Vector2(4.847, 120)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5kun0"]
+_data = {
+&"RESET": SubResource("Animation_mesli"),
+&"gift_float": SubResource("Animation_7we27")
+}
+
+[node name="Gift" type="Node2D" unique_id=775693136 node_paths=PackedStringArray("area", "sprite", "anim_player")]
+script = ExtResource("1_mesli")
+area = NodePath("Area2D")
+sprite = NodePath("Sprite2D")
+anim_player = NodePath("AnimationPlayer")
+
+[node name="Sprite2D" parent="." unique_id=1984321564 instance=ExtResource("2_mesli")]
+clip_children = 2
+scale = Vector2(0.24000001, 0.24000001)
+
+[node name="WaterCover" type="Sprite2D" parent="Sprite2D" unique_id=162055142]
+modulate = Color(0, 0.8745098, 0.8784314, 1)
+position = Vector2(4.8469334, 140.47581)
+texture = ExtResource("3_7we27")
+hframes = 4
+vframes = 2
+frame = 4
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1904107311]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1734766144]
+shape = SubResource("CircleShape2D_mesli")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=198472575]
+libraries = {
+&"": SubResource("AnimationLibrary_5kun0")
+}
+autoplay = &"gift_float"

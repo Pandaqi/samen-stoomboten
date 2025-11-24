@@ -1,0 +1,62 @@
+[gd_resource type="Theme" load_steps=13 format=3 uid="uid://ba2lixeo4d30y"]
+
+[ext_resource type="StyleBox" uid="uid://cacykbjrgj604" path="res://pq-obg/ui/styles/button_focus_stylebox.tres" id="1_ilyrj"]
+[ext_resource type="FontFile" uid="uid://d1afjb7pe68sl" path="res://pq-obg/ui/fonts_obg/body_regular.ttf" id="1_lvd6a"]
+[ext_resource type="StyleBox" uid="uid://bh8tf1q5u58s5" path="res://pq-obg/ui/styles/button_hover_stylebox.tres" id="2_hwv74"]
+[ext_resource type="StyleBox" uid="uid://bpjpp7goqlvqm" path="res://pq-obg/ui/styles/button_normal_stylebox.tres" id="3_3ixqv"]
+[ext_resource type="FontFile" uid="uid://d1lemkj24xadb" path="res://pq-obg/ui/fonts/body_regular.otf" id="5_df0d2"]
+[ext_resource type="StyleBox" uid="uid://cearj04ccu73o" path="res://pq-obg/menu/panel_style_box.tres" id="5_hw1fh"]
+[ext_resource type="FontFile" uid="uid://crq2bmbd60bmo" path="res://pq-obg/ui/fonts/body_black.otf" id="7_df0d2"]
+[ext_resource type="FontFile" uid="uid://ctv8typi4rqfd" path="res://pq-obg/ui/fonts/body_black_italic.otf" id="8_kyr7r"]
+[ext_resource type="FontFile" uid="uid://d7mos0rr3b31" path="res://pq-obg/ui/fonts/body_italic.otf" id="9_s4t8t"]
+[ext_resource type="FontFile" uid="uid://lofab0amxyfr" path="res://pq-obg/ui/fonts/heading.otf" id="10_kyr7r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nrq2u"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.86, 0.52288, 0.1376, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v3u3o"]
+
+[resource]
+default_font = ExtResource("10_kyr7r")
+default_font_size = 36
+Button/colors/font_color = Color(0.24, 0.18, 0, 1)
+Button/colors/font_focus_color = Color(1, 0.67, 0.758, 1)
+Button/colors/font_hover_color = Color(1, 0.876667, 0.8, 1)
+Button/colors/font_hover_pressed_color = Color(0.239216, 0.180392, 0, 1)
+Button/colors/font_pressed_color = Color(1, 0.878431, 0.8, 1)
+Button/styles/focus = ExtResource("1_ilyrj")
+Button/styles/hover = ExtResource("2_hwv74")
+Button/styles/normal = ExtResource("3_3ixqv")
+Button/styles/pressed = ExtResource("2_hwv74")
+CheckBox/font_sizes/font_size = 16
+CheckBox/fonts/font = ExtResource("1_lvd6a")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_nrq2u")
+HSlider/styles/grabber_area_highlight = ExtResource("1_ilyrj")
+HSlider/styles/slider = ExtResource("2_hwv74")
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/constants/line_spacing = -16
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("5_df0d2")
+PanelContainer/styles/panel = ExtResource("5_hw1fh")
+RichTextLabel/colors/default_color = Color(0.0374544, 0.0168773, 0.0100798, 1)
+RichTextLabel/font_sizes/bold_font_size = 16
+RichTextLabel/font_sizes/bold_italics_font_size = 16
+RichTextLabel/font_sizes/italics_font_size = 16
+RichTextLabel/font_sizes/normal_font_size = 16
+RichTextLabel/fonts/bold_font = ExtResource("7_df0d2")
+RichTextLabel/fonts/bold_italics_font = ExtResource("8_kyr7r")
+RichTextLabel/fonts/italics_font = ExtResource("9_s4t8t")
+RichTextLabel/fonts/normal_font = ExtResource("5_df0d2")
+TabContainer/styles/panel = SubResource("StyleBoxEmpty_v3u3o")
+TabContainer/styles/tab_focus = ExtResource("1_ilyrj")
+TabContainer/styles/tab_hovered = ExtResource("2_hwv74")
+TabContainer/styles/tab_selected = ExtResource("1_ilyrj")
+TabContainer/styles/tab_unselected = ExtResource("3_3ixqv")

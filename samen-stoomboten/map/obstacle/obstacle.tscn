@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3tvtcu27fhwm"]
+
+[ext_resource type="Texture2D" uid="uid://8uv32q2qnqqp" path="res://icon.svg" id="1_cni3p"]
+[ext_resource type="Script" uid="uid://det0vvqee3cig" path="res://samen-stoomboten/map/obstacle/obstacle.gd" id="1_nid8v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jdhg8"]
+radius = 84.05355
+
+[node name="Obstacle" type="StaticBody2D" unique_id=769411292]
+script = ExtResource("1_nid8v")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2013102818]
+modulate = Color(0.11908864, 0.13417181, 0.12414045, 1)
+texture = ExtResource("1_cni3p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1343969091]
+shape = SubResource("CircleShape2D_jdhg8")

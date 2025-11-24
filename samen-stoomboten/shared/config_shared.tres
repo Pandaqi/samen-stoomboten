@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ConfigSharedData" load_steps=2 format=3 uid="uid://dqqwvgnpvim5n"]
+
+[ext_resource type="Script" uid="uid://dui163ptds6sq" path="res://pq-obg/tools/config/config_shared_data.gd" id="1_pf08h"]
+
+[resource]
+script = ExtResource("1_pf08h")
+game_id = "samen-stoomboten"
+button_instructions_sprite_scale = 0.15

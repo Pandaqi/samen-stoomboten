@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5unykew3rfwt"]
+
+[ext_resource type="Script" uid="uid://1lblipea6y8g" path="res://pq-obg/tools/config/global.gd" id="1_sltbq"]
+[ext_resource type="Resource" uid="uid://dqqwvgnpvim5n" path="res://samen-stoomboten/shared/config_shared.tres" id="2_87bmp"]
+[ext_resource type="Resource" uid="uid://dr73744xex73x" path="res://samen-stoomboten/shared/config_default.tres" id="2_rr4uq"]
+
+[node name="Global" type="Node" unique_id=342832163]
+script = ExtResource("1_sltbq")
+config = ExtResource("2_rr4uq")
+config_shared = ExtResource("2_87bmp")
