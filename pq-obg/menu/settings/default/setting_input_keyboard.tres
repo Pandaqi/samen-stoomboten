@@ -8,4 +8,4 @@ type_display = 4
 key = "input_allow_keyboard"
 label = "ST_ALLOW_KEYBOARD"
 default = "true"
-callback = "Global.input.refresh_button_selection(false)"
+needs_input_refresh = true

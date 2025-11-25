@@ -1,7 +1,6 @@
 class_name Settings extends CanvasLayer
 
 @onready var tab_container : TabContainer = $CenterContainer/VBoxContainer/TabContainer
-@export var settings_default : Array[SettingTab] = []
 
 var active := false
 var all_tabs : Array[SettingTab] = []
@@ -17,11 +16,7 @@ func _ready() -> void:
 
 func collect_all_tabs() -> void:
 	reader = SettingReader.new()
-	
-	var custom_settings : Array[SettingTab] = []
-	if "settings" in Global.config:
-		custom_settings = Global.config.settings
-	all_tabs = get_default_settings() + custom_settings
+	all_tabs = Global.config_shared.settings
 
 func set_active(val:bool) -> void:
 	active = val
@@ -39,9 +34,6 @@ func initialize() -> void:
 func visualize() -> void:
 	for tab in all_tabs:
 		tab_container.add_child(tab.visualize(reader))
-
-func get_default_settings() -> Array[SettingTab]:
-	return settings_default.duplicate(false)
 
 func _on_close_pressed() -> void:
 	set_active(false)

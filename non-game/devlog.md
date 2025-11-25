@@ -91,11 +91,27 @@ Met deze problemen oplossen hebben we in principe een werkend spel. De boot vers
 
 Het ziet er op dit punt natuurlijk hartstikke lelijk uit. Als je een pakje verliest valt ie gewoon zomaar een afstand van je vandaan in het water, alsof hij teleporteert. Je mist plaatjes, je mist muziek, je mist zelfs een getalletje dat even zegt hoeveel pakjes je hebt. Dus dat gaan we nu maken.
 
+Hieronder geef ik een overzicht van de meest belangrijke of interessante stappen.
+
 * Het handige van zo'n simpele kaart is dat ik exact weet hoe lang hij is en dat de finish op het einde is. Dus ik kan een mooie horizontale balk laten zien met je voortgang.
 * Die balk maakte ik een _staf_ voor het thema. En de krul is dan de plek waarover ik het aantal pakjes kan laten zien dat je hebt.
 * Waar laat ik zien welk knopje iedereen heeft? Ik koos ervoor om je knop, in het klein, maar gewoon naast _elke pijl van jou_ te laten zien.
+* De obstakels werden simpele eilanden. (Nogmaals, voor een groter spel wil je meer variatie in design en plaatsing, maar dit is een heel simpel spel met een heel simpele manier van elke wereld opbouwen.) 
+  * De enige "slimme logica" hier is dat eilanden en pakjes altijd minstens X pixels uit elkaar moeten staan. Zodat ze niet lelijk over elkaar heen gaan zitten ("overlappen").
+* Met weinig spelers (2 of 3) is het nu juist logischer als je _niet_ tegenovergestelde pijlen hebt (ene links en boven, andere rechts en onder). Het bewegen wordt makkelijker als de verdeling "asymmetrisch" is, dus met de meeste pijlen aan dezelfde kant.
+  * Ook is het dan logischer als de pijlen _sneller_ draaien, want anders moet je soms 5 seconden wachten en niks doen totdat ie eindelijk verder is :p
+  * Ik stond op het punt een mooie tekening van een pijl te maken... toen ik realiseerde dat het veel grappiger en passender was om gewoon een wortel te gebruiken als pijl.
+* Met een "trucje" heb ik het laten lijken alsof de boot en de pakjes drijven in het water.
+  * Dat trucje is gewoon 2 blauwe cirkels die willekeurige op en neer bewegen voor het pakje.
+  * Maar wel met "clip children" aan, zodat de cirkel _alleen_ wordt getoond waar het pakje is, en niet daarbuiten. Zo lijkt het echt alsof het pakje in en uit het water gaat.
+* Ik heb zo'n zelfde paar "slimme" animaties op de stoomboot gezet. Dat ging pas echt goed eruit zien toen ik de _afspeelsnelheid_ (`speed_scale`) aanpaste op basis van _je echte snelheid_. Oftewel, als je superhard gaat met de stoomboot, gaat de dobberanimatie óók sneller. (En als je stilstaat, staat de animatie natuurlijk ook zo goed als stil, `speed_scale = 0`)
+* Ik besloot als achtergrondmuziek om gewoon mijn eigen versie van "Zie ginds komt de stoomboot" in te spelen op de piano hier en op te nemen met mijn mobiel. (Ik heb jammer genoeg al tijden geen toegang tot mijn fatsoenlijke opname apparatuur, noch mijn digitale keyboard.) De geluidskwaliteit is dan matig, en ik mag niet te veel fouten maken, maar met wat editing is het "goed genoeg". Halverwege dacht ik "dit is wel wat zielig zo, het moet meer funky voor een party game", dus toen ging ik dat erbij improviseren. Ik kan goed genoeg piano spelen om er dan ter plekke zonder plan iets moois uit te krijgen :)
 
+Het grootste probleem was eigenlijk dat mijn "One Button Game"-systeem serieuze gebreken had. Ik had dat systeem dus zo'n 2 jaar geleden opgezet met het idee dat ik dan precies die code voor alle andere OBGs kon gebruiken. Maar ja, het was een eerste versie, en ik was nog niet eens begonnen met mijn webshop, dus heel veel dingen misten en klopten niet. Vaak kom je pas achter wat praktische wijsheden door het systeem daadwerkelijk te _gebruiken_ voor een paar projecten.
 
+Bijvoorbeeld, toen ik het OBG systeem maakte dacht ik "weet je wat, we gebruiken gewoon dezelfde neutrale lettertypes voor ALLE OBGs, lekker makkelijk!" Maar dat was een dom idee. Lettertypes zijn _de_ makkelijkste en snelste manier om een spel een helemaal passend en uniek uiterlijk te geven. Voor zo'n spel als dit wil ik mijn Sinterklaaslettertypes gebruiken, anders ziet het er ook gewoon raar uit. Maar ja, het hele systeem had lettertypes "ingebakken", dus ik kon ze niet veranderen!
+
+Nou goed, vervolgens ben je dus uren bezig met code herschrijven zodat je makkelijk _per spel_ kunt aangeven "nee nee, deze keer wil ik DIT lettertype gebruiken".
 
 
 
@@ -106,44 +122,42 @@ Het ziet er op dit punt natuurlijk hartstikke lelijk uit. Als je een pakje verli
 
 * BUG: Can't reload current scene because player_data can't grab an available color???
 * BUG: Mouse-add-player not working anymore
-* BUG: Why the fuck are the keycodes now in numerical order? (A,B,C,D) What did I do to make that happen???
+* BUG: Why the fuck are the keycodes now in numerical order? (A,B,C,D) What did I do to make that happen??? ---> Only happens when we go through settings? Probably because "refresh_buttons(shuffle = false)", well, prevents shuffling!
 * UI: HOW TO MAKE IT LOOK BETTER/MORE CONSISTENT??
   * Should've picked fixed (font) sizes for everything and stuck to that from the start ... only scale it based on ONE value (and/or nice multiples of it)
 * Polishing
-  * Set proper max player count (8)
   * Track time + number of bounces/hits too
   * Do we NEED a tutorial?
 * REFACTOR
   * Add settings for this particular game (change world size, obstacle density, etc) + their translations of course
   * Have fewer dependencies; if we do need them, INJECT them upon activation/ready
 * Optional
-  * Actual water texture?
   * More things to encounter
     * Grote Boek -> Will show you where all the gifts/closest gifts are (for a limited duration?) -> AT THE VERY LEAST, WE NEED SOME "MARKERS" TO RECOGNIZE WHERE YOU ARE/HAVE BEEN
     * Pepernoten/Snoepgoed -> You move faster? But rotation also happens faster?
   * Nice atmospheric things
   * Soundtrack + Sound Effects
+    * Built-in support for one or more soundtracks (keep playing, regardless of scenes)
 
 MAIN IMPROVEMENTS NOW:
 * Change button instructions to use a control node and no wonky scaling -> though then the "corner" mode for it will be broken too ...
   * I want it a bit _flatter_ anyway; use more width, less height
-* Cleaner way to grab that bold/italic font on special settings stuff
-  * SHOULD PROBABLY JUST FORCE DEFAULT TO `.otf` or `.ttf`, always, pick one.
-* Settings -> Make the checkbox prettier / more in line with others
-  * Do I want to go all GRAYSCALE with a single ACCENT COLOR?
-  * Yes, this is more powerful if we can CHANGE THAT COLOR (SCHEME) ON THE FLY for each game.
+  * Also, the text can be SHORTER, as pause menu explains it + we don't really need that much text visible at all times
+
+**THEME SETTINGS**:
+* Add `Color` option for settings
+* Then simply add all these individual settings (with `needsThemeRefresh` ON), grouped and all
+* QOL: Also add an option to _generate_ this color scheme on the fly from a single accent color -> so add option to set COLOR, and a TOGGLE to tell the system to use it
+* QOL: Also allow changing the ICONS (whether they're used, and which ONES to use) -> though this can't be set in theme, it will have to be set dynamically in GDScript when loading menu/pause/etc
+
 
 * **Write much better TODO/DOCS for starting new OBG project!**
   * ButtonsInstructions are needed! And I don't even mention them in the docs!
   * Shouldn't global.tscn also just be a standard scene?
-  * CLEANER FONT STRUCTURE/REPLACEMENT
   * Also, the "button instructions scale now RESETS when going through main menu" ... the default values are completely unusable anyway
   * Surely I had an easier way to "repeatedly fire held signal"?
   * WRITE DOWN LESSONS LEARNED ABOUT TRANSLATING
-  * Research GDExtensions and whether that's a better way to do my OBG framework
-  * Should probably just pick X FIXED COLORS that look good for sure in the interface and when tinting. The "max player count" of OBGs is really, feasibly, 10 or 12 people anyway
-  * YEAH IT'S NOT GREAT that I now have to alter things directly inside the framework (such as adding my own tabs to the menu.tscn scene) ---> ideally, the framework should remain untouched so I can just copy-paste to each new game
-    * Same thing with setting a custom default language for NL-focused games ... now it will just default to English all the time
+  * Should probably just pick 12 FIXED PLAYER COLORS that look good for sure in the interface and when tinting.
 
 @TODO:
 

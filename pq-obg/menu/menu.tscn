@@ -1,36 +1,17 @@
-[gd_scene load_steps=11 format=3 uid="uid://cgdjav32fnyi8"]
+[gd_scene load_steps=9 format=3 uid="uid://cgdjav32fnyi8"]
 
 [ext_resource type="Theme" uid="uid://ba2lixeo4d30y" path="res://pq-obg/ui/default_theme.tres" id="1_axedv"]
 [ext_resource type="Script" uid="uid://pv457xnnplpy" path="res://pq-obg/menu/main_menu.gd" id="1_g206a"]
+[ext_resource type="PackedScene" uid="uid://cg8edv702g8dd" path="res://pq-obg/ui/bg/bg.tscn" id="1_klxda"]
 [ext_resource type="Texture2D" uid="uid://cikhqhc0hfaxm" path="res://pq-obg/ui/styles/icon_play.tres" id="3_408xl"]
 [ext_resource type="Script" uid="uid://cm54dthffyvp5" path="res://pq-obg/menu/settings/settings.gd" id="3_qagmd"]
 [ext_resource type="Texture2D" uid="uid://bex3uoa5xtsv8" path="res://pq-obg/ui/styles/icon_settings.tres" id="4_cqcj2"]
-[ext_resource type="Script" uid="uid://bk8734ulnri1t" path="res://pq-obg/menu/settings/setting_tab.gd" id="4_uwhw1"]
-[ext_resource type="Resource" uid="uid://bkdl045h6lnih" path="res://pq-obg/menu/settings/default/tab_core.tres" id="5_flsgc"]
 [ext_resource type="Texture2D" uid="uid://b3xoiwk76ch5f" path="res://pq-obg/ui/styles/icon_quit.tres" id="6_p2nwr"]
-[ext_resource type="Resource" uid="uid://7et8y7u6jc6i" path="res://samen-stoomboten/ui/settings/tab_game.tres" id="9_1es7a"]
 [ext_resource type="Texture2D" uid="uid://cbue28i4wsoti" path="res://pq-obg/ui/styles/icon_reset.tres" id="9_clq6r"]
 
 [node name="Menu" type="Node2D" unique_id=1659929561]
 
-[node name="BG" type="CanvasLayer" parent="." unique_id=1477323049]
-
-[node name="Control" type="Control" parent="BG" unique_id=2003768285]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="BG/Control" unique_id=1874891030]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.423529, 0.788235, 1, 1)
+[node name="BG" parent="." unique_id=1882044302 instance=ExtResource("1_klxda")]
 
 [node name="Main" type="CanvasLayer" parent="." unique_id=638506886 node_paths=PackedStringArray("settings")]
 script = ExtResource("1_g206a")
@@ -76,7 +57,6 @@ icon = ExtResource("6_p2nwr")
 
 [node name="Settings" type="CanvasLayer" parent="." unique_id=1838816528]
 script = ExtResource("3_qagmd")
-settings_default = Array[ExtResource("4_uwhw1")]([ExtResource("5_flsgc"), ExtResource("9_1es7a")])
 
 [node name="CenterContainer" type="CenterContainer" parent="Settings" unique_id=2130010837]
 anchors_preset = 15

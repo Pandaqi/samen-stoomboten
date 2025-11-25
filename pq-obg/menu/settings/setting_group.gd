@@ -33,9 +33,7 @@ func visualize(r:SettingReader) -> PanelContainer:
 	var heading := Label.new()
 	vbox.add_child(heading)
 	heading.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	var path_font := "res://pq-obg/ui/fonts/heading.ttf"
-	var bold_font := path_font if ResourceLoader.exists(path_font) else "res://pq-obg/ui/fonts/heading.otf"
-	heading.add_theme_font_override("font", load(bold_font))
+	heading.add_theme_font_override("font", Global.config_shared.font_heading)
 	heading.set_text(label)
 	
 	for setting in settings:

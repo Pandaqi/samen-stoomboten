@@ -10,5 +10,6 @@ key = "language"
 label = "ST_LANGUAGE_SELECT"
 default = "en"
 callback = "TranslationServer.set_locale(v)"
-callback_init = "s.options = TranslationServer.get_loaded_locales()"
+callback_init = "s.default = Global.config_shared.language_default
+s.options = TranslationServer.get_loaded_locales()"
 metadata/_custom_type_script = "uid://cu5ytdnryre03"

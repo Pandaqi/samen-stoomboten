@@ -9,4 +9,4 @@ key = "input_allow_gamepad"
 label = "ST_ALLOW_GAMEPAD"
 section = "shared"
 default = "true"
-callback = "Global.input.refresh_button_selection(false)"
+needs_input_refresh = true

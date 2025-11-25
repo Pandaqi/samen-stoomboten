@@ -5,8 +5,12 @@ extends Node
 
 var input : InputManager
 var audio : AudioManager
+var theme : ThemeManager
 
 func _ready():
+	theme = ThemeManager.new()
+	add_child(theme)
+	
 	input = InputManager.new()
 	add_child(input)
 	

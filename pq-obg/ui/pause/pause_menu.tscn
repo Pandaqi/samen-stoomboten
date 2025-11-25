@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://6v4if0eefs5c" path="res://pq-obg/ui/pause/pause_menu.gd" id="1_uv1md"]
 [ext_resource type="PackedScene" uid="uid://dgfewhemw8ofh" path="res://pq-obg/ui/pause/pause_overlay.tscn" id="2_r0jos"]
 [ext_resource type="Texture2D" uid="uid://b3xoiwk76ch5f" path="res://pq-obg/ui/styles/icon_quit.tres" id="3_r0jos"]
-[ext_resource type="FontFile" uid="uid://r4wr5f23gxn5" path="res://pq-obg/ui/fonts/heading.otf" id="4_r0jos"]
+[ext_resource type="FontFile" uid="uid://r4wr5f23gxn5" path="res://samen-stoomboten/ui/fonts/heading.otf" id="4_r0jos"]
 [ext_resource type="Texture2D" uid="uid://cikhqhc0hfaxm" path="res://pq-obg/ui/styles/icon_play.tres" id="4_xq5ji"]
 
 [node name="PauseMenu" type="Control" unique_id=1738070768]

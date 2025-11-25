@@ -43,6 +43,9 @@ enum TypeUnit
 @export var options : Array[Variant] = []
 @export_multiline var callback_init : String
 
+@export var needs_theme_refresh := false
+@export var needs_input_refresh := false
+
 var value : Variant # last known/changed value
 var value_node : Label
 var control_node : Control
@@ -78,6 +81,7 @@ func set_display_type(tp:TypeDisplay) -> Setting:
 	return self
 
 func initialize(r:SettingReader) -> void:
+	run_custom_initialization()
 	on_value_changed(r.read_value(self), r)
 
 func reset(r:SettingReader) -> void:
@@ -94,8 +98,6 @@ func visualize(r:SettingReader) -> HBoxContainer:
 	create_value_node()
 	
 	hbox.add_child(label_node)
-	
-	run_custom_initialization()
 	
 	if type == Type.DROPDOWN:
 		value_node.set_visible(false)
@@ -158,9 +160,7 @@ func create_value_node() -> Label:
 	value_node = Label.new()
 	value_node.custom_minimum_size = Vector2(64,0)
 	value_node.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	var path_font := "res://pq-obg/ui/fonts/body_italic.ttf"
-	var italic_font := path_font if ResourceLoader.exists(path_font) else "res://pq-obg/ui/fonts/body_italic.otf"
-	value_node.add_theme_font_override("font", load(italic_font))
+	value_node.add_theme_font_override("font", Global.config_shared.font_body_italic)
 	value_node.modulate.a = 0.66
 	return value_node
 
@@ -210,13 +210,22 @@ func on_value_changed(new_val:Variant, r:SettingReader) -> void:
 	
 	# trigger instant modifications on change, if callback set
 	run_custom_callback(new_val, r)
+	
+	if needs_input_refresh:
+		Global.input.refresh_button_selection(false)
+	if needs_theme_refresh:
+		Global.theme.refresh()
 
 # we basically just create a new GDScript with the custom code as the body
 # then add it to the tree and run it
 func run_custom_callback(val:Variant, r:SettingReader) -> void:
 	if not callback: return
 	
-	var source_code := "@warning_ignore_start('unused_parameter')\nfunc eval(v,r): " + callback
+	var source_code := """
+@warning_ignore_start('unused_parameter')
+func eval(v,r):
+{code}
+""".format({ code = indent_callback_string(callback) })
 	var script = GDScript.new()
 	script.set_source_code(source_code)
 	script.reload()
@@ -228,7 +237,11 @@ func run_custom_callback(val:Variant, r:SettingReader) -> void:
 func run_custom_initialization() -> void:
 	if not callback_init: return
 	
-	var source_code := "@warning_ignore_start('unused_parameter')\nfunc eval(s): " + callback_init
+	var source_code := """
+@warning_ignore_start('unused_parameter')
+func eval(s):
+{code}
+""".format({ code = indent_callback_string(callback_init) })
 	var script = GDScript.new()
 	script.set_source_code(source_code)
 	script.reload()
@@ -236,6 +249,13 @@ func run_custom_initialization() -> void:
 	var ref = RefCounted.new()
 	ref.set_script(script)
 	ref.eval(self)
+
+func indent_callback_string(cb:String) -> String:
+	cb = cb.replace("\r", "")
+	var callback_lines = cb.split("\n")
+	for i in range(callback_lines.size()):
+		callback_lines[i] = "\t" + callback_lines[i]
+	return "\n".join(callback_lines)
 
 func update_display_value() -> void:
 	if not value_node: return

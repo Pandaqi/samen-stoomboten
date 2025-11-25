@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://r4wr5f23gxn5"
-path="res://.godot/imported/heading.otf-e3eee4330f6611590c5df44b4dab62f4.fontdata"
+uid="uid://c6hbb35jgav1g"
+path="res://.godot/imported/special.ttf-70114db8b483cdfdb8a77a3267231bf9.fontdata"
 
 [deps]
 
-source_file="res://pq-obg/ui/fonts/heading.otf"
-dest_files=["res://.godot/imported/heading.otf-e3eee4330f6611590c5df44b4dab62f4.fontdata"]
+source_file="res://samen-stoomboten/ui/fonts/special.ttf"
+dest_files=["res://.godot/imported/special.ttf-70114db8b483cdfdb8a77a3267231bf9.fontdata"]
 
 [params]
 

@@ -9,5 +9,5 @@ type_display = 1
 key = "input_max_players"
 label = "ST_MAX_PLAYERS"
 section = "shared"
-min_value = 2.0
-max_value = 16.0
+callback_init = "s.min_value = Global.config_shared.input_min_players_bound
+s.max_value = Global.config_shared.input_max_players_bound"

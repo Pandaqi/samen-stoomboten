@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://d1lemkj24xadb"
-path="res://.godot/imported/body_regular.otf-aef9eb596c1cdf7063a55bd0c3dc9634.fontdata"
+path="res://.godot/imported/body_regular.otf-5736a0b5be9ef3df019daa35d8b8e534.fontdata"
 
 [deps]
 
-source_file="res://pq-obg/ui/fonts/body_regular.otf"
-dest_files=["res://.godot/imported/body_regular.otf-aef9eb596c1cdf7063a55bd0c3dc9634.fontdata"]
+source_file="res://samen-stoomboten/ui/fonts/body_regular.otf"
+dest_files=["res://.godot/imported/body_regular.otf-5736a0b5be9ef3df019daa35d8b8e534.fontdata"]
 
 [params]
 
