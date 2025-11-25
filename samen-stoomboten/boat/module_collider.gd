@@ -2,6 +2,7 @@ extends Node2D
 class_name ModuleCollider
 
 @onready var entity : Boat = get_parent()
+var num_hits := 0
 
 func _ready() -> void:
 	entity.body_entered.connect(_on_body_entered)
@@ -15,3 +16,4 @@ func _on_body_entered(body:PhysicsBody2D) -> void:
 		body.damage(speed)
 		entity.module_gifts.drop_gift()
 		entity.play_bounce_tween()
+		num_hits += 1

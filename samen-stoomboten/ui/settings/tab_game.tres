@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="SettingTab" load_steps=5 format=3 uid="uid://7et8y7u6jc6i"]
 
-[ext_resource type="Script" uid="uid://c7uqyg8sqnc02" path="res://pq-obg/menu/settings/setting_group.gd" id="1_3jav1"]
+[ext_resource type="Script" uid="uid://c7uqyg8sqnc02" path="res://pq-obg/settings/setting_group.gd" id="1_3jav1"]
 [ext_resource type="Resource" uid="uid://btkfmyvurfu3c" path="res://samen-stoomboten/ui/settings/group_map.tres" id="2_ip7qf"]
-[ext_resource type="Script" uid="uid://bk8734ulnri1t" path="res://pq-obg/menu/settings/setting_tab.gd" id="2_jsjwj"]
+[ext_resource type="Script" uid="uid://bk8734ulnri1t" path="res://pq-obg/settings/setting_tab.gd" id="2_jsjwj"]
 [ext_resource type="Resource" uid="uid://b25x7q6ei5sab" path="res://samen-stoomboten/ui/settings/group_boat.tres" id="3_w3a4c"]
 
 [resource]

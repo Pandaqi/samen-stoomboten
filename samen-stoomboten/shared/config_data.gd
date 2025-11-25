@@ -15,6 +15,10 @@ class_name ConfigData
 @export_subgroup("Movement")
 @export var boat_player_speed := 200.0
 
+@export_subgroup("Compass")
+@export var max_compass_indicators := 4
+@export var compass_radius := 256.0
+
 @export_group("Map")
 @export var min_dist_between_objects := 256.0
 @export var world_edge_margin := 256.0

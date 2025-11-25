@@ -13,12 +13,18 @@ var chunk_size : Vector2
 var world_size : Vector2
 var all_nodes : Array[Node2D] = []
 
+var time_start := 0.0
+
 func _ready() -> void:
 	map_data.reset()
 	boat.finish_request.connect(_on_boat_finished)
+	time_start = Time.get_ticks_msec()
 	generate()
 
 func _on_boat_finished():
+	var time_end := Time.get_ticks_msec()
+	map_data.time = (time_end - time_start) / 1000.0
+	map_data.obstacles_hit = boat.module_collider.num_hits
 	ui.goto_game_over()
 
 func get_random_valid_position(rect:Rect2, avoid:Array[Node2D]) -> Vector2:
@@ -47,7 +53,7 @@ func generate() -> void:
 	var num_gifts := Global.config.num_gifts
 	var num_obstacles := Global.config.num_obstacles
 	chunk_size = Global.config.map_chunk_size
-	world_size = num_chunks * chunk_size
+	world_size = Vector2(num_chunks * chunk_size.x, chunk_size.y)
 	
 	# place stuff in the water
 	var gifts_per_chunk = round(num_gifts / float(num_chunks))

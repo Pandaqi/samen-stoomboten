@@ -10,6 +10,7 @@ var arrows : Array[Arrow] = []
 
 @export var module_gifts : ModuleGifts
 @export var module_visuals : ModuleVisuals
+@export var module_collider : ModuleCollider
 @export var ui : UI
 @export var map_overlay : Node2D
 

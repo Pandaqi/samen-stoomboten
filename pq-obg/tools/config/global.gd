@@ -7,6 +7,8 @@ var input : InputManager
 var audio : AudioManager
 var theme : ThemeManager
 
+signal pause_mode_change()
+
 func _ready():
 	theme = ThemeManager.new()
 	add_child(theme)

@@ -4,7 +4,8 @@ enum InputType
 {
 	KEYBOARD,
 	GAMEPAD,
-	MOUSE
+	MOUSE,
+	NONE
 }
 
 var key : int

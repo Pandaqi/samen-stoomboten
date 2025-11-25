@@ -49,6 +49,8 @@ func set_paused(val:bool) -> void:
 	# if it's the first unpause, start the game
 	if not paused and state == GameState.PREGAME:
 		change_state(GameState.GAME)
+	
+	Global.pause_mode_change.emit()
 
 func change_state(new_state:GameState) -> void:
 	state = new_state
@@ -64,10 +66,10 @@ func on_objective_registered() -> void:
 
 func goto_game_over() -> void:
 	change_state(GameState.POSTGAME)
-	get_tree().change_scene_to_file("res://pq-obg/game_over/game_over.tscn")
+	get_tree().change_scene_to_file("res://pq-obg/game_loop/game_over/game_over.tscn")
 
 func goto_main_menu() -> void:
-	get_tree().change_scene_to_file("res://pq-obg/menu/menu.tscn")
+	get_tree().change_scene_to_file("res://pq-obg/game_loop/menu/menu.tscn")
 
 func _unhandled_input(ev:InputEvent) -> void:
 	if not paused and ev.is_action_released("ui_backward"):

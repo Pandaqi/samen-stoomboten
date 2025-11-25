@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cg8edv702g8dd"]
+[gd_scene load_steps=5 format=3 uid="uid://cg8edv702g8dd"]
 
 [ext_resource type="Script" uid="uid://b8i53c11hwwcx" path="res://pq-obg/ui/bg/generic_bg.gd" id="1_nqx8i"]
-[ext_resource type="Texture2D" uid="uid://b7b3swg3h06jq" path="res://samen-stoomboten/ui/bg_image.png" id="2_vhp6h"]
 
 [sub_resource type="Animation" id="Animation_qagg6"]
 length = 0.001
@@ -92,7 +91,6 @@ color = Color(0.423529, 0.788235, 1, 1)
 [node name="ImageContainer" type="Node2D" parent="." unique_id=1236696478]
 
 [node name="Sprite2D" type="Sprite2D" parent="ImageContainer" unique_id=236736566]
-texture = ExtResource("2_vhp6h")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1820799006]
 libraries = {

@@ -5,7 +5,7 @@
 [ext_resource type="StyleBox" uid="uid://bpjpp7goqlvqm" path="res://pq-obg/ui/styles/button_normal_stylebox.tres" id="3_n0tmx"]
 [ext_resource type="FontFile" uid="uid://crq2bmbd60bmo" path="res://samen-stoomboten/ui/fonts/body_black.otf" id="4_70v1u"]
 [ext_resource type="FontFile" uid="uid://d1lemkj24xadb" path="res://samen-stoomboten/ui/fonts/body_regular.otf" id="5_x124o"]
-[ext_resource type="StyleBox" uid="uid://cearj04ccu73o" path="res://pq-obg/menu/panel_style_box.tres" id="6_7623a"]
+[ext_resource type="StyleBox" uid="uid://cearj04ccu73o" path="res://pq-obg/ui/styles/panel_style_box.tres" id="6_7623a"]
 [ext_resource type="FontFile" uid="uid://ctv8typi4rqfd" path="res://samen-stoomboten/ui/fonts/body_black_italic.otf" id="7_n0tmx"]
 [ext_resource type="FontFile" uid="uid://d7mos0rr3b31" path="res://samen-stoomboten/ui/fonts/body_italic.otf" id="8_x6gkh"]
 [ext_resource type="FontFile" uid="uid://r4wr5f23gxn5" path="res://samen-stoomboten/ui/fonts/heading.otf" id="9_u2mcw"]

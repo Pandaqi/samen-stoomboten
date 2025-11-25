@@ -16,12 +16,11 @@
 [ext_resource type="PackedScene" uid="uid://d3tvtcu27fhwm" path="res://samen-stoomboten/map/obstacle/obstacle.tscn" id="10_76csb"]
 [ext_resource type="PackedScene" uid="uid://ck85k1tbyif1j" path="res://samen-stoomboten/map/finish/finish.tscn" id="12_7xrjc"]
 [ext_resource type="Script" uid="uid://cuo58m8732osp" path="res://samen-stoomboten/boat/module_visuals.gd" id="13_rxg8p"]
+[ext_resource type="Script" uid="uid://blhx0yhash4rp" path="res://samen-stoomboten/boat/module_compass.gd" id="14_xng78"]
 [ext_resource type="PackedScene" uid="uid://c3mew7u5cevle" path="res://pq-obg/state/state.tscn" id="15_k6u8g"]
-[ext_resource type="Script" uid="uid://bog0m3bhuc2mp" path="res://pq-obg/ui/button_instructions/button_instructions.gd" id="17_edjgo"]
 [ext_resource type="Texture2D" uid="uid://bb0xm2dgcpo8m" path="res://samen-stoomboten/boat/white_circle.tres" id="17_xng78"]
 [ext_resource type="Texture2D" uid="uid://bq30jmlxewohk" path="res://samen-stoomboten/ui/staf-back.webp" id="18_agstb"]
 [ext_resource type="Script" uid="uid://b4xlx5a2ve4mx" path="res://samen-stoomboten/ui/ui.gd" id="18_ccyv6"]
-[ext_resource type="PackedScene" uid="uid://bws1bg4b1iswl" path="res://pq-obg/ui/button_instructions/button_instruction.tscn" id="18_v738m"]
 [ext_resource type="Texture2D" uid="uid://cg0sp4j7g0hc4" path="res://samen-stoomboten/ui/staf-front.webp" id="19_ccyv6"]
 [ext_resource type="Texture2D" uid="uid://i3krb5yjl1fy" path="res://samen-stoomboten/ui/staf-mid.webp" id="20_rxg8p"]
 [ext_resource type="PackedScene" uid="uid://v86e6jsutbpa" path="res://samen-stoomboten/shared/asset_sprite.tscn" id="21_hrw0s"]
@@ -31,6 +30,7 @@
 [ext_resource type="Theme" uid="uid://ba2lixeo4d30y" path="res://pq-obg/ui/default_theme.tres" id="25_xng78"]
 [ext_resource type="Texture2D" uid="uid://b3xoiwk76ch5f" path="res://pq-obg/ui/styles/icon_quit.tres" id="26_kelc7"]
 [ext_resource type="Texture2D" uid="uid://cikhqhc0hfaxm" path="res://pq-obg/ui/styles/icon_play.tres" id="27_yjdao"]
+[ext_resource type="PackedScene" uid="uid://nk31em7vq05f" path="res://pq-obg/ui/button_instructions/button_instructions.tscn" id="30_gi08c"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_11fih"]
 bounce = 1.0
@@ -389,6 +389,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(1.347661e-06, 0.8748613, 0.8783399, 1)
 
 [node name="PlayerSpawner" type="Node2D" parent="." unique_id=152209881]
@@ -407,7 +408,7 @@ map_data = ExtResource("9_gi08c")
 boat = NodePath("Boat")
 ui = NodePath("../UI")
 
-[node name="Boat" type="RigidBody2D" parent="Map" unique_id=1182241835 node_paths=PackedStringArray("arrow_container", "module_gifts", "module_visuals", "ui", "map_overlay")]
+[node name="Boat" type="RigidBody2D" parent="Map" unique_id=1182241835 node_paths=PackedStringArray("arrow_container", "module_gifts", "module_visuals", "module_collider", "ui", "map_overlay")]
 position = Vector2(0, 325)
 mass = 50.0
 physics_material_override = SubResource("PhysicsMaterial_11fih")
@@ -423,6 +424,7 @@ arrow_scene = ExtResource("7_1i7mk")
 arrow_container = NodePath("Arrows")
 module_gifts = NodePath("ModuleGifts")
 module_visuals = NodePath("ModuleVisuals")
+module_collider = NodePath("ModuleCollider")
 ui = NodePath("../../UI")
 map_overlay = NodePath("../../MapOverlay")
 
@@ -439,6 +441,11 @@ script = ExtResource("8_76csb")
 script = ExtResource("9_xwjm6")
 map_data = ExtResource("9_gi08c")
 
+[node name="ModuleCompass" type="Node2D" parent="Map/Boat" unique_id=1232525735]
+script = ExtResource("14_xng78")
+map_data = ExtResource("9_gi08c")
+compass_texture = ExtResource("17_xng78")
+
 [node name="ModuleVisuals" type="Node2D" parent="Map/Boat" unique_id=741150603 node_paths=PackedStringArray("sprite_container", "sprite", "anim_player", "anim_player_water")]
 script = ExtResource("13_rxg8p")
 sprite_container = NodePath("SpriteContainer")
@@ -450,7 +457,7 @@ anim_player_water = NodePath("AnimationPlayerWater")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Map/Boat/ModuleVisuals/SpriteContainer" unique_id=1744194474]
 position = Vector2(-32, -90)
-amount = 7
+amount = 12
 texture = ExtResource("17_xng78")
 lifetime = 1.5
 emission_shape = 1
@@ -686,12 +693,7 @@ libraries = {
 [node name="State" parent="." unique_id=1145839826 instance=ExtResource("15_k6u8g")]
 layer = 8
 
-[node name="ButtonInstructions" type="CanvasLayer" parent="." unique_id=1572046177]
-layer = 16
-script = ExtResource("17_edjgo")
-button_instruction_scene = ExtResource("18_v738m")
-margin_off_edge = Vector2(50, 50)
-metadata/_custom_type_script = "uid://bog0m3bhuc2mp"
+[node name="ButtonInstructions" parent="." unique_id=13185939 instance=ExtResource("30_gi08c")]
 
 [connection signal="pressed" from="UI/GameOverMenu/CenterContainer/MarginContainer/VBoxContainer/HBoxContainer/Backward" to="UI/GameOverMenu" method="_on_backward_pressed"]
 [connection signal="pressed" from="UI/GameOverMenu/CenterContainer/MarginContainer/VBoxContainer/HBoxContainer/Forward" to="UI/GameOverMenu" method="_on_forward_pressed"]

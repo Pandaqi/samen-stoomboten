@@ -2,6 +2,10 @@ keys,en,nl
 GAME_OVER_HEADER,Game Over,Spel afgelopen
 GAME_OVER_GIFTS,gift(s) collected,pakje(s) verzameld
 GAME_OVER_TOTAL_GIFTS,"In total, there were",Er waren er in totaal
+GAME_OVER_OBSTACLE_HITS,You hit,Je botste tegen
+GAME_OVER_OBSTACLE_TYPE,islands,eilanden
+GAME_OVER_TIME_SPENT,You did all this in a record time of,Dit deed je allemaal in een recordtijd van
+GAME_OVER_TIME_UNIT,"seconds","seconden"
 SETTINGS_GROUP_BOAT,Boat,Boot
 SETTINGS_GROUP_MAP,Map,Wereld
 SETTINGS_TAB_GAME,Game,Spel

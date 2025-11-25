@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="SettingGroup" load_steps=3 format=3 uid="uid://btkfmyvurfu3c"]
 
-[ext_resource type="Script" uid="uid://c7uqyg8sqnc02" path="res://pq-obg/menu/settings/setting_group.gd" id="1_72b7b"]
-[ext_resource type="Script" uid="uid://cu5ytdnryre03" path="res://pq-obg/menu/settings/setting.gd" id="2_b7xye"]
+[ext_resource type="Script" uid="uid://c7uqyg8sqnc02" path="res://pq-obg/settings/setting_group.gd" id="1_72b7b"]
+[ext_resource type="Script" uid="uid://cu5ytdnryre03" path="res://pq-obg/settings/setting.gd" id="2_b7xye"]
 
 [resource]
 script = ExtResource("1_72b7b")

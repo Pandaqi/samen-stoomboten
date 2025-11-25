@@ -3,6 +3,8 @@ class_name Gift
 
 var target := Vector2.ZERO
 var anchor : Vector2
+var is_on_screen := false
+var is_in_boat := false
 
 @export var area : Area2D
 @export var sprite : Sprite2D
@@ -24,6 +26,7 @@ func _on_body_entered(body:Node2D) -> void:
 func set_enabled(is_enabled: bool) -> void:
 	set_visible(is_enabled)
 	area.set_deferred("monitoring", is_enabled)
+	is_in_boat = not is_enabled
 
 func set_new_anchor(pos:Vector2) -> void:
 	anchor = pos
@@ -68,3 +71,12 @@ func eject_to(from:Vector2, to:Vector2) -> void:
 	
 	set_new_anchor(to)
 	set_enabled(true)
+
+func visible_to_compass() -> bool:
+	return (not is_on_screen) and (not is_in_boat)
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	is_on_screen = true
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	is_on_screen = false

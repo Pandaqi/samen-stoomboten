@@ -111,8 +111,24 @@ Het grootste probleem was eigenlijk dat mijn "One Button Game"-systeem serieuze 
 
 Bijvoorbeeld, toen ik het OBG systeem maakte dacht ik "weet je wat, we gebruiken gewoon dezelfde neutrale lettertypes voor ALLE OBGs, lekker makkelijk!" Maar dat was een dom idee. Lettertypes zijn _de_ makkelijkste en snelste manier om een spel een helemaal passend en uniek uiterlijk te geven. Voor zo'n spel als dit wil ik mijn Sinterklaaslettertypes gebruiken, anders ziet het er ook gewoon raar uit. Maar ja, het hele systeem had lettertypes "ingebakken", dus ik kon ze niet veranderen!
 
-Nou goed, vervolgens ben je dus uren bezig met code herschrijven zodat je makkelijk _per spel_ kunt aangeven "nee nee, deze keer wil ik DIT lettertype gebruiken".
+Nou goed, vervolgens ben je dus uren bezig met code herschrijven zodat je makkelijk _per spel_ kunt aangeven "nee nee, deze keer wil ik DIT lettertype gebruiken". Zonder dat daarvoor dat onderliggende systeem ooit hoeft aangepast of opengebroken. Ik schrijf vast ergens een keer in het Engels een devlog over dat OBG systeem, als het volledig genoeg is dat ik het openbaar maak en anderen het ook kunnen gebruiken!
 
+## Een _beter_ werkend spel
+
+Op dit moment kan je het spel spelen en je kan door alle menu's en instellingen heen. Dat noem ik altijd "publishable". Je zou, theoretisch, het spel nu aan mensen kunnen geven en ze kunnen het dus spelen van begin tot eind. Dat betekent natuurlijk niet dat het _goed_ is en dat er niet allemaal ruwe randjes aan zitten. Maar ik probeer altijd zo snel mogelijk naar publishable te komen. 
+
+{{% remark %}}
+Dat is beter voor motivatie, want je hebt tenminste _iets_ dat werkt en speelbaar is. En je kan de toekomst niet voorspellen en weet niet of/wanneer je het project weer opgeeft, en je wilt het liefst niet allerlei onspeelbare dingen achterlaten.
+{{% /remark %}}
+
+Dus nu ga ik kijken naar de grootste dingen die ik zou willen verbeteren, soort van op volgorde van prioriteit.
+
+* Het zou leuker zijn als hij ook andere dingen bijhoudt tijdens het spelen, zodat je die op het eindscherm kan laten zien. Bijvoorbeeld: "je bent X keer tegen een eiland gebotst".
+* Het grootste probleem is dat je nu kan kwijtraken waar je bent/heen moet, omdat de hele zee vrij groot en hetzelfde is. 
+  * Dus ik bouwde een systeem dat jou kan laten zien waar je nog pakjes kan vinden.
+  * Maar dit krijg je alleen te zien als je een specifiek pakje weet op te pakken (het "Grote Boek").
+  * Leek me thematisch. Zorgt ervoor dat het niet te makkelijk/overweldigend is aan het begin, en je hebt een reden om heel graag dat boek te pakken als je hem ziet.
+* Ik voegde wat meer geluidseffecten toe.
 
 
 
@@ -120,40 +136,39 @@ Nou goed, vervolgens ben je dus uren bezig met code herschrijven zodat je makkel
 
 @TODO:
 
-* BUG: Can't reload current scene because player_data can't grab an available color???
-* BUG: Mouse-add-player not working anymore
-* BUG: Why the fuck are the keycodes now in numerical order? (A,B,C,D) What did I do to make that happen??? ---> Only happens when we go through settings? Probably because "refresh_buttons(shuffle = false)", well, prevents shuffling!
-* UI: HOW TO MAKE IT LOOK BETTER/MORE CONSISTENT??
-  * Should've picked fixed (font) sizes for everything and stuck to that from the start ... only scale it based on ONE value (and/or nice multiples of it)
-* Polishing
-  * Track time + number of bounces/hits too
-  * Do we NEED a tutorial?
+* BUG: Can't reload current scene because player_data can't grab an available color??? (Yes, and this bug only happens if there ARE players logged in)
+
 * REFACTOR
   * Add settings for this particular game (change world size, obstacle density, etc) + their translations of course
   * Have fewer dependencies; if we do need them, INJECT them upon activation/ready
 * Optional
+  * Do we NEED a tutorial?
   * More things to encounter
     * Grote Boek -> Will show you where all the gifts/closest gifts are (for a limited duration?) -> AT THE VERY LEAST, WE NEED SOME "MARKERS" TO RECOGNIZE WHERE YOU ARE/HAVE BEEN
     * Pepernoten/Snoepgoed -> You move faster? But rotation also happens faster?
-  * Nice atmospheric things
-  * Soundtrack + Sound Effects
-    * Built-in support for one or more soundtracks (keep playing, regardless of scenes)
-
-MAIN IMPROVEMENTS NOW:
-* Change button instructions to use a control node and no wonky scaling -> though then the "corner" mode for it will be broken too ...
-  * I want it a bit _flatter_ anyway; use more width, less height
-  * Also, the text can be SHORTER, as pause menu explains it + we don't really need that much text visible at all times
+  * Sound Effects
+    * Collect Gift
+    * Lose Gift
+    * Sloshing of water
+    * Bump into something
+    * Finishing
+    * Once in a while, randomly, the steam engine toooot
+    * Default OBG stuff
+      * Player login/logout?
+      * UI button click?
 
 **THEME SETTINGS**:
 * Add `Color` option for settings
 * Then simply add all these individual settings (with `needsThemeRefresh` ON), grouped and all
 * QOL: Also add an option to _generate_ this color scheme on the fly from a single accent color -> so add option to set COLOR, and a TOGGLE to tell the system to use it
 * QOL: Also allow changing the ICONS (whether they're used, and which ONES to use) -> though this can't be set in theme, it will have to be set dynamically in GDScript when loading menu/pause/etc
+* ALSO set the ButtonInstructions to be updated based on Global config settings (separation between stuff, font size, etc)
 
 
 * **Write much better TODO/DOCS for starting new OBG project!**
   * ButtonsInstructions are needed! And I don't even mention them in the docs!
   * Shouldn't global.tscn also just be a standard scene?
+  * MAKE SURE ALL OTHER CANVASLAYERS/CONTROL NODES IGNORE MOUSE INPUT, otherwise the general input manager won't work on mouse clicks
   * Also, the "button instructions scale now RESETS when going through main menu" ... the default values are completely unusable anyway
   * Surely I had an easier way to "repeatedly fire held signal"?
   * WRITE DOWN LESSONS LEARNED ABOUT TRANSLATING

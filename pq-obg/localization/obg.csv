@@ -4,7 +4,7 @@ PAUSED_TEXT,Login players now by pressing one of the buttons indicated.,Voeg spe
 BUTTON_NEW_PLAYER,Add new player?,Nieuwe speler toevoegen?
 BUTTON_LOGOUT,Hold for 3 seconds to log out.,Houd 3 seconden vast om uit te loggen.
 BUTTON_LOGOUT_RELOAD,Reload game to log out players.,Herstart het spel als je spelers wilt uitloggen.
-BUTTON_LOGOUT_MODE,Enter removal mode -> press to log out.,Ga naar uitlogmodus -> druk om uit te loggen.
+BUTTON_LOGOUT_MODE,Enter pause mode -> press to log out.,Pauzeer het spel -> druk om uit te loggen.
 MENU_PLAY,Play,Spelen
 MENU_SETTINGS,Settings,Instellingen
 MENU_QUIT,Quit,Afsluiten

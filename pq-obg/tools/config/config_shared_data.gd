@@ -6,7 +6,11 @@ class_name ConfigSharedData
 @export var language_default := "en"
 
 @export_group("Settings")
-@export var settings : Array[SettingTab] = [preload("res://pq-obg/menu/settings/default/tab_core.tres")] # resources for SettingTabs to display
+@export var settings : Array[SettingTab] = [preload("res://pq-obg/settings/default/tab_core.tres")] # resources for SettingTabs to display
+
+@export_group("Audio")
+@export var audio_bg : Array[AudioStream] = []
+@export var audio_busses : Array[String] = []
 
 @export_group("Theme")
 @export var theme : Theme = preload("res://pq-obg/ui/default_theme.tres")
