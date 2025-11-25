@@ -4,22 +4,22 @@
 [ext_resource type="PackedScene" uid="uid://dch28bffyv2mx" path="res://pq-obg/ui/sprite_ui.tscn" id="2_gs34i"]
 [ext_resource type="Theme" uid="uid://ba2lixeo4d30y" path="res://pq-obg/ui/default_theme.tres" id="3_lls0i"]
 
-[node name="ButtonVisualizer" type="Node2D"]
+[node name="ButtonVisualizer" type="Node2D" unique_id=636806661]
 script = ExtResource("1_nkctm")
 
-[node name="SpriteUI" parent="." instance=ExtResource("2_gs34i")]
+[node name="SpriteUI" parent="." unique_id=21074101 instance=ExtResource("2_gs34i")]
 frame = 2
 
-[node name="SubSprites" type="Node2D" parent="."]
+[node name="SubSprites" type="Node2D" parent="." unique_id=2066227812]
 
-[node name="MouseLeft" parent="SubSprites" instance=ExtResource("2_gs34i")]
+[node name="MouseLeft" parent="SubSprites" unique_id=1677202311 instance=ExtResource("2_gs34i")]
 visible = false
 modulate = Color(1, 0, 1, 1)
 position = Vector2(-84, -106)
 scale = Vector2(0.48, 0.48)
 frame = 8
 
-[node name="MouseRight" parent="SubSprites" instance=ExtResource("2_gs34i")]
+[node name="MouseRight" parent="SubSprites" unique_id=707446991 instance=ExtResource("2_gs34i")]
 visible = false
 modulate = Color(1, 0, 1, 1)
 position = Vector2(84, -106)
@@ -27,7 +27,7 @@ scale = Vector2(0.48, 0.48)
 flip_h = true
 frame = 8
 
-[node name="MouseMiddle" parent="SubSprites" instance=ExtResource("2_gs34i")]
+[node name="MouseMiddle" parent="SubSprites" unique_id=245040850 instance=ExtResource("2_gs34i")]
 visible = false
 modulate = Color(1, 0, 1, 1)
 position = Vector2(0, -145)
@@ -35,38 +35,38 @@ scale = Vector2(0.25, 0.25)
 flip_h = true
 frame = 9
 
-[node name="GamepadTop" parent="SubSprites" instance=ExtResource("2_gs34i")]
+[node name="GamepadTop" parent="SubSprites" unique_id=18394145 instance=ExtResource("2_gs34i")]
 modulate = Color(1, 0, 1, 1)
 position = Vector2(0, -151)
 scale = Vector2(0.28, 0.28)
 flip_h = true
 frame = 10
 
-[node name="GamepadRight" parent="SubSprites" instance=ExtResource("2_gs34i")]
+[node name="GamepadRight" parent="SubSprites" unique_id=1873733660 instance=ExtResource("2_gs34i")]
 modulate = Color(1, 0, 1, 1)
 position = Vector2(130, -24)
 scale = Vector2(0.28, 0.28)
 flip_h = true
 frame = 10
 
-[node name="GamepadBottom" parent="SubSprites" instance=ExtResource("2_gs34i")]
+[node name="GamepadBottom" parent="SubSprites" unique_id=238458307 instance=ExtResource("2_gs34i")]
 modulate = Color(1, 0, 1, 1)
 position = Vector2(1, 99)
 scale = Vector2(0.28, 0.28)
 flip_h = true
 frame = 10
 
-[node name="GamepadLeft" parent="SubSprites" instance=ExtResource("2_gs34i")]
+[node name="GamepadLeft" parent="SubSprites" unique_id=1294241033 instance=ExtResource("2_gs34i")]
 modulate = Color(1, 0, 1, 1)
 position = Vector2(-128, -25)
 scale = Vector2(0.28, 0.28)
 flip_h = true
 frame = 10
 
-[node name="KeyboardLabel" type="Label" parent="."]
+[node name="KeyboardLabel" type="Label" parent="." unique_id=1077165770]
 visible = false
 offset_left = -220.0
-offset_top = -310.0
+offset_top = -256.0
 offset_right = 221.0
 offset_bottom = 252.0
 theme = ExtResource("3_lls0i")
@@ -76,9 +76,9 @@ text = "A"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GamepadLabel" type="Label" parent="."]
+[node name="GamepadLabel" type="Label" parent="." unique_id=1639551178]
 offset_left = -220.0
-offset_top = -305.0
+offset_top = -276.0
 offset_right = 221.0
 offset_bottom = 257.0
 theme = ExtResource("3_lls0i")

@@ -6,11 +6,13 @@ enum Type
 	CHECKBOX,
 	RANGE,
 	RANGE_DISCRETE,
+	DROPDOWN,
 	# @TODO?
 }
 
 enum TypeDisplay
 {
+	NONE,
 	INT,
 	FLOAT, # default
 	VOLUME,
@@ -39,6 +41,7 @@ enum TypeUnit
 @export var max_value := INF
 @export var step_value := 0
 @export var options : Array[Variant] = []
+@export_multiline var callback_init : String
 
 var value : Variant # last known/changed value
 var value_node : Label
@@ -92,11 +95,27 @@ func visualize(r:SettingReader) -> HBoxContainer:
 	
 	hbox.add_child(label_node)
 	
+	run_custom_initialization()
+	
+	if type == Type.DROPDOWN:
+		value_node.set_visible(false)
+		
+		var dd := OptionButton.new()
+		control_node = dd
+		
+		for option in options:
+			dd.add_item(option)
+		
+		dd.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		dd.item_selected.connect(func(idx:int):
+			on_value_changed(dd.get_item_text(idx), r)
+		)
+	
 	if type == Type.CHECKBOX:
 		label_node.set_visible(false)
 		value_node.set_visible(false)
 		
-		var cb := CheckBox.new()
+		var cb := CheckButton.new()
 		control_node = cb
 		
 		cb.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -141,7 +160,7 @@ func create_value_node() -> Label:
 	value_node.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	var path_font := "res://pq-obg/ui/fonts/body_italic.ttf"
 	var italic_font := path_font if ResourceLoader.exists(path_font) else "res://pq-obg/ui/fonts/body_italic.otf"
-	value_node.add_theme_font_override("font", load(path_font))
+	value_node.add_theme_font_override("font", load(italic_font))
 	value_node.modulate.a = 0.66
 	return value_node
 
@@ -164,10 +183,13 @@ func set_default(v:Variant) -> void:
 	default = str(v)
 
 func force_update_control() -> void:
-	if control_node is CheckBox:
+	if (control_node is CheckBox) or (control_node is CheckButton):
 		control_node.button_pressed = value
 	if control_node is HSlider:
 		control_node.value = value
+	if control_node is OptionButton:
+		# @NOTE: this relies on the fact that items are added by just iterating through options in order, so index found this way matches the text string we want
+		control_node.select(options.find(value))
 
 func on_value_changed(new_val:Variant, r:SettingReader) -> void:
 	# if we have no default set yet, save it now BEFORE overwriting anything, so we read from the true original Global.config
@@ -194,7 +216,7 @@ func on_value_changed(new_val:Variant, r:SettingReader) -> void:
 func run_custom_callback(val:Variant, r:SettingReader) -> void:
 	if not callback: return
 	
-	var source_code := "func eval(v,r): " + callback
+	var source_code := "@warning_ignore_start('unused_parameter')\nfunc eval(v,r): " + callback
 	var script = GDScript.new()
 	script.set_source_code(source_code)
 	script.reload()
@@ -202,6 +224,18 @@ func run_custom_callback(val:Variant, r:SettingReader) -> void:
 	var ref = RefCounted.new()
 	ref.set_script(script)
 	ref.eval(val, r)
+
+func run_custom_initialization() -> void:
+	if not callback_init: return
+	
+	var source_code := "@warning_ignore_start('unused_parameter')\nfunc eval(s): " + callback_init
+	var script = GDScript.new()
+	script.set_source_code(source_code)
+	script.reload()
+	
+	var ref = RefCounted.new()
+	ref.set_script(script)
+	ref.eval(self)
 
 func update_display_value() -> void:
 	if not value_node: return

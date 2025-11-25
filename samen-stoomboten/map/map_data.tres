@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="MapData" load_steps=2 format=3 uid="uid://dsc3sxbvjf0hi"]
+
+[ext_resource type="Script" uid="uid://ctmyhpbj23lm6" path="res://samen-stoomboten/map/map_data.gd" id="1_64dpn"]
+
+[resource]
+script = ExtResource("1_64dpn")
+metadata/_custom_type_script = "uid://ctmyhpbj23lm6"

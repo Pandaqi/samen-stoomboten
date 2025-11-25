@@ -4,9 +4,9 @@
 
 [resource]
 script = ExtResource("1_v4hub")
-type_display = 3
+type_display = 4
 key = "input_allow_gamepad"
-label = "Gamepads"
+label = "ST_ALLOW_GAMEPAD"
 section = "shared"
 default = "true"
 callback = "Global.input.refresh_button_selection(false)"

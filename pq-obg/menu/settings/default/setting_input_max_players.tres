@@ -5,9 +5,9 @@
 [resource]
 script = ExtResource("1_do1cx")
 type = 2
-type_display = 0
+type_display = 1
 key = "input_max_players"
-label = "Maximum player count"
+label = "ST_MAX_PLAYERS"
 section = "shared"
 min_value = 2.0
 max_value = 16.0

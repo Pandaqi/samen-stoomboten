@@ -51,16 +51,17 @@ layout_mode = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_r0jos")
 theme_override_font_sizes/font_size = 38
-text = "Paused"
+text = "PAUSED_HEADER"
 horizontal_alignment = 1
 
-[node name="Explanation" type="RichTextLabel" parent="CenterContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer" unique_id=1206168888]
-custom_minimum_size = Vector2(24, 24)
+[node name="Explanation" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer" unique_id=1216426754]
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 theme = ExtResource("1_bbfh5")
-bbcode_enabled = true
-text = "[center][b]Login/Logout[/b] players now by pressing the button indicated.[/center]"
-fit_content = true
+text = "PAUSED_TEXT"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=1723074134]
 layout_mode = 2

@@ -4,9 +4,9 @@
 
 [resource]
 script = ExtResource("1_pgn3d")
-type_display = 3
+type_display = 4
 key = "input_allow_mouse"
-label = "Mouse"
+label = "ST_ALLOW_MOUSE"
 section = "shared"
 default = "true"
 callback = "Global.input.refresh_button_selection(false)"

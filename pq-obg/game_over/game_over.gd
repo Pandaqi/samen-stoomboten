@@ -18,9 +18,9 @@ enum GameOverState
 func _ready() -> void:
 	state_data.debug_set_to_gameover()
 	state_data.make_temporary_results_permanent()
-	forward_btn.set_text("Continue")
+	forward_btn.set_text("GO_CONTINUE")
 	forward_btn.grab_focus()
-	table_heading.set_text("Match Results")
+	table_heading.set_text("GO_RESULTS_MATCH")
 	state = GameOverState.MATCH_RANK
 	show_results()
 
@@ -49,6 +49,6 @@ func _on_forward_pressed() -> void:
 	
 	if state == GameOverState.MATCH_RANK:
 		state = GameOverState.GAME_RANK
-		forward_btn.set_text("Play Again")
-		table_heading.set_text("Game Results")
+		forward_btn.set_text("GO_PLAY_AGAIN")
+		table_heading.set_text("GO_RESULTS_GAME")
 		show_results()

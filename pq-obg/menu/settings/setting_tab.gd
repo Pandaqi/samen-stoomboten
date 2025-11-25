@@ -35,7 +35,7 @@ func visualize(r:SettingReader) -> ScrollContainer:
 	scroll.add_child(margin_cont)
 	
 	var vbox := VBoxContainer.new()
-	var v_sep := int(0.5*margin)
+	var v_sep := int(0.66*margin)
 	vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	vbox.add_theme_constant_override("separation", v_sep)
 	margin_cont.add_child(vbox)

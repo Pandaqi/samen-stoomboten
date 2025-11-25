@@ -74,6 +74,7 @@ func _unhandled_input(ev:InputEvent) -> void:
 		set_paused(true)
 
 func _on_backward_pressed() -> void:
+	set_paused(false)
 	goto_main_menu()
 
 func _on_forward_pressed() -> void:

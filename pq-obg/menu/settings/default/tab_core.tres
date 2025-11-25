@@ -11,4 +11,4 @@
 [resource]
 script = ExtResource("2_xjtdf")
 groups = Array[ExtResource("1_p71rd")]([ExtResource("2_oiumh"), ExtResource("3_ux31s"), ExtResource("4_05gon"), ExtResource("5_pwdmx"), ExtResource("6_g4vl5")])
-label = "Core"
+label = "ST_TAB_CORE"

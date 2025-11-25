@@ -34,25 +34,25 @@ theme = ExtResource("2_2hhwb")
 theme_override_styles/panel = SubResource("StyleBoxFlat_xlhhk")
 
 [node name="LabelLogin" type="Label" parent="." unique_id=705547295]
-offset_left = -476.0
-offset_top = -274.0
-offset_right = -6.0
+offset_left = -465.0
+offset_top = -244.0
+offset_right = -19.0
 offset_bottom = 257.0
 theme = ExtResource("2_2hhwb")
-theme_override_font_sizes/font_size = 128
-text = "Add new player?"
+theme_override_font_sizes/font_size = 92
+text = "BUTTON_NEW_PLAYER"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="LabelLogout" type="Label" parent="." unique_id=1931565752]
-offset_left = -476.0
-offset_top = -274.0
-offset_right = 503.0
-offset_bottom = 257.0
+offset_left = -465.0
+offset_top = -244.0
+offset_right = 475.0
+offset_bottom = 253.0
 theme = ExtResource("2_2hhwb")
-theme_override_font_sizes/font_size = 128
-text = "Hold for 3 seconds to log out."
+theme_override_font_sizes/font_size = 92
+text = "BUTTON_LOGOUT"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3

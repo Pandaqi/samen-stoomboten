@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_kxau3")
-type_display = 3
+type_display = 4
 key = "fullscreen"
-label = "Fullscreen"
+label = "ST_FULLSCREEN"
 default = "false"
 callback = "DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN) if v else DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)"

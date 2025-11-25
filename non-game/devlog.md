@@ -99,15 +99,51 @@ Het ziet er op dit punt natuurlijk hartstikke lelijk uit. Als je een pakje verli
 
 
 
+
+
+
 @TODO:
 
-* Allow finishing to close game loop
-* Translate to NL (support multilang; NL is default here)
+* BUG: Can't reload current scene because player_data can't grab an available color???
+* BUG: Mouse-add-player not working anymore
+* BUG: Why the fuck are the keycodes now in numerical order? (A,B,C,D) What did I do to make that happen???
+* UI: HOW TO MAKE IT LOOK BETTER/MORE CONSISTENT??
+  * Should've picked fixed (font) sizes for everything and stuck to that from the start ... only scale it based on ONE value (and/or nice multiples of it)
+* Polishing
+  * Set proper max player count (8)
+  * Track time + number of bounces/hits too
+  * Do we NEED a tutorial?
+* REFACTOR
+  * Add settings for this particular game (change world size, obstacle density, etc) + their translations of course
+  * Have fewer dependencies; if we do need them, INJECT them upon activation/ready
+* Optional
+  * Actual water texture?
+  * More things to encounter
+    * Grote Boek -> Will show you where all the gifts/closest gifts are (for a limited duration?) -> AT THE VERY LEAST, WE NEED SOME "MARKERS" TO RECOGNIZE WHERE YOU ARE/HAVE BEEN
+    * Pepernoten/Snoepgoed -> You move faster? But rotation also happens faster?
+  * Nice atmospheric things
+  * Soundtrack + Sound Effects
+
+MAIN IMPROVEMENTS NOW:
+* Change button instructions to use a control node and no wonky scaling -> though then the "corner" mode for it will be broken too ...
+  * I want it a bit _flatter_ anyway; use more width, less height
+* Cleaner way to grab that bold/italic font on special settings stuff
+  * SHOULD PROBABLY JUST FORCE DEFAULT TO `.otf` or `.ttf`, always, pick one.
+* Settings -> Make the checkbox prettier / more in line with others
+  * Do I want to go all GRAYSCALE with a single ACCENT COLOR?
+  * Yes, this is more powerful if we can CHANGE THAT COLOR (SCHEME) ON THE FLY for each game.
+
 * **Write much better TODO/DOCS for starting new OBG project!**
-  * ButtonsInstructions are needed!
+  * ButtonsInstructions are needed! And I don't even mention them in the docs!
   * Shouldn't global.tscn also just be a standard scene?
+  * CLEANER FONT STRUCTURE/REPLACEMENT
+  * Also, the "button instructions scale now RESETS when going through main menu" ... the default values are completely unusable anyway
   * Surely I had an easier way to "repeatedly fire held signal"?
-* GITHUB BACKUP!
+  * WRITE DOWN LESSONS LEARNED ABOUT TRANSLATING
+  * Research GDExtensions and whether that's a better way to do my OBG framework
+  * Should probably just pick X FIXED COLORS that look good for sure in the interface and when tinting. The "max player count" of OBGs is really, feasibly, 10 or 12 people anyway
+  * YEAH IT'S NOT GREAT that I now have to alter things directly inside the framework (such as adding my own tabs to the menu.tscn scene) ---> ideally, the framework should remain untouched so I can just copy-paste to each new game
+    * Same thing with setting a custom default language for NL-focused games ... now it will just default to English all the time
 
 @TODO:
 

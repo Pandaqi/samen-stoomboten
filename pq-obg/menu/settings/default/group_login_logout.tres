@@ -10,4 +10,4 @@
 [resource]
 script = ExtResource("1_efp2k")
 settings = Array[ExtResource("2_1b2uv")]([ExtResource("3_nosfe"), ExtResource("4_i03kv"), ExtResource("5_0771t"), ExtResource("6_ul11y")])
-label = "Login / Logout"
+label = "ST_GROUP_LOGIN_OUT"

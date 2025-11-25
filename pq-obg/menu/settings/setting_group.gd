@@ -28,12 +28,13 @@ func visualize(r:SettingReader) -> PanelContainer:
 	var vbox := VBoxContainer.new()
 	cont.add_child(vbox)
 	vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	vbox.add_theme_constant_override("separation", 12)
 	
 	var heading := Label.new()
 	vbox.add_child(heading)
 	heading.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	var path_font := "res://pq-obg/ui/fonts/body_black.ttf"
-	var bold_font := path_font if ResourceLoader.exists(path_font) else "res://pq-obg/ui/fonts/body_black.otf"
+	var path_font := "res://pq-obg/ui/fonts/heading.ttf"
+	var bold_font := path_font if ResourceLoader.exists(path_font) else "res://pq-obg/ui/fonts/heading.otf"
 	heading.add_theme_font_override("font", load(bold_font))
 	heading.set_text(label)
 	

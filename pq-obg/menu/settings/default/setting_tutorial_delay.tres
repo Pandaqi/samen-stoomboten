@@ -7,5 +7,5 @@ script = ExtResource("1_wqr6o")
 type = 1
 type_unit = 2
 key = "tutorial_delay"
-label = "Delay between tutorial images"
+label = "ST_TUT_DELAY"
 max_value = 10.0

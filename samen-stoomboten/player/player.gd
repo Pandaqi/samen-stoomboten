@@ -4,18 +4,19 @@ class_name Player
 var is_moving := false
 var arrows : Array[Arrow] = []
 
-const SPEED := 200.0
-
 @export var input : ModuleInput
 
 func _ready() -> void:
 	input.pressed.connect(_on_pressed)
 	input.released.connect(_on_released)
 
+func get_speed() -> float:
+	return Global.config.boat_player_speed
+
 func _on_pressed() -> void:
 	is_moving = true
 	for arrow in arrows:
-		arrow.set_pressed(true, SPEED)
+		arrow.set_pressed(true, get_speed())
 
 func _on_released(_time_held:float) -> void:
 	is_moving = false

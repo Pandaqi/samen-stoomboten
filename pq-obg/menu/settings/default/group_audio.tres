@@ -8,4 +8,4 @@
 [resource]
 script = ExtResource("1_j78xf")
 settings = Array[ExtResource("2_2ot0b")]([ExtResource("3_6ekur"), ExtResource("4_wvjw7")])
-label = "Audio"
+label = "ST_GROUP_AUDIO"

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dr5kxf2jfiiws" path="res://pq-obg/game_over/game_over.gd" id="1_dn7vh"]
 [ext_resource type="Resource" uid="uid://bhlcvxr17vu2o" path="res://pq-obg/state/state_data.tres" id="2_qj0ql"]
-[ext_resource type="FontFile" uid="uid://d1e2ntwtbt8ub" path="res://pq-obg/ui/fonts/heading.ttf" id="2_toep4"]
+[ext_resource type="FontFile" uid="uid://d1e2ntwtbt8ub" path="res://pq-obg/ui/fonts_obg/heading.ttf" id="2_toep4"]
 [ext_resource type="PackedScene" uid="uid://baafqvwvud3e0" path="res://pq-obg/game_over/game_result_list.tscn" id="3_6oajk"]
 [ext_resource type="Theme" uid="uid://ba2lixeo4d30y" path="res://pq-obg/ui/default_theme.tres" id="4_jwnmj"]
 [ext_resource type="Texture2D" uid="uid://b3xoiwk76ch5f" path="res://pq-obg/ui/styles/icon_quit.tres" id="6_wi734"]
@@ -47,7 +47,7 @@ alignment = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_toep4")
 theme_override_font_sizes/font_size = 36
-text = "Game Results"
+text = "GO_RESULTS_GAME"
 horizontal_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Rankings/Container/CenterContainer/VBoxContainer" unique_id=1199223635]
@@ -71,13 +71,13 @@ alignment = 1
 [node name="Backward" type="Button" parent="Rankings/Container/CenterContainer/VBoxContainer/HBoxContainer" unique_id=1508077662]
 layout_mode = 2
 theme = ExtResource("4_jwnmj")
-text = "Quit"
+text = "GO_QUIT"
 icon = ExtResource("6_wi734")
 
 [node name="Forward" type="Button" parent="Rankings/Container/CenterContainer/VBoxContainer/HBoxContainer" unique_id=1470259745]
 layout_mode = 2
 theme = ExtResource("4_jwnmj")
-text = "Continue"
+text = "GO_CONTINUE"
 icon = ExtResource("7_wit5u")
 
 [connection signal="pressed" from="Rankings/Container/CenterContainer/VBoxContainer/HBoxContainer/Backward" to="." method="_on_backward_pressed"]

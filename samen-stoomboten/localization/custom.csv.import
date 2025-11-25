@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://i1g5nhq3l1ig"
+
+[deps]
+
+files=["res://samen-stoomboten/localization/custom.en.translation", "res://samen-stoomboten/localization/custom.nl.translation"]
+
+source_file="res://samen-stoomboten/localization/custom.csv"
+dest_files=["res://samen-stoomboten/localization/custom.en.translation", "res://samen-stoomboten/localization/custom.nl.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

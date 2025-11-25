@@ -5,10 +5,10 @@
 [resource]
 script = ExtResource("1_luyse")
 type = 1
-type_display = 2
+type_display = 3
 type_unit = 1
 key = "volume_bg"
-label = "Volume Background"
+label = "ST_VOLUME_BG"
 default = "1"
 callback = "Global.audio.change_volume_of_bus(\"bg\", linear_to_db(v))"
 max_value = 1.0

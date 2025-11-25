@@ -20,7 +20,7 @@ func set_type(tp:Type) -> void:
 	
 	if tp == Type.LOGIN:
 		label_login.show()
-		label_login.set_text("Add new player?")
+		label_login.set_text("BUTTON_NEW_PLAYER")
 	
 	if tp == Type.LOGOUT:
 		label_logout.show()
@@ -28,12 +28,12 @@ func set_type(tp:Type) -> void:
 
 func get_logout_text() -> String:
 	if Global.input.removal_type == Global.input.ButtonRemovalType.NONE:
-		return "Reload game to log out players."
+		return "BUTTON_LOGOUT_RELOAD"
 	if Global.input.removal_type == Global.input.ButtonRemovalType.HOLD_COND:
-		return "Enter removal mode -> press to log out."
+		return "BUTTON_LOGOUT_MODE"
 	
 	var time : int = ceil(Global.input.get_removal_time() / 1000.0)
-	return "Hold for " + str(time) + " seconds to log out."
+	return "{tr_1} ({time}s)".format({ tr_1 = tr("BUTTON_LOGOUT"), time = time })
 
 func set_button(btn:InputButton) -> void:
 	button_visualizer.set_visible(btn != null)

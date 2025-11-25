@@ -6,6 +6,6 @@
 script = ExtResource("1_5htxn")
 type = 1
 key = "tutorial_sprite_scale"
-label = "Tutorial Image Scale"
+label = "ST_TUT_SCALE"
 min_value = 0.2
 max_value = 5.0

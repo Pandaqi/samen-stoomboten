@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_pbkga")
-type_display = 3
+type_display = 4
 key = "input_allow_keyboard"
-label = "Keyboard"
+label = "ST_ALLOW_KEYBOARD"
 default = "true"
 callback = "Global.input.refresh_button_selection(false)"

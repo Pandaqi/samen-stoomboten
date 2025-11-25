@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://cqj81oyms0c7s"]
 
-[ext_resource type="Texture2D" uid="uid://cikhqhc0hfaxm" path="res://pq-obg/ui/styles/icon_play.tres" id="1_4xqpf"]
 [ext_resource type="Script" uid="uid://cak3eagqhv7i7" path="res://samen-stoomboten/boat/arrow.gd" id="1_r5q20"]
+[ext_resource type="PackedScene" uid="uid://v86e6jsutbpa" path="res://samen-stoomboten/shared/asset_sprite.tscn" id="2_me2up"]
 
 [node name="Arrow" type="Node2D" unique_id=1454146220]
 script = ExtResource("1_r5q20")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=58778109]
-position = Vector2(4, 2)
-texture = ExtResource("1_4xqpf")
+[node name="Sprite2D" parent="." unique_id=1984321564 instance=ExtResource("2_me2up")]
+scale = Vector2(0.25, 0.25)
+frame = 5

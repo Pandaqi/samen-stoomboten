@@ -8,4 +8,4 @@
 [resource]
 script = ExtResource("1_x7dsr")
 settings = Array[ExtResource("2_qr5ne")]([ExtResource("3_4b0x7"), ExtResource("4_lr77m")])
-label = "Tutorial"
+label = "ST_GROUP_TUTORIAL"

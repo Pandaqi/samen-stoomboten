@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://ck85k1tbyif1j"]
+[gd_scene load_steps=5 format=3 uid="uid://ck85k1tbyif1j"]
 
 [ext_resource type="Script" uid="uid://8ayvmtm1f5n0" path="res://samen-stoomboten/map/finish/finish.gd" id="1_fmnnj"]
+[ext_resource type="Shader" uid="uid://bwm8r8coyjy4p" path="res://samen-stoomboten/map/finish/finish.gdshader" id="2_oheuy"]
 [ext_resource type="Texture2D" uid="uid://8uv32q2qnqqp" path="res://icon.svg" id="2_uxxw8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k5ik3"]
+shader = ExtResource("2_oheuy")
+shader_parameter/color1 = Color(1, 1, 1, 1)
+shader_parameter/color2 = Color(0, 0.6595082, 0.8830103, 1)
+shader_parameter/zoom = Vector2(4, 4)
 
 [node name="Finish" type="Node2D" unique_id=22733831 node_paths=PackedStringArray("area", "sprite")]
 script = ExtResource("1_fmnnj")
@@ -11,5 +18,5 @@ sprite = NodePath("Sprite2D")
 [node name="Area2D" type="Area2D" parent="." unique_id=1544766322]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1145382209]
-modulate = Color(0, 0, 0, 1)
+material = SubResource("ShaderMaterial_k5ik3")
 texture = ExtResource("2_uxxw8")

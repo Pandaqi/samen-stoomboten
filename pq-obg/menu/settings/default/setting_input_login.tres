@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_he4hb")
-type_display = 3
+type_display = 4
 key = "input_login_while_playing"
-label = "Allow adding players while playing?"
+label = "ST_ALLOW_DYN_LOGIN"
 default = "true"

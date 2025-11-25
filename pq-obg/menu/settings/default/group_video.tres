@@ -7,4 +7,4 @@
 [resource]
 script = ExtResource("1_cwan6")
 settings = Array[ExtResource("2_lqj2p")]([ExtResource("3_asdyo")])
-label = "Video"
+label = "ST_GROUP_VIDEO"

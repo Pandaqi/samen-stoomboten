@@ -13,7 +13,7 @@ func _on_body_entered(body:Node2D) -> void:
 	body.finish()
 
 func resize_to(chunk_size:Vector2) -> void:
-	var finish_size := Vector2(50, chunk_size.y)
+	var finish_size := Vector2(128, chunk_size.y)
 	
 	var col_shape_node := CollisionShape2D.new()
 	var col_shape := RectangleShape2D.new()
@@ -22,4 +22,7 @@ func resize_to(chunk_size:Vector2) -> void:
 	area.add_child(col_shape_node)
 	
 	var sprite_base_size := Vector2(128, 128)
-	sprite.set_scale(finish_size / sprite_base_size)
+	var scale_vec := finish_size / sprite_base_size
+	sprite.set_scale(scale_vec)
+	sprite.material.set_shader_parameter("zoom", 4.0 * scale_vec)
+	

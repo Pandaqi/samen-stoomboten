@@ -1,0 +1,38 @@
+keys,en,nl
+PAUSED_HEADER,Paused,Gepauzeerd
+PAUSED_TEXT,Login players now by pressing one of the buttons indicated.,Voeg spelers toe door op de aangegeven knop(pen) te klikken.
+BUTTON_NEW_PLAYER,Add new player?,Nieuwe speler toevoegen?
+BUTTON_LOGOUT,Hold for 3 seconds to log out.,Houd 3 seconden vast om uit te loggen.
+BUTTON_LOGOUT_RELOAD,Reload game to log out players.,Herstart het spel als je spelers wilt uitloggen.
+BUTTON_LOGOUT_MODE,Enter removal mode -> press to log out.,Ga naar uitlogmodus -> druk om uit te loggen.
+MENU_PLAY,Play,Spelen
+MENU_SETTINGS,Settings,Instellingen
+MENU_QUIT,Quit,Afsluiten
+GO_RESULTS_GAME,Game Results,Uitslagen (Spel)
+GO_RESULTS_MATCH,Match Results,Uitslagen (Ronde)
+GO_CONTINUE,Continue,Doorgaan
+GO_QUIT,Quit,Afsluiten
+GO_PLAY_AGAIN,Play Again,Speel opnieuw
+SETTINGS_RESET_ALL,Reset All,Alles herstellen
+SETTINGS_CLOSE,Close,Teruggaan
+ST_TAB_CORE,Core,Algemeen
+ST_LANGUAGE_SELECT,Select Language,Selecteer taal
+ST_VOLUME_MAIN,Volume Main,Volume spel
+ST_VOLUME_BG,Volume Background,Volume achtergrondmuziek
+ST_TUT_SCALE,Tutorial Image Scale,Grootte uitlegplaatjes
+ST_TUT_DELAY,Delay between tutorial images,Vertraging tonen uitlegplaatjes
+ST_ALLOW_MOUSE,Mouse,Muis
+ST_MAX_PLAYERS,Maximum player count,Maximaal aantal spelers
+ST_LOGOUT_HOLD_DUR,Logout hold duration,Duratie indrukken voor uitloggen
+ST_ALLOW_DYN_LOGOUT,Allow removing players while playing?,Mogen spelers uitloggen tijdens het spelen?
+ST_ALLOW_DYN_LOGIN,Allow adding players while playing?,Mogen spelers inloggen tijdens het spelen?
+ST_ALLOW_KEYBOARD,Keyboard,Toetsenbord
+ST_ALLOW_GAMEPAD,Gamepads,Controller
+ST_FULLSCREEN,Fullscreen,Volledig scherm
+ST_BUTTON_SCALE,Button Instructions Scale,Grootte speelknoppen
+ST_GROUP_VIDEO,Video,Video
+ST_GROUP_TUTORIAL,Tutorial,Uitleg
+ST_GROUP_LOGIN_OUT,Login / Logout,Inloggen / uitloggen
+ST_GROUP_ALLOW,Buttons Allowed,Knoppen toegestaan
+ST_GROUP_AUDIO,Audio,Audio
+ST_GROUP_MAIN,Main,Algemeen

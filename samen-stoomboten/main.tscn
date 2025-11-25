@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dfx4jfjdgb1bo"]
+[gd_scene load_steps=51 format=3 uid="uid://dfx4jfjdgb1bo"]
 
 [ext_resource type="Script" uid="uid://dt8klrrk4jcu1" path="res://pq-obg/tools/players/player_spawner.gd" id="1_nm4aa"]
 [ext_resource type="Script" uid="uid://etlf0pw8dpks" path="res://samen-stoomboten/main.gd" id="1_xwbea"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://h24y60ceg8ri" path="res://samen-stoomboten/boat/module_collider.gd" id="8_76csb"]
 [ext_resource type="Script" uid="uid://cs3muutjej8yc" path="res://samen-stoomboten/map/map.gd" id="8_ktfvn"]
 [ext_resource type="PackedScene" uid="uid://c1jxins265xwr" path="res://samen-stoomboten/map/gift/gift.tscn" id="9_11fih"]
+[ext_resource type="Resource" uid="uid://dsc3sxbvjf0hi" path="res://samen-stoomboten/map/map_data.tres" id="9_gi08c"]
 [ext_resource type="Script" uid="uid://cm1nrb2p83rl8" path="res://samen-stoomboten/map/camera.gd" id="9_jdhg8"]
 [ext_resource type="Script" uid="uid://dyrsjs7xgrhjq" path="res://samen-stoomboten/boat/module_gifts.gd" id="9_xwjm6"]
 [ext_resource type="PackedScene" uid="uid://d3tvtcu27fhwm" path="res://samen-stoomboten/map/obstacle/obstacle.tscn" id="10_76csb"]
@@ -17,13 +18,19 @@
 [ext_resource type="Script" uid="uid://cuo58m8732osp" path="res://samen-stoomboten/boat/module_visuals.gd" id="13_rxg8p"]
 [ext_resource type="PackedScene" uid="uid://c3mew7u5cevle" path="res://pq-obg/state/state.tscn" id="15_k6u8g"]
 [ext_resource type="Script" uid="uid://bog0m3bhuc2mp" path="res://pq-obg/ui/button_instructions/button_instructions.gd" id="17_edjgo"]
+[ext_resource type="Texture2D" uid="uid://bb0xm2dgcpo8m" path="res://samen-stoomboten/boat/white_circle.tres" id="17_xng78"]
 [ext_resource type="Texture2D" uid="uid://bq30jmlxewohk" path="res://samen-stoomboten/ui/staf-back.webp" id="18_agstb"]
 [ext_resource type="Script" uid="uid://b4xlx5a2ve4mx" path="res://samen-stoomboten/ui/ui.gd" id="18_ccyv6"]
 [ext_resource type="PackedScene" uid="uid://bws1bg4b1iswl" path="res://pq-obg/ui/button_instructions/button_instruction.tscn" id="18_v738m"]
 [ext_resource type="Texture2D" uid="uid://cg0sp4j7g0hc4" path="res://samen-stoomboten/ui/staf-front.webp" id="19_ccyv6"]
 [ext_resource type="Texture2D" uid="uid://i3krb5yjl1fy" path="res://samen-stoomboten/ui/staf-mid.webp" id="20_rxg8p"]
 [ext_resource type="PackedScene" uid="uid://v86e6jsutbpa" path="res://samen-stoomboten/shared/asset_sprite.tscn" id="21_hrw0s"]
-[ext_resource type="FontFile" uid="uid://lofab0amxyfr" path="res://pq-obg/ui/fonts/heading.otf" id="24_hrw0s"]
+[ext_resource type="Script" uid="uid://chfsita7o0qgn" path="res://samen-stoomboten/game_over/game_over_menu.gd" id="23_uw1un"]
+[ext_resource type="PackedScene" uid="uid://dgfewhemw8ofh" path="res://pq-obg/ui/pause/pause_overlay.tscn" id="24_gi08c"]
+[ext_resource type="FontFile" uid="uid://r4wr5f23gxn5" path="res://pq-obg/ui/fonts/heading.otf" id="24_hrw0s"]
+[ext_resource type="Theme" uid="uid://ba2lixeo4d30y" path="res://pq-obg/ui/default_theme.tres" id="25_xng78"]
+[ext_resource type="Texture2D" uid="uid://b3xoiwk76ch5f" path="res://pq-obg/ui/styles/icon_quit.tres" id="26_kelc7"]
+[ext_resource type="Texture2D" uid="uid://cikhqhc0hfaxm" path="res://pq-obg/ui/styles/icon_play.tres" id="27_yjdao"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_11fih"]
 bounce = 1.0
@@ -31,6 +38,14 @@ bounce = 1.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rxg8p"]
 radius = 23.0
 height = 120.0
+
+[sub_resource type="Curve" id="Curve_kelc7"]
+_data = [Vector2(0.008064516, 1), 0.0, 2.0044491, 0, 0, Vector2(1, 0), 0.19890815, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_yjdao"]
+offsets = PackedFloat32Array(0, 0.49710983, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.9647059, 1, 1, 1, 0)
 
 [sub_resource type="Animation" id="Animation_hrw0s"]
 length = 0.001
@@ -92,6 +107,67 @@ tracks/1/keys = {
 _data = {
 &"RESET": SubResource("Animation_hrw0s"),
 &"boat_float": SubResource("Animation_4rd1r")
+}
+
+[sub_resource type="Animation" id="Animation_kelc7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/Water/Bubble:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-31, 32)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Water/Bubble2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(22, 33)]
+}
+
+[sub_resource type="Animation" id="Animation_yjdao"]
+resource_name = "water_cover"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/Water/Bubble:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.32263532, 0.5761345, 0.852679),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-31, 32), Vector2(-32, 20), Vector2(-36, 38), Vector2(-13, 39)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Water/Bubble2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.32263532, 0.5761345, 0.852679),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(22, 33), Vector2(25, 39), Vector2(18, 31), Vector2(27, 45)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jkg0x"]
+_data = {
+&"RESET": SubResource("Animation_kelc7"),
+&"water_cover": SubResource("Animation_yjdao")
 }
 
 [sub_resource type="Animation" id="Animation_ccyv6"]
@@ -265,6 +341,42 @@ _data = {
 &"gifts_change": SubResource("Animation_3fh5a")
 }
 
+[sub_resource type="Animation" id="Animation_gi08c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xng78"]
+resource_name = "go_fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kelc7"]
+_data = {
+&"RESET": SubResource("Animation_gi08c"),
+&"go_fade": SubResource("Animation_xng78")
+}
+
 [node name="Main" type="Node2D" unique_id=1012339941]
 script = ExtResource("1_xwbea")
 
@@ -285,15 +397,18 @@ player_scene = ExtResource("2_xwbea")
 player_data = ExtResource("3_v45t5")
 metadata/_custom_type_script = "uid://dt8klrrk4jcu1"
 
-[node name="Map" type="Node2D" parent="." unique_id=2035257427]
+[node name="Map" type="Node2D" parent="." unique_id=2035257427 node_paths=PackedStringArray("boat", "ui")]
 y_sort_enabled = true
 script = ExtResource("8_ktfvn")
 gift_scene = ExtResource("9_11fih")
 obstacle_scene = ExtResource("10_76csb")
 finish_scene = ExtResource("12_7xrjc")
+map_data = ExtResource("9_gi08c")
+boat = NodePath("Boat")
+ui = NodePath("../UI")
 
-[node name="Boat" type="RigidBody2D" parent="Map" unique_id=1182241835 node_paths=PackedStringArray("arrow_container", "module_gifts", "ui")]
-position = Vector2(476, 225)
+[node name="Boat" type="RigidBody2D" parent="Map" unique_id=1182241835 node_paths=PackedStringArray("arrow_container", "module_gifts", "module_visuals", "ui", "map_overlay")]
+position = Vector2(0, 325)
 mass = 50.0
 physics_material_override = SubResource("PhysicsMaterial_11fih")
 gravity_scale = 0.0
@@ -307,8 +422,9 @@ player_data = ExtResource("3_v45t5")
 arrow_scene = ExtResource("7_1i7mk")
 arrow_container = NodePath("Arrows")
 module_gifts = NodePath("ModuleGifts")
+module_visuals = NodePath("ModuleVisuals")
 ui = NodePath("../../UI")
-debug_input = true
+map_overlay = NodePath("../../MapOverlay")
 
 [node name="Arrows" type="Node2D" parent="Map/Boat" unique_id=239573415]
 
@@ -321,18 +437,51 @@ script = ExtResource("8_76csb")
 
 [node name="ModuleGifts" type="Node2D" parent="Map/Boat" unique_id=536841193]
 script = ExtResource("9_xwjm6")
+map_data = ExtResource("9_gi08c")
 
-[node name="ModuleVisuals" type="Node2D" parent="Map/Boat" unique_id=741150603 node_paths=PackedStringArray("sprite", "anim_player")]
+[node name="ModuleVisuals" type="Node2D" parent="Map/Boat" unique_id=741150603 node_paths=PackedStringArray("sprite_container", "sprite", "anim_player", "anim_player_water")]
 script = ExtResource("13_rxg8p")
+sprite_container = NodePath("SpriteContainer")
 sprite = NodePath("SpriteContainer/Sprite2D")
 anim_player = NodePath("AnimationPlayer")
+anim_player_water = NodePath("AnimationPlayerWater")
 
 [node name="SpriteContainer" type="Node2D" parent="Map/Boat/ModuleVisuals" unique_id=1078531427]
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Map/Boat/ModuleVisuals/SpriteContainer" unique_id=1744194474]
+position = Vector2(-32, -90)
+amount = 7
+texture = ExtResource("17_xng78")
+lifetime = 1.5
+emission_shape = 1
+emission_sphere_radius = 15.0
+gravity = Vector2(0, -100)
+scale_amount_min = 0.1
+scale_amount_max = 0.1
+scale_amount_curve = SubResource("Curve_kelc7")
+color_ramp = SubResource("Gradient_yjdao")
+
 [node name="Sprite2D" type="Sprite2D" parent="Map/Boat/ModuleVisuals/SpriteContainer" unique_id=399379437]
+clip_children = 2
 position = Vector2(-6, -40)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("5_ccyv6")
+
+[node name="Water" type="Node2D" parent="Map/Boat/ModuleVisuals/SpriteContainer/Sprite2D" unique_id=231608437]
+position = Vector2(24, 160)
+scale = Vector2(4, 4)
+
+[node name="Bubble" parent="Map/Boat/ModuleVisuals/SpriteContainer/Sprite2D/Water" unique_id=1984321564 instance=ExtResource("21_hrw0s")]
+modulate = Color(0, 0.8745098, 0.8784314, 1)
+position = Vector2(-31, 32)
+scale = Vector2(0.3, 0.3)
+frame = 4
+
+[node name="Bubble2" parent="Map/Boat/ModuleVisuals/SpriteContainer/Sprite2D/Water" unique_id=978816204 instance=ExtResource("21_hrw0s")]
+modulate = Color(0, 0.8745098, 0.8784314, 1)
+position = Vector2(22, 33)
+scale = Vector2(0.3, 0.3)
+frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Map/Boat/ModuleVisuals" unique_id=1289975425]
 libraries = {
@@ -340,29 +489,33 @@ libraries = {
 }
 autoplay = &"boat_float"
 
+[node name="AnimationPlayerWater" type="AnimationPlayer" parent="Map/Boat/ModuleVisuals" unique_id=1289020193]
+root_node = NodePath("../SpriteContainer")
+libraries = {
+&"": SubResource("AnimationLibrary_jkg0x")
+}
+autoplay = &"water_cover"
+
+[node name="MapOverlay" type="Node2D" parent="." unique_id=1407754446]
+
 [node name="Camera" type="Camera2D" parent="." unique_id=8323382 node_paths=PackedStringArray("target")]
 process_mode = 3
 position_smoothing_enabled = true
 script = ExtResource("9_jdhg8")
 target = NodePath("../Map/Boat")
 
-[node name="State" parent="." unique_id=1145839826 instance=ExtResource("15_k6u8g")]
-
-[node name="ButtonInstructions" type="CanvasLayer" parent="." unique_id=1572046177]
-script = ExtResource("17_edjgo")
-button_instruction_scene = ExtResource("18_v738m")
-margin_off_edge = Vector2(50, 50)
-metadata/_custom_type_script = "uid://bog0m3bhuc2mp"
-
-[node name="UI" type="CanvasLayer" parent="." unique_id=1420793677 node_paths=PackedStringArray("staff_container", "gift_counter", "progress_bar", "map", "boat_start_pos", "boat_end_pos", "boat", "anim_player")]
+[node name="UI" type="CanvasLayer" parent="." unique_id=1420793677 node_paths=PackedStringArray("staff_container", "gift_counter", "gift_counter_total", "progress_bar", "map", "boat_start_pos", "boat_end_pos", "boat", "game_over_menu", "anim_player")]
+layer = 4
 script = ExtResource("18_ccyv6")
 staff_container = NodePath("Staff")
 gift_counter = NodePath("Staff/GiftCounter/GiftCounter")
+gift_counter_total = NodePath("Staff/GiftCounterTotal/GiftCounterTotal")
 progress_bar = NodePath("Staff/TextureProgressBar")
 map = NodePath("../Map")
 boat_start_pos = NodePath("Staff/BoatStartPos")
 boat_end_pos = NodePath("Staff/BoatEndPos")
 boat = NodePath("Staff/Boat")
+game_over_menu = NodePath("GameOverMenu")
 anim_player = NodePath("AnimationPlayer")
 
 [node name="Staff" type="Node2D" parent="UI" unique_id=1533973978]
@@ -381,7 +534,7 @@ texture_under = ExtResource("18_agstb")
 texture_over = ExtResource("19_ccyv6")
 texture_progress = ExtResource("20_rxg8p")
 
-[node name="Gift" parent="UI/Staff" unique_id=1984321564 instance=ExtResource("21_hrw0s")]
+[node name="Gift" parent="UI/Staff" unique_id=1935755958 instance=ExtResource("21_hrw0s")]
 position = Vector2(-179.99998, -11.000002)
 rotation = -0.13572301
 scale = Vector2(0.39953613, 0.39953613)
@@ -394,9 +547,31 @@ offset_left = -38.666683
 offset_top = -47.99998
 offset_right = 43.333317
 offset_bottom = 40.00002
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.38431373)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 6
 theme_override_constants/outline_size = 12
 theme_override_fonts/font = ExtResource("24_hrw0s")
 theme_override_font_sizes/font_size = 64
+text = "22"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GiftCounterTotal" type="Node2D" parent="UI/Staff" unique_id=1866109293]
+position = Vector2(-173.33334, 36)
+
+[node name="GiftCounterTotal" type="Label" parent="UI/Staff/GiftCounterTotal" unique_id=588762246]
+offset_left = -40.000015
+offset_top = -43.99998
+offset_right = 41.999985
+offset_bottom = 44.00002
+theme_override_colors/font_color = Color(0.9978364, 0.913287, 0.72969365, 1)
+theme_override_colors/font_outline_color = Color(0.33511674, 0.19254708, 0.008241284, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 6
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("24_hrw0s")
+theme_override_font_sizes/font_size = 18
 text = "22"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -426,3 +601,97 @@ position = Vector2(256.06058, 3.1471252e-05)
 libraries = {
 &"": SubResource("AnimationLibrary_4rd1r")
 }
+
+[node name="GameOverMenu" type="Control" parent="UI" unique_id=1738070768 node_paths=PackedStringArray("label_explanation", "forward_btn", "anim_player")]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("23_uw1un")
+label_explanation = NodePath("CenterContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/Explanation")
+map_data = ExtResource("9_gi08c")
+forward_btn = NodePath("CenterContainer/MarginContainer/VBoxContainer/HBoxContainer/Forward")
+anim_player = NodePath("AnimationPlayer")
+
+[node name="Overlay" parent="UI/GameOverMenu" unique_id=790026089 instance=ExtResource("24_gi08c")]
+layout_mode = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/GameOverMenu" unique_id=210268845]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/GameOverMenu/CenterContainer" unique_id=764114137]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/GameOverMenu/CenterContainer/MarginContainer" unique_id=442149747]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/GameOverMenu/CenterContainer/MarginContainer/VBoxContainer" unique_id=2117264079]
+layout_mode = 2
+theme = ExtResource("25_xng78")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/GameOverMenu/CenterContainer/MarginContainer/VBoxContainer/PanelContainer" unique_id=1223472333]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+
+[node name="Heading" type="Label" parent="UI/GameOverMenu/CenterContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer" unique_id=445842411]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("24_hrw0s")
+theme_override_font_sizes/font_size = 38
+text = "GAME_OVER_HEADER"
+horizontal_alignment = 1
+
+[node name="Explanation" type="Label" parent="UI/GameOverMenu/CenterContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer" unique_id=1216426754]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("25_xng78")
+text = "GAME_OVER_TOTAL_GIFTS"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/GameOverMenu/CenterContainer/MarginContainer/VBoxContainer" unique_id=1723074134]
+layout_mode = 2
+alignment = 1
+
+[node name="Backward" type="Button" parent="UI/GameOverMenu/CenterContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=689196749]
+layout_mode = 2
+theme = ExtResource("25_xng78")
+icon = ExtResource("26_kelc7")
+
+[node name="Forward" type="Button" parent="UI/GameOverMenu/CenterContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=613390938]
+layout_mode = 2
+theme = ExtResource("25_xng78")
+icon = ExtResource("27_yjdao")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/GameOverMenu" unique_id=1175846127]
+libraries = {
+&"": SubResource("AnimationLibrary_kelc7")
+}
+
+[node name="State" parent="." unique_id=1145839826 instance=ExtResource("15_k6u8g")]
+layer = 8
+
+[node name="ButtonInstructions" type="CanvasLayer" parent="." unique_id=1572046177]
+layer = 16
+script = ExtResource("17_edjgo")
+button_instruction_scene = ExtResource("18_v738m")
+margin_off_edge = Vector2(50, 50)
+metadata/_custom_type_script = "uid://bog0m3bhuc2mp"
+
+[connection signal="pressed" from="UI/GameOverMenu/CenterContainer/MarginContainer/VBoxContainer/HBoxContainer/Backward" to="UI/GameOverMenu" method="_on_backward_pressed"]
+[connection signal="pressed" from="UI/GameOverMenu/CenterContainer/MarginContainer/VBoxContainer/HBoxContainer/Forward" to="UI/GameOverMenu" method="_on_forward_pressed"]

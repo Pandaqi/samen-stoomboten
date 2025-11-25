@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SettingGroup" load_steps=3 format=3 uid="uid://b25x7q6ei5sab"]
+
+[ext_resource type="Script" uid="uid://c7uqyg8sqnc02" path="res://pq-obg/menu/settings/setting_group.gd" id="1_kwrrh"]
+[ext_resource type="Script" uid="uid://cu5ytdnryre03" path="res://pq-obg/menu/settings/setting.gd" id="2_ibvs2"]
+
+[resource]
+script = ExtResource("1_kwrrh")
+label = "SETTINGS_GROUP_BOAT"
+metadata/_custom_type_script = "uid://c7uqyg8sqnc02"

@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_e188c")
-type_display = 3
+type_display = 4
 key = "input_logout_while_playing"
-label = "Allow removing players while playing?"
+label = "ST_ALLOW_DYN_LOGOUT"
 section = "shared"
 default = "true"

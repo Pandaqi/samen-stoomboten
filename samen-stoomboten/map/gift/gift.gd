@@ -2,8 +2,6 @@ extends Node2D
 class_name Gift
 
 var target := Vector2.ZERO
-const SPEED := 10.0
-const RADIUS := 256.0
 var anchor : Vector2
 
 @export var area : Area2D
@@ -34,19 +32,39 @@ func set_new_anchor(pos:Vector2) -> void:
 func _process(delta: float) -> void:
 	move_to_target(delta)
 
+func get_speed() -> float:
+	return Global.config.gift_float_speed
+
+func get_radius() -> float:
+	return Global.config.gift_float_radius
+
 func move_to_target(delta:float) -> void:
 	if target.length() <= 0.01: pick_target()
 	var vec_to_target := (target - get_position())
 	var dist_to_target := vec_to_target.length()
 	var dir_to_target := vec_to_target.normalized()
-	set_position(get_position() + dir_to_target * SPEED * delta)
+	set_position(get_position() + dir_to_target * get_speed() * delta)
 	
-	var has_arrived := dist_to_target <= 3*SPEED
+	var has_arrived := dist_to_target <= 3*get_speed()
 	if has_arrived:
 		pick_target()
 
 func pick_target() -> void:
-	var offset := Vector2.from_angle(randf()*2*PI) * (randf()*0.5+0.5) * RADIUS
+	var offset := Vector2.from_angle(randf()*2*PI) * (randf()*0.5+0.5) * get_radius()
 	var new_pos := anchor + offset
 	target = new_pos
 	
+func eject_to(from:Vector2, to:Vector2) -> void:
+	set_scale(Vector2.ONE*1.2)
+	set_visible(true)
+	set_position(from)
+	
+	var dur := 0.67
+	var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(self, "position", to, dur)
+	tween.parallel().tween_property(self, "scale", Vector2.ONE, dur)
+
+	await tween.finished
+	
+	set_new_anchor(to)
+	set_enabled(true)
