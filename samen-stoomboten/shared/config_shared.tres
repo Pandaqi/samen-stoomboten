@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="ConfigSharedData" load_steps=14 format=3 uid="uid://dqqwvgnpvim5n"]
+[gd_resource type="Resource" script_class="ConfigSharedData" load_steps=17 format=3 uid="uid://dqqwvgnpvim5n"]
 
 [ext_resource type="Texture2D" uid="uid://b7b3swg3h06jq" path="res://samen-stoomboten/ui/bg_image.png" id="1_8bcak"]
 [ext_resource type="FontFile" uid="uid://crq2bmbd60bmo" path="res://samen-stoomboten/ui/fonts/body_black.otf" id="1_jff45"]
 [ext_resource type="Script" uid="uid://dui163ptds6sq" path="res://pq-obg/tools/config/config_shared_data.gd" id="1_pf08h"]
 [ext_resource type="AudioStream" uid="uid://q3kakou8qlxp" path="res://samen-stoomboten/shared/theme_song.mp3" id="1_ub74n"]
+[ext_resource type="AudioStream" uid="uid://cfe2jylsp4enn" path="res://pq-obg/audio/sfx/ui_click.mp3" id="2_fjjhe"]
 [ext_resource type="Script" uid="uid://bk8734ulnri1t" path="res://pq-obg/settings/setting_tab.gd" id="2_ipfia"]
 [ext_resource type="FontFile" uid="uid://ctv8typi4rqfd" path="res://samen-stoomboten/ui/fonts/body_black_italic.otf" id="2_ng21y"]
 [ext_resource type="Resource" uid="uid://bkdl045h6lnih" path="res://pq-obg/settings/default/tab_core.tres" id="3_2vomq"]
@@ -13,12 +14,15 @@
 [ext_resource type="FontFile" uid="uid://r4wr5f23gxn5" path="res://samen-stoomboten/ui/fonts/heading.otf" id="5_gb26m"]
 [ext_resource type="FontFile" uid="uid://c6hbb35jgav1g" path="res://samen-stoomboten/ui/fonts/special.ttf" id="6_pjx57"]
 [ext_resource type="Resource" uid="uid://7et8y7u6jc6i" path="res://samen-stoomboten/ui/settings/tab_game.tres" id="10_ng21y"]
+[ext_resource type="Resource" uid="uid://rof0eke27qbk" path="res://pq-obg/settings/default/theme/tab_theme.tres" id="13_1vc01"]
+[ext_resource type="Script" uid="uid://b8gcpdtp867fe" path="res://pq-obg/ui/tutorial/tutorial_stage.gd" id="15_pjx57"]
 
 [resource]
 script = ExtResource("1_pf08h")
 game_id = "samen-stoomboten"
 language_default = "nl"
-settings = Array[ExtResource("2_ipfia")]([ExtResource("3_2vomq"), ExtResource("10_ng21y")])
+game_scene = "samen-stoomboten/main.tscn"
+settings = Array[ExtResource("2_ipfia")]([ExtResource("3_2vomq"), ExtResource("13_1vc01"), ExtResource("10_ng21y")])
 audio_bg = Array[AudioStream]([ExtResource("1_ub74n")])
 bg_image = ExtResource("1_8bcak")
 font_body_regular = ExtResource("4_ub74n")
@@ -27,4 +31,3 @@ font_body_bold = ExtResource("1_jff45")
 font_body_bold_italic = ExtResource("2_ng21y")
 font_heading = ExtResource("5_gb26m")
 font_special = ExtResource("6_pjx57")
-button_instructions_sprite_scale = 0.15

@@ -20,6 +20,13 @@ signal removal_warning_started()
 signal removal_warning_ended()
 
 func activate(new_button:InputButton) -> void:
+	if button: Global.input.give_back_button(button)
+	
+	# @NOTE: if we're placing existing players, then we already grabbed their button and should not try to do so again
+	if Global.input.is_button_grabbable(new_button):
+		Global.input.grab_button(new_button)
+		Global.audio.play_player_change_sound()
+	
 	button = new_button
 	
 	# refresh button visualizers
@@ -33,6 +40,11 @@ func activate(new_button:InputButton) -> void:
 		holder.held.connect(on_button_held)
 		add_child(holder)
 	holder.input_key = button.get_input_map_key()
+
+func deactivate() -> void:
+	Global.audio.play_player_change_sound()
+	if not Global.input.is_button_grabbable(button):
+		Global.input.give_back_button(button)
 
 func clear_button_visualizers() -> void:
 	for bv in button_visualizers:

@@ -4,13 +4,19 @@ class_name ConfigSharedData
 @export var game_id : String = "game-id"
 @export var clear_input_at_menu := true
 @export var language_default := "en"
+@export var game_scene : String
 
 @export_group("Settings")
-@export var settings : Array[SettingTab] = [preload("res://pq-obg/settings/default/tab_core.tres")] # resources for SettingTabs to display
+# resources for SettingTabs to display
+@export var settings : Array[SettingTab] = [preload("res://pq-obg/settings/default/tab_core.tres"), preload("res://pq-obg/settings/default/theme/tab_theme.tres")] 
 
 @export_group("Audio")
+@export var volume_game := 1.0
+@export var volume_background := 0.6
+@export var volume_ui := 0.6
 @export var audio_bg : Array[AudioStream] = []
-@export var audio_busses : Array[String] = []
+@export var audio_ui : AudioStream = preload("res://pq-obg/audio/sfx/ui_click.mp3")
+@export var audio_player_change : AudioStream = preload("res://pq-obg/audio/sfx/ui_click.mp3")
 
 @export_group("Theme")
 @export var theme : Theme = preload("res://pq-obg/ui/default_theme.tres")
@@ -74,6 +80,25 @@ class_name ConfigSharedData
 @export var input_logout_while_playing := true
 @export var input_logout_hold_duration := 3000.0
 
+@export_group("Players")
+@export var player_colors : Array[Color] = [
+	Color("#d2849c"),
+	Color("#96a85e"),
+	Color("#60a7d6"),
+	
+	Color("#cc8f5c"),
+	Color("#4bb3a1"),
+	Color("#a890d4"),
+	
+	Color("#d58679"),
+	Color("#6fb07d"),
+	Color("#869bdd"),
+	
+	Color("#b79c51"),
+	Color("#43afc1"),
+	Color("#c287bc"),
+]
+
 # how people are scored/ranked/win per match/round
 @export_group("Match Objective")
 @export var match_victory_type := Objective.VictoryType.TIME
@@ -88,7 +113,8 @@ class_name ConfigSharedData
 @export var game_victory_conversion := Objective.VictoryConversion.RANKING
 
 @export_group("Tutorial")
-@export var tutorial_spritesheet_key := "tutorials"
+@export var tutorials : Array[TutorialStage] = []
+@export var tutorial_spritesheet : Texture
 @export var tutorial_spritesheet_frames := Vector2(4,1)
 @export var tutorial_delay := 3 # seconds before next tutorial appears
 @export var tutorial_sprite_scale := 1.0
@@ -96,6 +122,5 @@ class_name ConfigSharedData
 
 @export_group("UI")
 @export var button_instructions_anchor := ScreenAnchorTool.Anchor.TOP
-@export var button_instructions_sprite_scale := 1.0
 @export var tutorial_anchor := ScreenAnchorTool.Anchor.CENTER
 @export var pause_menu_anchor := ScreenAnchorTool.Anchor.BOTTOM

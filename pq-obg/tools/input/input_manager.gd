@@ -142,12 +142,21 @@ func grab_next_button(tp:InputButton.InputType) -> InputButton:
 	grab_button(btn)
 	return btn
 
+func is_button_grabbable(btn:InputButton) -> bool:
+	return buttons_available[btn.type].has(btn)
+
 func grab_button(btn:InputButton) -> void:
+	var btn_already_given_out := not is_button_grabbable(btn)
+	if btn_already_given_out: return
+	
 	buttons_available[btn.type].erase(btn)
 	buttons_used.append(btn)
 	buttons_changed.emit()
 
 func give_back_button(btn:InputButton) -> void:
+	var btn_already_given_back := is_button_grabbable(btn)
+	if btn_already_given_back: return
+	
 	buttons_used.erase(btn)
 	buttons_available[btn.type].append(btn)
 	buttons_changed.emit()
@@ -189,7 +198,7 @@ func can_remove_button_by_hold(_button:InputButton, _time_held:float) -> bool:
 	if removal_type == ButtonRemovalType.HOLD_COND: return pause_mode
 	return false
 
-func is_button_valid(btn:InputButton) -> bool:
+func is_button_possible(btn:InputButton) -> bool:
 	if not btn: return true # the player was not activated yet, so don't replace their button as there's nothing to replace
 	return buttons_available_all.has(btn)
 

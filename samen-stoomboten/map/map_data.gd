@@ -7,11 +7,14 @@ var obstacles : Array[Obstacle] = []
 var gifts_collected : Array[Gift] = []
 
 var obstacles_hit := 0
-var time := 0
+var time := 0.0
 
-func reset() -> void:
+var boat : Boat
+
+func reset(b:Boat) -> void:
 	gifts = []
 	obstacles = []
 	gifts_collected = []
 	obstacles_hit = 0
 	time = 0
+	boat = b

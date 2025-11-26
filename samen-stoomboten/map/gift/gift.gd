@@ -1,6 +1,14 @@
 extends Node2D
 class_name Gift
 
+enum GiftType
+{
+	GIFT,
+	BOOK,
+	CANDY
+}
+
+var type : GiftType
 var target := Vector2.ZERO
 var anchor : Vector2
 var is_on_screen := false
@@ -13,8 +21,23 @@ var is_in_boat := false
 func _ready() -> void:
 	anchor = get_position()
 	area.body_entered.connect(_on_body_entered)
-	sprite.set_frame(randi() % 4)
 	anim_player.speed_scale = 0.5 + randf()
+
+func set_type(tp:GiftType) -> void:
+	type = tp
+	
+	if type == GiftType.GIFT:
+		sprite.set_frame(randi() % 4)
+	if type == GiftType.BOOK:
+		sprite.set_frame(6)
+	if type == GiftType.CANDY:
+		sprite.set_frame(7)
+
+func is_book() -> bool:
+	return type == GiftType.BOOK
+
+func is_candy() -> bool:
+	return type == GiftType.CANDY
 
 func _on_body_entered(body:Node2D) -> void:
 	if not (body is Boat): return

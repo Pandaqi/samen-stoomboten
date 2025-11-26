@@ -5,9 +5,9 @@ var players : Array[Player] = []
 var colors_available : Array[Color] = []
 var colors_used : Array[Color] = []
 
-func reset() -> void:
+func reset(colors:Array[Color]) -> void:
 	players = []
-	colors_available = generate_all_possible_colors()
+	colors_available = colors.duplicate()
 	colors_used = []
 
 func add_player(p:Player) -> void:
@@ -43,30 +43,3 @@ func get_score_for_team(team_num:int) -> float:
 			score = player.get_node("ModuleScore").get_score()
 		sum += score
 	return sum
-
-func generate_all_possible_colors() -> Array[Color]:
-	var arr : Array[Color] = []
-	
-	# generate equidistant colors
-	var rand_hue_offset := randf_range(0.0, 1.0)
-	var max_colors := 20
-	for i in range(max_colors):
-		var hue := rand_hue_offset + i * (1.0 / float(max_colors))
-		var new_color := Color.from_hsv(hue, 1.0, 1.0)
-		arr.append(new_color)
-	
-	# sort based on contrast (highest-contrast between two subsequent colors; this takes into account hue and saturation and stuff)
-	var prev_color : Color = arr.pop_front()
-	var arr_sorted : Array[Color] = [prev_color]
-	while arr.size() > 0:
-		var biggest_contrast = 0
-		var best_color
-		for elem in arr:
-			var contrast := (elem.get_luminance() + 0.05) / (prev_color.get_luminance() + 0.5)
-			if contrast <= biggest_contrast: continue
-			biggest_contrast = contrast
-			best_color = elem
-		arr.erase(best_color)
-		arr_sorted.append(best_color)
-	
-	return arr_sorted

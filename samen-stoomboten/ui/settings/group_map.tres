@@ -1,9 +1,15 @@
-[gd_resource type="Resource" script_class="SettingGroup" load_steps=3 format=3 uid="uid://btkfmyvurfu3c"]
+[gd_resource type="Resource" script_class="SettingGroup" load_steps=8 format=3 uid="uid://btkfmyvurfu3c"]
 
 [ext_resource type="Script" uid="uid://c7uqyg8sqnc02" path="res://pq-obg/settings/setting_group.gd" id="1_72b7b"]
 [ext_resource type="Script" uid="uid://cu5ytdnryre03" path="res://pq-obg/settings/setting.gd" id="2_b7xye"]
+[ext_resource type="Resource" uid="uid://btyua86o1708t" path="res://samen-stoomboten/ui/settings/setting_map_chunks.tres" id="3_lyxq1"]
+[ext_resource type="Resource" uid="uid://dovufx5ho3uyx" path="res://samen-stoomboten/ui/settings/setting_num_gifts.tres" id="4_noguc"]
+[ext_resource type="Resource" uid="uid://de8a7434ppdlq" path="res://samen-stoomboten/ui/settings/setting_add_books.tres" id="5_q1m64"]
+[ext_resource type="Resource" uid="uid://0jh0w1t6uipa" path="res://samen-stoomboten/ui/settings/setting_add_candy.tres" id="6_a8wl5"]
+[ext_resource type="Resource" uid="uid://itcsylpvwfrm" path="res://samen-stoomboten/ui/settings/setting_num_obstacles.tres" id="7_4hto1"]
 
 [resource]
 script = ExtResource("1_72b7b")
+settings = Array[ExtResource("2_b7xye")]([ExtResource("3_lyxq1"), ExtResource("4_noguc"), ExtResource("5_q1m64"), ExtResource("6_a8wl5"), ExtResource("7_4hto1")])
 label = "SETTINGS_GROUP_MAP"
 metadata/_custom_type_script = "uid://c7uqyg8sqnc02"

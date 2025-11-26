@@ -1,13 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3tvtcu27fhwm"]
+[gd_scene load_steps=5 format=3 uid="uid://d3tvtcu27fhwm"]
 
 [ext_resource type="Script" uid="uid://det0vvqee3cig" path="res://samen-stoomboten/map/obstacle/obstacle.gd" id="1_nid8v"]
+[ext_resource type="Resource" uid="uid://dsc3sxbvjf0hi" path="res://samen-stoomboten/map/map_data.tres" id="2_kffkk"]
 [ext_resource type="Texture2D" uid="uid://duges6g0ddkav" path="res://samen-stoomboten/map/obstacle/obstakel.webp" id="2_nid8v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nid8v"]
 radius = 111.55492
 
-[node name="Obstacle" type="StaticBody2D" unique_id=769411292]
+[node name="Obstacle" type="StaticBody2D" unique_id=769411292 node_paths=PackedStringArray("col_shape", "timer")]
 script = ExtResource("1_nid8v")
+col_shape = NodePath("CollisionShape2D")
+timer = NodePath("Timer")
+map_data = ExtResource("2_kffkk")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2013102818]
 scale = Vector2(0.55, 0.55)
@@ -17,3 +21,6 @@ texture = ExtResource("2_nid8v")
 position = Vector2(5.5, 6.5)
 rotation = 1.5707964
 shape = SubResource("CircleShape2D_nid8v")
+
+[node name="Timer" type="Timer" parent="." unique_id=683117869]
+one_shot = true

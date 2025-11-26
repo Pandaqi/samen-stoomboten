@@ -17,8 +17,8 @@ func _ready() -> void:
 
 func prepare_sprites() -> void:
 	# collect the right stages
-	if "tutorials" in Global.config:
-		stages = Global.config.tutorials
+	if "tutorials" in Global.config_shared:
+		stages = Global.config_shared.tutorials
 	
 	if stages_debug.size() > 0:
 		stages = stages_debug

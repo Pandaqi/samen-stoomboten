@@ -5,12 +5,14 @@ class_name Boat
 @export var arrow_scene : PackedScene
 
 @export var arrow_container : Node2D
-@export var ARROW_RADIUS := 128.0
 var arrows : Array[Arrow] = []
+var speed_factor := 1.0
 
 @export var module_gifts : ModuleGifts
 @export var module_visuals : ModuleVisuals
 @export var module_collider : ModuleCollider
+@export var module_compass : ModuleCompass
+@export var module_audio : ModuleAudio
 @export var ui : UI
 @export var map_overlay : Node2D
 
@@ -22,9 +24,11 @@ signal finish_request()
 func _ready() -> void:
 	create_arrows()
 	
-	Global.input.buttons_changed.connect(_on_buttons_changed)
 	module_gifts.gifts_changed.connect(ui._on_gifts_changed)
 	moved.connect(ui._on_boat_moved)
+	
+	Global.input.buttons_changed.connect(_on_buttons_changed)
+	_on_buttons_changed()
 
 func _physics_process(delta: float) -> void:
 	apply_debug_input()
@@ -36,13 +40,17 @@ func _physics_process(delta: float) -> void:
 func apply_debug_input() -> void:
 	if not OS.is_debug_build(): return
 	var vec = Vector2(Input.get_axis("ui_left", "ui_right"), Input.get_axis("ui_up", "ui_down"))
-	move(vec * 100.0)
+	move(vec * 200.0)
 
 func rotate_arrows(delta: float) -> void:
 	var num_players = player_data.count()
 	var factor : float = lerp(Global.config.arrow_rotate_speed_factor.x, Global.config.arrow_rotate_speed_factor.y, num_players/8.0)
 	var speed := Global.config.arrow_rotate_speed_base * factor
+	speed *= speed_factor
 	arrow_container.rotate(speed * delta)
+
+func update_speed_factor(ds:float) -> void:
+	speed_factor = clamp(speed_factor * ds, 0.5, 3.0)
 
 func keep_arrows_with_boat() -> void:
 	arrow_container.global_position = self.global_position
@@ -52,6 +60,7 @@ func count_dirs() -> int:
 
 func create_arrows() -> void:
 	var num := count_dirs()
+	var arrow_radius := Global.config.arrow_radius
 	for i in range(num):
 		var a : Node2D = arrow_scene.instantiate()
 		arrow_container.add_child(a)
@@ -59,7 +68,7 @@ func create_arrows() -> void:
 		a.set_visible(false)
 		
 		var dir : Vector2i = ARROW_NODE_DIRS[i]
-		var pos := Vector2(dir).normalized() * ARROW_RADIUS
+		var pos := Vector2(dir).normalized() * arrow_radius
 		a.set_position(pos)
 		a.set_rotation(Vector2(dir).angle())
 		
@@ -75,7 +84,6 @@ func _on_buttons_changed():
 	if num_players <= 0: return
 	
 	# wait to make sure the player's buttons have all updated
-	# @TODO: find cleaner way for this
 	await get_tree().process_frame
 	
 	var players := player_data.players
@@ -95,11 +103,11 @@ func _on_buttons_changed():
 		player.add_connected_arrow(arrows[convert_dir_to_arrow_index(dir)])
 		cur_player_idx = (cur_player_idx + 1) % num_players
 
-func apply_arrow_movement(delta) -> void:
+func apply_arrow_movement(_delta) -> void:
 	var move_vec := Vector2()
 	for arrow in arrows:
 		move_vec += arrow.get_vector().rotated(arrow_container.rotation)
-	move(move_vec)
+	move(move_vec * speed_factor)
 
 func move(vec: Vector2) -> void:
 	apply_central_impulse(vec)
@@ -118,6 +126,7 @@ func convert_dirs_to_arrow_indices(dirs:Array[Vector2i]) -> Array[int]:
 
 func finish() -> void:
 	print("Should finish!")
+	module_audio.finish()
 	finish_request.emit()
 
 func play_bounce_tween() -> void:

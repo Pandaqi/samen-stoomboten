@@ -18,11 +18,8 @@ func save_value(s:Setting) -> void:
 func is_value_unset(v:Variant) -> bool:
 	return (v is String and v == FALLBACK)
 
-func read_value(s:Setting) -> Variant:
-	# try saved ConfigFile first; fallback is not NULL because then the errors/warning complain about no default value
-	var val = config.get_value(s.section, s.key, FALLBACK)
-	
-	# otherwise try the global Config or ConfigShared
+func read_default_value(s:Setting, val:Variant = FALLBACK) -> Variant:
+	# try the global Config or ConfigShared
 	if is_value_unset(val) and (s.key in Global.config):
 		val = Global.config[s.key]
 	
@@ -32,9 +29,11 @@ func read_value(s:Setting) -> Variant:
 	# if still nothing, use default
 	if is_value_unset(val):
 		val = s.get_default()
-		print(s.key)
-		print(val)
 	
-	# immediately save the value (to prevent loads of those extra lookups)
-	save_value(s)
+	return val
+
+func read_value(s:Setting) -> Variant:
+	# try saved ConfigFile first; fallback is not NULL because then the errors/warning complain about no default value
+	var val = config.get_value(s.section, s.key, FALLBACK)
+	val = read_default_value(s, val)
 	return val

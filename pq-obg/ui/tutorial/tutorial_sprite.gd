@@ -11,8 +11,7 @@ func set_stage(s:TutorialStage) -> void:
 	stage = s
 	bg.set_frame(get_background_frame(stage.type))
 	
-	var texture_path := "res://" + Global.config_shared.game_id + "/tutorial/" + Global.config_shared.tutorial_spritesheet_key + ".webp"
-	sprite.texture = load(texture_path)
+	sprite.texture = Global.config_shared.tutorial_spritesheet
 	var frames := Global.config_shared.tutorial_spritesheet_frames
 	sprite.hframes = frames.x
 	sprite.vframes = frames.y

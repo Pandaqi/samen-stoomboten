@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Setting" load_steps=2 format=3 uid="uid://itcsylpvwfrm"]
+
+[ext_resource type="Script" uid="uid://cu5ytdnryre03" path="res://pq-obg/settings/setting.gd" id="1_tjwyp"]
+
+[resource]
+script = ExtResource("1_tjwyp")
+type = 2
+type_display = 1
+key = "num_obstacles"
+label = "SETTING_NUM_OBSTACLES"
+min_value = 2.0
+max_value = 40.0
+step_value = 1
+metadata/_custom_type_script = "uid://cu5ytdnryre03"

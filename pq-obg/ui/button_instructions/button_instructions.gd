@@ -1,4 +1,5 @@
-class_name ButtonInstructions extends CanvasLayer
+extends CanvasLayer
+class_name ButtonInstructions 
 
 @export var button_instruction_scene : PackedScene
 
@@ -29,7 +30,6 @@ func create_instructions() -> void:
 
 func on_buttons_changed() -> void:
 	# set everything to the right (next) button
-	var all_types := Global.input.get_all_input_types()
 	for type in instructions_by_type:
 		if type == InputButton.InputType.NONE: continue
 		var btn := Global.input.get_next_button(type)

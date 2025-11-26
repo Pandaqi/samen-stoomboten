@@ -7,7 +7,7 @@ class_name ModuleVisuals
 @export var anim_player : AnimationPlayer
 @export var anim_player_water : AnimationPlayer
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var speed_vec : Vector2 = entity.get_linear_velocity()
 	var speed := speed_vec.length()
 	var anim_speed_scale : float = clamp(speed / 200.0, 0.0, 1.0)

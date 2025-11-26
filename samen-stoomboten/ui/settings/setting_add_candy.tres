@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Setting" load_steps=2 format=3 uid="uid://0jh0w1t6uipa"]
+
+[ext_resource type="Script" uid="uid://cu5ytdnryre03" path="res://pq-obg/settings/setting.gd" id="1_qa5ra"]
+
+[resource]
+script = ExtResource("1_qa5ra")
+type_display = 4
+key = "mapgen_add_books"
+label = "SETTING_ADD_BOOKS"
+metadata/_custom_type_script = "uid://cu5ytdnryre03"

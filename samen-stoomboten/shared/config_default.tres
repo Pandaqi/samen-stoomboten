@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="ConfigData" load_steps=4 format=3 uid="uid://dr73744xex73x"]
+[gd_resource type="Resource" script_class="ConfigData" load_steps=2 format=3 uid="uid://dr73744xex73x"]
 
 [ext_resource type="Script" uid="uid://l6p18bfs4vfy" path="res://samen-stoomboten/shared/config_data.gd" id="2_0rsb8"]
-[ext_resource type="Script" uid="uid://bk8734ulnri1t" path="res://pq-obg/settings/setting_tab.gd" id="2_oissy"]
-[ext_resource type="Script" uid="uid://b8gcpdtp867fe" path="res://pq-obg/ui/tutorial/tutorial_stage.gd" id="4_6e6q4"]
 
 [resource]
 script = ExtResource("2_0rsb8")
+max_compass_indicators = 3
+compass_radius = 192.0
 map_num_chunks = 2
+book_compass_duration = 28.0
 metadata/_custom_type_script = "uid://l6p18bfs4vfy"

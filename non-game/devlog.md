@@ -118,7 +118,7 @@ Nou goed, vervolgens ben je dus uren bezig met code herschrijven zodat je makkel
 Op dit moment kan je het spel spelen en je kan door alle menu's en instellingen heen. Dat noem ik altijd "publishable". Je zou, theoretisch, het spel nu aan mensen kunnen geven en ze kunnen het dus spelen van begin tot eind. Dat betekent natuurlijk niet dat het _goed_ is en dat er niet allemaal ruwe randjes aan zitten. Maar ik probeer altijd zo snel mogelijk naar publishable te komen. 
 
 {{% remark %}}
-Dat is beter voor motivatie, want je hebt tenminste _iets_ dat werkt en speelbaar is. En je kan de toekomst niet voorspellen en weet niet of/wanneer je het project weer opgeeft, en je wilt het liefst niet allerlei onspeelbare dingen achterlaten.
+Dat is beter voor motivatie, want je hebt tenminste _iets_ dat werkt en speelbaar is. Daarnaast kan je de toekomst niet voorspellen en weet niet of/wanneer je het project weer opgeeft, en je wilt het liefst niet allerlei onspeelbare dingen achterlaten.
 {{% /remark %}}
 
 Dus nu ga ik kijken naar de grootste dingen die ik zou willen verbeteren, soort van op volgorde van prioriteit.
@@ -128,52 +128,41 @@ Dus nu ga ik kijken naar de grootste dingen die ik zou willen verbeteren, soort 
   * Dus ik bouwde een systeem dat jou kan laten zien waar je nog pakjes kan vinden.
   * Maar dit krijg je alleen te zien als je een specifiek pakje weet op te pakken (het "Grote Boek").
   * Leek me thematisch. Zorgt ervoor dat het niet te makkelijk/overweldigend is aan het begin, en je hebt een reden om heel graag dat boek te pakken als je hem ziet.
+* Op dezelfde manier deed ik er ook een chocoladeletter bij die je sneller maakt (maar óók de pijlen sneller laat ronddraaien) elke keer als je er eentje eet.
 * Ik voegde wat meer geluidseffecten toe.
+* Ik loste nog wat stomme fouten op met mijn OBG systeem die dingen ofwel lieten crashen ofwel lelijk maakten.
+* Ik koos ervoor om eilanden _terug te laten komen_ (na X seconden, en alleen als boot niet in de buurt). Anders zou je, na 5 minuten spelen, een compleet lege wereld hebben.
+
+Dit zijn allemaal van die dingen die samen een uurtje kosten (of twee), maar het spel flink soepeler laten werken, dus dat is eigenlijk altijd wel de moeite waard.
+
+## Conclusie
+
+Hopelijk was het interessant om te lezen over de globale stappen en de problemen/oplossingen onderweg. _Samen Stoomboten_ is echt een heel klein en simpel spel. Maar, zoals je ziet, gaat zelfs daar veel tijd inzetten en sta je zelfs daar verrast door dingen die misgaan. Dit is een grappig spelletje dat ik hoop dat sommige mensen een leuke pakjesavond bezorgd. En voor mij was het een fijn proefkonijn voor dit systeem.
+
+Uiteindelijk heb ik het grootste deel van de tijd besteed aan het _OBG systeem_ verbeteren. Want dat was nogal nodig. Mijn eerste versie van twee jaar geleden was "oké", maar eigenlijk nog maar 50% af. Nu is het OBG systeem nog steeds niet "af", maar het is ver genoeg om dit spel af te sluiten en te beginnen aan het tweede Sintspel dat ik als proefkonijn wilde gebruiken.
+
+Tot de volgende keer,
+
+Tiamo
 
 
 
-
-
-@TODO:
-
-* BUG: Can't reload current scene because player_data can't grab an available color??? (Yes, and this bug only happens if there ARE players logged in)
-
-* REFACTOR
-  * Add settings for this particular game (change world size, obstacle density, etc) + their translations of course
-  * Have fewer dependencies; if we do need them, INJECT them upon activation/ready
-* Optional
-  * Do we NEED a tutorial?
-  * More things to encounter
-    * Grote Boek -> Will show you where all the gifts/closest gifts are (for a limited duration?) -> AT THE VERY LEAST, WE NEED SOME "MARKERS" TO RECOGNIZE WHERE YOU ARE/HAVE BEEN
-    * Pepernoten/Snoepgoed -> You move faster? But rotation also happens faster?
-  * Sound Effects
-    * Collect Gift
-    * Lose Gift
-    * Sloshing of water
-    * Bump into something
-    * Finishing
-    * Once in a while, randomly, the steam engine toooot
-    * Default OBG stuff
-      * Player login/logout?
-      * UI button click?
 
 **THEME SETTINGS**:
-* Add `Color` option for settings
-* Then simply add all these individual settings (with `needsThemeRefresh` ON), grouped and all
+* Add all these individual theme settings (with `needsThemeRefresh` ON), grouped and all
 * QOL: Also add an option to _generate_ this color scheme on the fly from a single accent color -> so add option to set COLOR, and a TOGGLE to tell the system to use it
 * QOL: Also allow changing the ICONS (whether they're used, and which ONES to use) -> though this can't be set in theme, it will have to be set dynamically in GDScript when loading menu/pause/etc
 * ALSO set the ButtonInstructions to be updated based on Global config settings (separation between stuff, font size, etc)
+  * QOL: Allow rescaling the button instructions + button visualizers from settings
+* QOL: Support TOOLTIPS in settings too (which are translated too, of course)
+* QOL: Decouple _visualizing_ from _reading/setting_, so I can also use all proper settings when bypassing menu + possibly speed up first load. ---> or did I already do this? Make it a Config toggle (`config_shared.read_settings_on_menu_bypass` or something)
+* QOL: Only apply "reset all" to the current _tab_? Add a little "reset" button to EVERY setting?
 
+**AND OF COURSE:** Support touchscreen. Add semi-transparent areas on the screen that send input signal when touched.
 
-* **Write much better TODO/DOCS for starting new OBG project!**
-  * ButtonsInstructions are needed! And I don't even mention them in the docs!
-  * Shouldn't global.tscn also just be a standard scene?
-  * MAKE SURE ALL OTHER CANVASLAYERS/CONTROL NODES IGNORE MOUSE INPUT, otherwise the general input manager won't work on mouse clicks
-  * Also, the "button instructions scale now RESETS when going through main menu" ... the default values are completely unusable anyway
-  * Surely I had an easier way to "repeatedly fire held signal"?
-  * WRITE DOWN LESSONS LEARNED ABOUT TRANSLATING
-  * Should probably just pick 12 FIXED PLAYER COLORS that look good for sure in the interface and when tinting.
+SAMEN STOOMBOTEN:
 
-@TODO:
-
-* Also prototype other game idea?
+* I really want settings to look a little better than this.
+* Do we NEED a tutorial?
+* REFACTOR: Have fewer dependencies; if we do need them, INJECT them upon activation/ready
+ 

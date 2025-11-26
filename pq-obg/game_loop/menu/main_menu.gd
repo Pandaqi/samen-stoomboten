@@ -16,7 +16,7 @@ func release_focus() -> void:
 		child.release_focus()
 
 func _on_play_pressed() -> void:
-	get_tree().change_scene_to_file("res://" + Global.config_shared.game_id + "/main.tscn")
+	get_tree().change_scene_to_file("res://" + Global.config_shared.game_scene)
 
 func _on_settings_pressed() -> void:
 	set_visible(false)

@@ -7,7 +7,7 @@ enum Type
 	RANGE,
 	RANGE_DISCRETE,
 	DROPDOWN,
-	# @TODO?
+	COLOR
 }
 
 enum TypeDisplay
@@ -17,6 +17,7 @@ enum TypeDisplay
 	FLOAT, # default
 	VOLUME,
 	BOOL,
+	COLOR
 }
 
 enum TypeUnit
@@ -82,7 +83,17 @@ func set_display_type(tp:TypeDisplay) -> Setting:
 
 func initialize(r:SettingReader) -> void:
 	run_custom_initialization()
+	ensure_matching_types()
+	
+	# if we have no default set yet, save it now BEFORE overwriting anything, so we read from the true original Global.config
+	if get_default() == null:
+		set_default(r.read_default_value(self))
+	
 	on_value_changed(r.read_value(self), r)
+
+func ensure_matching_types() -> void:
+	if type == Type.COLOR: type_display = TypeDisplay.COLOR
+	if type == Type.CHECKBOX: type_display = TypeDisplay.BOOL
 
 func reset(r:SettingReader) -> void:
 	on_value_changed(get_default(), r)
@@ -98,6 +109,23 @@ func visualize(r:SettingReader) -> HBoxContainer:
 	create_value_node()
 	
 	hbox.add_child(label_node)
+	
+	if type == Type.COLOR:
+		var cpb := ColorPickerButton.new()
+		control_node = cpb
+		
+		var picker := cpb.get_picker()
+		picker.can_add_swatches = false
+		picker.edit_intensity = false
+		picker.color_modes_visible = false
+		picker.hex_visible = false
+		picker.presets_visible = false
+		picker.sliders_visible = false
+		
+		cpb.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		cpb.color_changed.connect(func(c:Color):
+			on_value_changed(c, r)
+		)
 	
 	if type == Type.DROPDOWN:
 		value_node.set_visible(false)
@@ -172,15 +200,23 @@ func create_label_node() -> Label:
 	return label_node
 
 func get_default() -> Variant:
-	if default == "": return null
-	if default.to_lower().strip_edges(true, true) == "true": return true
-	if default.to_lower().strip_edges(true, true) == "false": return false
-	if default.is_valid_int(): return int(default)
-	if default.is_valid_float(): return float(default)
-	return default
+	return convert_string_to_variant_value(default)
+
+static func convert_string_to_variant_value(s:String) -> Variant:
+	if s == "": return null
+	if s.to_lower().strip_edges(true, true) == "true": return true
+	if s.to_lower().strip_edges(true, true) == "false": return false
+	if s.is_valid_int(): return int(s)
+	if s.is_valid_float(): return float(s)
+	if s.is_valid_html_color(): return Color(s)
+	return s
+
+static func convert_variant_value_to_string(v:Variant) -> String:
+	if v is Color: v = v.to_html()
+	return str(v)
 
 func set_default(v:Variant) -> void:
-	default = str(v)
+	default = convert_variant_value_to_string(v)
 
 func force_update_control() -> void:
 	if (control_node is CheckBox) or (control_node is CheckButton):
@@ -190,12 +226,10 @@ func force_update_control() -> void:
 	if control_node is OptionButton:
 		# @NOTE: this relies on the fact that items are added by just iterating through options in order, so index found this way matches the text string we want
 		control_node.select(options.find(value))
+	if control_node is ColorPickerButton:
+		control_node.color = Color(value)
 
 func on_value_changed(new_val:Variant, r:SettingReader) -> void:
-	# if we have no default set yet, save it now BEFORE overwriting anything, so we read from the true original Global.config
-	if get_default() == null:
-		set_default(new_val)
-	
 	# save the value on ourselves, so it permanently enters into the ConfigFile
 	value = new_val
 	update_display_value()
@@ -267,6 +301,7 @@ func update_display_value() -> void:
 	if type_display == TypeDisplay.INT: conv_val = int(round(value))
 	if type_display == TypeDisplay.VOLUME: conv_val = str(round(linear_to_db(value)))
 	if type_display == TypeDisplay.BOOL: conv_val = str(value) # @TODO: could be more specific/smart conversion here, such as 0 = false/1 = true
+	if type_display == TypeDisplay.COLOR: conv_val = "#" + Color(value).to_html() # to_html means a hex string
 	
 	var text_final := str(conv_val) + get_unit()
 	value_node.set_text(text_final)

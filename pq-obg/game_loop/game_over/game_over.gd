@@ -45,7 +45,7 @@ func _on_backward_pressed() -> void:
 
 func _on_forward_pressed() -> void:
 	if state == GameOverState.GAME_RANK:
-		get_tree().change_scene_to_file("res://" + Global.config_shared.game_id + "/main.tscn")
+		get_tree().change_scene_to_file("res://" + Global.config_shared.game_scene)
 	
 	if state == GameOverState.MATCH_RANK:
 		state = GameOverState.GAME_RANK

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Setting" load_steps=2 format=3 uid="uid://de8a7434ppdlq"]
+
+[ext_resource type="Script" uid="uid://cu5ytdnryre03" path="res://pq-obg/settings/setting.gd" id="1_1dxmc"]
+
+[resource]
+script = ExtResource("1_1dxmc")
+type_display = 4
+key = "mapgen_add_candy"
+label = "SETTING_ADD_CANDY"
+metadata/_custom_type_script = "uid://cu5ytdnryre03"

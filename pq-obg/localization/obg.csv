@@ -1,6 +1,6 @@
 keys,en,nl
 PAUSED_HEADER,Paused,Gepauzeerd
-PAUSED_TEXT,Login players now by pressing one of the buttons indicated.,Voeg spelers toe door op de aangegeven knop(pen) te klikken.
+PAUSED_TEXT,Login players now by pressing one of the buttons indicated. (Use Escape for the pause menu.),Voeg spelers toe door op de aangegeven knop(pen) te klikken. Gebruik de Escape knop voor pauzeren.
 BUTTON_NEW_PLAYER,Add new player?,Nieuwe speler toevoegen?
 BUTTON_LOGOUT,Hold for 3 seconds to log out.,Houd 3 seconden vast om uit te loggen.
 BUTTON_LOGOUT_RELOAD,Reload game to log out players.,Herstart het spel als je spelers wilt uitloggen.
@@ -16,9 +16,11 @@ GO_PLAY_AGAIN,Play Again,Speel opnieuw
 SETTINGS_RESET_ALL,Reset All,Alles herstellen
 SETTINGS_CLOSE,Close,Teruggaan
 ST_TAB_CORE,Core,Algemeen
+ST_TAB_THEME,Theme,Visueel
 ST_LANGUAGE_SELECT,Select Language,Selecteer taal
-ST_VOLUME_MAIN,Volume Main,Volume spel
-ST_VOLUME_BG,Volume Background,Volume achtergrondmuziek
+ST_VOLUME_GAME,Volume Game,Volume spel
+ST_VOLUME_BACKGROUND,Volume Background,Volume achtergrondmuziek
+ST_VOLUME_UI,Volume Interface,Volume Interface
 ST_TUT_SCALE,Tutorial Image Scale,Grootte uitlegplaatjes
 ST_TUT_DELAY,Delay between tutorial images,Vertraging tonen uitlegplaatjes
 ST_ALLOW_MOUSE,Mouse,Muis
@@ -36,3 +38,4 @@ ST_GROUP_LOGIN_OUT,Login / Logout,Inloggen / uitloggen
 ST_GROUP_ALLOW,Buttons Allowed,Knoppen toegestaan
 ST_GROUP_AUDIO,Audio,Audio
 ST_GROUP_MAIN,Main,Algemeen
+ST_GROUP_COLORS,Colors,Kleuren

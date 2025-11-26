@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SettingTab" load_steps=4 format=3 uid="uid://rof0eke27qbk"]
+
+[ext_resource type="Script" uid="uid://c7uqyg8sqnc02" path="res://pq-obg/settings/setting_group.gd" id="1_677k2"]
+[ext_resource type="Resource" uid="uid://dc72261ejf8my" path="res://pq-obg/settings/default/theme/group_colors.tres" id="2_efjx1"]
+[ext_resource type="Script" uid="uid://bk8734ulnri1t" path="res://pq-obg/settings/setting_tab.gd" id="2_h44bb"]
+
+[resource]
+script = ExtResource("2_h44bb")
+groups = Array[ExtResource("1_677k2")]([ExtResource("2_efjx1")])
+label = "ST_TAB_THEME"
+metadata/_custom_type_script = "uid://bk8734ulnri1t"

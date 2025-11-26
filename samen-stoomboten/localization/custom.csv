@@ -9,3 +9,9 @@ GAME_OVER_TIME_UNIT,"seconds","seconden"
 SETTINGS_GROUP_BOAT,Boat,Boot
 SETTINGS_GROUP_MAP,Map,Wereld
 SETTINGS_TAB_GAME,Game,Spel
+SETTING_NUM_GIFTS,Number of gifts,Hoeveelheid pakjes (totaal)
+SETTING_NUM_OBSTACLES,Number of islands,Hoeveelheid eilanden (totaal)
+SETTING_ADD_CANDY,Allow spawning candy gifts,Sta chocoladeletterpakjes toe
+SETTING_ADD_BOOKS,Allow spawning book gifts,Sta boekpakjes toe
+SETTING_BOAT_SPEED,Boat speed (px/s),Snelheid van de stoomboot (px/s)
+SETTING_MAP_NUM_CHUNKS,Size of generated map (#areas),Grootte van zeekaart (#gebieden)

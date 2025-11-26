@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Setting" load_steps=2 format=3 uid="uid://btyua86o1708t"]
+
+[ext_resource type="Script" uid="uid://cu5ytdnryre03" path="res://pq-obg/settings/setting.gd" id="1_uif3y"]
+
+[resource]
+script = ExtResource("1_uif3y")
+type = 2
+type_display = 1
+key = "map_num_chunks"
+label = "SETTING_MAP_NUM_CHUNKS"
+min_value = 10.0
+max_value = 500.0
+metadata/_custom_type_script = "uid://cu5ytdnryre03"

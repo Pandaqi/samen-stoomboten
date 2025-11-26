@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SettingGroup" load_steps=4 format=3 uid="uid://dc72261ejf8my"]
+
+[ext_resource type="Script" uid="uid://c7uqyg8sqnc02" path="res://pq-obg/settings/setting_group.gd" id="1_bje7c"]
+[ext_resource type="Script" uid="uid://cu5ytdnryre03" path="res://pq-obg/settings/setting.gd" id="2_1fb28"]
+[ext_resource type="Resource" uid="uid://044g5axmdfd2" path="res://pq-obg/settings/default/theme/setting_color_normal_bg.tres" id="3_5gjlk"]
+
+[resource]
+script = ExtResource("1_bje7c")
+settings = Array[ExtResource("2_1fb28")]([ExtResource("3_5gjlk")])
+label = "ST_GROUP_COLORS"
+metadata/_custom_type_script = "uid://c7uqyg8sqnc02"

@@ -2,6 +2,7 @@ extends Node2D
 class_name ModuleCollider
 
 @onready var entity : Boat = get_parent()
+@export var audio_bounce : AudioStream
 var num_hits := 0
 
 func _ready() -> void:
@@ -16,4 +17,5 @@ func _on_body_entered(body:PhysicsBody2D) -> void:
 		body.damage(speed)
 		entity.module_gifts.drop_gift()
 		entity.play_bounce_tween()
+		entity.module_audio.play_audio(audio_bounce)
 		num_hits += 1
