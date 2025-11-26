@@ -151,7 +151,6 @@ func visualize(r:SettingReader) -> HBoxContainer:
 	
 	if type == Type.CHECKBOX:
 		label_node.set_visible(false)
-		value_node.set_visible(false)
 		
 		var cb := CheckButton.new()
 		control_node = cb
@@ -205,7 +204,7 @@ func create_value_node() -> Label:
 	value_node = Label.new()
 	value_node.custom_minimum_size = Vector2(64,0)
 	value_node.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	value_node.add_theme_font_override("font", Global.config_shared.font_body_italic)
+	value_node.add_theme_font_override("font", Global.theme.get_italic_font())
 	value_node.modulate.a = 0.66
 	return value_node
 
@@ -246,8 +245,16 @@ func force_update_control() -> void:
 	if control_node is ColorPickerButton:
 		control_node.color = Color(value)
 
+## Returns true if the current setting's value is equal to its default
 func is_value_default() -> bool:
-	return value == get_default()
+	var def : Variant = get_default()
+	var value_string := str(value)
+	# to prevent floating point errors
+	if value_string.is_valid_int() or value_string.is_valid_float(): 
+		return abs(value - def) <= 0.03
+	
+	# @NOTE: by moving it to a string we can check for equality between objects (like Color) too
+	return value_string == str(def)
 
 func on_value_changed(new_val:Variant, r:SettingReader) -> void:
 	# save the value on ourselves, so it permanently enters into the ConfigFile
@@ -323,7 +330,7 @@ func update_display_value() -> void:
 	if type_display == TypeDisplay.FLOAT: conv_val = round(value*100.0)/100.0
 	if type_display == TypeDisplay.INT: conv_val = int(round(value))
 	if type_display == TypeDisplay.VOLUME: conv_val = str(round(linear_to_db(value)))
-	if type_display == TypeDisplay.BOOL: conv_val = str(value) # @TODO: could be more specific/smart conversion here, such as 0 = false/1 = true
+	if type_display == TypeDisplay.BOOL: conv_val = "ST_BOOL_TRUE" if value else "ST_BOOL_FALSE"
 	if type_display == TypeDisplay.COLOR: conv_val = "#" + Color(value).to_html() # to_html means a hex string
 	
 	var text_final := str(conv_val) + get_unit()

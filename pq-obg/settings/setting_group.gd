@@ -32,7 +32,7 @@ func visualize(r:SettingReader) -> PanelContainer:
 	var heading := Label.new()
 	vbox.add_child(heading)
 	heading.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	heading.add_theme_font_override("font", Global.config_shared.font_heading)
+	heading.add_theme_font_override("font", Global.theme.get_heading_font())
 	heading.set_text(label)
 	
 	for setting in settings:

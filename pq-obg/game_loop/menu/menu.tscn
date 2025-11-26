@@ -27,6 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_axedv")
 
 [node name="CenterContainer" type="CenterContainer" parent="Main/Control" unique_id=1458506608]
 layout_mode = 1
@@ -41,19 +42,16 @@ layout_mode = 2
 
 [node name="Play" type="Button" parent="Main/Control/CenterContainer/VBoxContainer" unique_id=1395823207]
 layout_mode = 2
-theme = ExtResource("1_axedv")
 text = "MENU_PLAY"
 icon = ExtResource("3_408xl")
 
 [node name="Settings" type="Button" parent="Main/Control/CenterContainer/VBoxContainer" unique_id=14190210]
 layout_mode = 2
-theme = ExtResource("1_axedv")
 text = "MENU_SETTINGS"
 icon = ExtResource("4_cqcj2")
 
 [node name="Quit" type="Button" parent="Main/Control/CenterContainer/VBoxContainer" unique_id=1795067842]
 layout_mode = 2
-theme = ExtResource("1_axedv")
 text = "MENU_QUIT"
 icon = ExtResource("6_p2nwr")
 
@@ -68,6 +66,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_axedv")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Settings/CenterContainer" unique_id=789800477]
 layout_mode = 2
@@ -75,7 +74,6 @@ layout_mode = 2
 [node name="TabContainer" type="TabContainer" parent="Settings/CenterContainer/VBoxContainer" unique_id=1374158172]
 custom_minimum_size = Vector2(720, 425)
 layout_mode = 2
-theme = ExtResource("1_axedv")
 tab_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Settings/CenterContainer/VBoxContainer" unique_id=1778515291]
@@ -84,7 +82,6 @@ alignment = 1
 
 [node name="Reset" type="Button" parent="Settings/CenterContainer/VBoxContainer/HBoxContainer" unique_id=23072603]
 layout_mode = 2
-theme = ExtResource("1_axedv")
 theme_override_constants/icon_max_width = 24
 theme_override_font_sizes/font_size = 12
 text = "SETTINGS_RESET_ALL"
@@ -92,7 +89,6 @@ icon = ExtResource("9_clq6r")
 
 [node name="Close" type="Button" parent="Settings/CenterContainer/VBoxContainer/HBoxContainer" unique_id=1488494993]
 layout_mode = 2
-theme = ExtResource("1_axedv")
 theme_override_constants/icon_max_width = 24
 theme_override_font_sizes/font_size = 12
 text = "SETTINGS_CLOSE"

@@ -148,15 +148,19 @@ Tiamo
 
 
 
-**THEME SETTINGS**:
-* Add all these individual theme settings (with `needsThemeRefresh` ON), grouped and all
-  * Some don't need a refresh though, such as instruction scale or touch area size
-* QOL: Also add an option to _generate_ this color scheme on the fly from a single accent color -> so add option to set COLOR, and a TOGGLE to tell the system to use it
+**THEME/SETTINGS ISSUES LEFT**:
+
+* `use_system_fonts` does not _immediately_ refresh those with "custom font overrrides". Is that bad? Or should I find a different system for that anyway? Is there a way to differentiate 2 labels within the same theme? (One `LabelBody` and one `LabelHeading`? **No, don't think so.**)
+* No, I do _not_ actually read settings when bypassing menu at the moment. I should at least make that possible: just call SettingsReader function on all Global.config_shared.settings?
+* Also style the TOGGLE (for CheckButton) and SCROLLBAR
+
+
 
 **TOUCHSCREEN SUPPORT**
 * Update text/image for TOUCH instructions ---> move AFFINITY file to tablet first
 * Update ButtonVisualizer to show "touch" (just a hand with little arrows at finger tip)
 * Proper background/texture for semi-transparent touch area 
+* Nicer code for finding the correct TouchAreas thing to append to!
 
 SAMEN STOOMBOTEN:
 

@@ -3,6 +3,7 @@ class_name PauseMenu
 
 @export var pause_menu_container : Control
 @export var overlay : Control
+@export var heading : Label
 
 @export var backward_btn : Button
 @export var restart_btn : Button
@@ -24,6 +25,8 @@ func set_icons() -> void:
 	backward_btn.icon = Global.config_shared.icon_quit
 	restart_btn.icon = Global.config_shared.icon_reset
 	forward_btn.icon = Global.config_shared.icon_play
+	
+	heading.add_theme_font_override("font", Global.theme.get_heading_font())
 
 func _on_backward_pressed() -> void:
 	backward_pressed.emit()

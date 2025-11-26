@@ -26,6 +26,7 @@ class_name ConfigSharedData
 @export var bg_image : Texture2D
 
 @export_subgroup("Fonts")
+@export var use_system_fonts := false
 @export var font_size : int = 16
 @export var font_body_regular : FontFile
 @export var font_body_italic : FontFile
@@ -35,6 +36,8 @@ class_name ConfigSharedData
 @export var font_special : FontFile
 
 @export_subgroup("Colors")
+@export var color_scheme_auto_generate := true
+@export var color_main := Color(0.0, 0.731, 0.636, 1.0)
 @export var color_normal_bg := Color(0.941, 0.867, 0.788)
 @export var color_normal_text := Color(0.239, 0.18, 0.0)
 @export var color_focus_bg := Color(0.651, 0.176, 0.329)
@@ -42,7 +45,6 @@ class_name ConfigSharedData
 @export var color_hover_bg := Color(0.376, 0.212, 0.082)
 @export var color_hover_text := Color(1.0, 0.878, 0.8)
 @export var color_panel_bg := Color(0.941, 0.867, 0.788)
-@export var color_panel_text := Color.BLACK
 @export var color_shadow := Color(0.0, 0.0, 0.0, 0.4)
 
 @export_subgroup("Shadows")
@@ -142,6 +144,7 @@ class_name ConfigSharedData
 @export_subgroup("Button Instructions")
 @export var button_instructions_anchor := ScreenAnchorTool.Anchor.TOP
 @export var button_instructions_icon_size := 48.0
+@export var button_instructions_font_size := 16.0
 
 @export_subgroup("Button Visualizer")
 @export var button_visualizer_scene := preload("res://pq-obg/ui/button_visualizer/button_visualizer.tscn")

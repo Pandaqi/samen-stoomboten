@@ -1,17 +1,83 @@
 extends Node
 class_name ThemeManager
 
+var system_font : SystemFont
+
 func _ready() -> void:
+	ProjectSettings.set_setting("gui/theme/custom", Global.config_shared.theme)
+	
+	cache_system_font()
 	refresh()
+
+func cache_system_font() -> void:
+	system_font = SystemFont.new()
+	system_font.font_names = ["Helvetica", "Arial", "Georgia"]
+
+# @TODO: Is there a smarter way to provide this "default fallback"?
+func get_italic_font() -> Font:
+	return system_font if Global.config_shared.use_system_fonts else Global.config_shared.font_body_italic
+
+func get_heading_font() -> Font:
+	return system_font if Global.config_shared.use_system_fonts else Global.config_shared.font_heading
+
+## It looks better when darkening colors to also move their hue towards dark blue/purple
+static func darken_smart(c:Color, diff:float) -> Color:
+	var col := c.darkened(diff)
+	var anti_yellow_hue := (240/360.0)
+	col.h = lerp(col.h, anti_yellow_hue, 0.2)
+	return col
+
+## It looks better when lightening colors to also move their hue more towards yellow
+static func lighten_smart(c:Color, diff:float) -> Color:
+	var col := c.lightened(diff)
+	var yellow_hue := (60/360.0)
+	col.h = lerp(col.h, yellow_hue, 0.2)
+	return col
+
+static func get_most_contrasting_grayscale(c:Color) -> Color:
+	return Color.BLACK if c.get_luminance() > 0.5 else Color.WHITE
+	
+static func get_most_contrasting_shade(c:Color, diff := 0.2) -> Color:
+	return darken_smart(c,diff) if c.get_luminance() > 0.5 else lighten_smart(c, diff)
+
+static func get_least_contrasting_shade(c:Color, diff := 0.2) -> Color:
+	return darken_smart(c,diff) if c.get_luminance() < 0.5 else lighten_smart(c, diff)
+
+func generate_color_scheme(base:Color) -> void:
+	var cfg = Global.config_shared
+	
+	var normal_bg := get_least_contrasting_shade(base, 0.8)
+	var normal_text := get_most_contrasting_grayscale(normal_bg)
+	cfg.label_color = normal_text
+	
+	cfg.color_normal_bg = normal_bg
+	cfg.color_normal_text = normal_text
+	cfg.color_focus_bg = base
+	cfg.color_focus_text = get_most_contrasting_grayscale(base)
+	cfg.color_hover_bg = get_most_contrasting_shade(base, 0.5)
+	cfg.color_hover_text = base
+	cfg.color_panel_bg = normal_bg
+	cfg.border_color_normal = Color.TRANSPARENT
+	cfg.border_color_focus = get_most_contrasting_grayscale(base)
+	cfg.border_color_hover = get_most_contrasting_shade(base, 0.2)
+	cfg.border_color_panel = get_most_contrasting_shade(base, 0.2)
 
 func refresh():
 	var cfg = Global.config_shared
-	var th : Theme = cfg.theme
+	var th : Theme = Theme.new()
+	
+	#
+	# Colorscheme
+	# This just overrides the config values we'll read below with what the color scheme dictates
+	#
+	if cfg.color_scheme_auto_generate:
+		generate_color_scheme(cfg.color_main)
 	
 	#
 	# Main Properties
 	#
-	th.default_font = cfg.font_body_regular
+	if not cfg.use_system_fonts:
+		th.default_font = cfg.font_body_regular
 	th.default_font_size = cfg.font_size
 	
 	#
@@ -37,6 +103,9 @@ func refresh():
 	sb_focus.shadow_color = cfg.color_shadow
 	sb_focus.shadow_offset = cfg.shadow_offset
 	
+	var sb_focus_small := sb_focus.duplicate_deep()
+	sb_focus_small.set_corner_radius_all(round(0.25*cfg.border_radius))
+	
 	var sb_hover := StyleBoxFlat.new()
 	sb_hover.bg_color = cfg.color_hover_bg
 	sb_hover.border_color = cfg.border_color_hover
@@ -46,6 +115,9 @@ func refresh():
 	sb_hover.shadow_size = cfg.shadow_size_hover
 	sb_hover.shadow_color = cfg.color_shadow
 	sb_hover.shadow_offset = cfg.shadow_offset
+	
+	var sb_hover_small := sb_hover.duplicate_deep()
+	sb_hover_small.set_corner_radius_all(round(0.25*cfg.border_radius))
 	
 	var sb_panel := StyleBoxFlat.new()
 	sb_panel.bg_color = cfg.color_panel_bg
@@ -63,6 +135,7 @@ func refresh():
 	# So making sure these are correct and set here is important
 	#
 	th.set_font("font", "Button", cfg.font_heading)
+	if cfg.use_system_fonts: th.set_font("font", "Button", system_font)
 	th.set_font_size("font_size", "Button",cfg.button_font_size)
 	th.set_stylebox("focus", "Button", sb_focus)
 	th.set_stylebox("hover", "Button", sb_hover)
@@ -79,18 +152,34 @@ func refresh():
 	# OptionButton
 	#
 	th.set_font("font", "OptionButton", cfg.font_body_regular)
+	if cfg.use_system_fonts: th.set_font("font", "OptionButton", system_font)
+	th.set_stylebox("hover", "OptionButton", sb_hover_small)
+	th.set_stylebox("focus", "OptionButton", sb_focus_small)
+	th.set_stylebox("pressed", "OptionButton", sb_focus_small)
 	
 	#
 	# CheckButton
 	#
 	th.set_font("font", "CheckButton", cfg.font_body_regular)
+	th.set_font_size("font_size", "CheckButton", cfg.label_font_size)
+	if cfg.use_system_fonts: th.set_font("font", "CheckButton", system_font)
+	
+	th.set_stylebox("focus", "CheckButton", StyleBoxEmpty.new())
+	th.set_stylebox("pressed", "CheckButton", StyleBoxEmpty.new())
 	th.set_stylebox("normal", "CheckButton", StyleBoxEmpty.new())
 	th.set_stylebox("hover", "CheckButton", StyleBoxEmpty.new())
+	
+	th.set_color("font_color", "CheckButton", cfg.color_normal_text)
+	th.set_color("font_focus_color", "CheckButton", cfg.color_normal_text)
+	th.set_color("font_hover_color", "CheckButton", cfg.color_normal_text)
+	th.set_color("font_pressed_color", "CheckButton", cfg.color_normal_text)
+	th.set_color("font_hover_pressed_color", "CheckButton", cfg.color_normal_text)
 	
 	#
 	# Label
 	#
 	th.set_font("font", "Label", cfg.font_body_regular)
+	if cfg.use_system_fonts: th.set_font("font", "Label", system_font)
 	th.set_color("font_color", "Label", cfg.label_color)
 	th.set_font_size("font_size", "Label", cfg.label_font_size)
 	
@@ -102,6 +191,12 @@ func refresh():
 	th.set_font("bold_italics_font", "RichTextLabel", cfg.font_body_bold_italic)
 	th.set_font("italics_font", "RichTextLabel", cfg.font_body_italic)
 	
+	if cfg.use_system_fonts: 
+		th.set_font("normal_font", "RichTextLabel", system_font)
+		th.set_font("bold_font", "RichTextLabel", system_font)
+		th.set_font("bold_italics_font", "RichTextLabel", system_font)
+		th.set_font("italics_font", "RichTextLabel", system_font)
+	
 	th.set_font_size("normal_font_size", "RichTextLabel", cfg.label_font_size)
 	th.set_font_size("bold_font_size", "RichTextLabel", cfg.label_font_size)
 	th.set_font_size("bold_italics_font_size", "RichTextLabel", cfg.label_font_size)
@@ -111,6 +206,12 @@ func refresh():
 	# TabContainer
 	#
 	th.set_font("font", "TabContainer", cfg.font_heading)
+	if cfg.use_system_fonts: th.set_font("font", "TabContainer", system_font)
+	th.set_color("font_selected_color", "TabContainer", cfg.color_focus_text)
+	th.set_color("font_hovered_color", "TabContainer", cfg.color_hover_text)
+	th.set_color("font_unselected_color", "TabContainer", cfg.label_color)
+	th.set_color("font_disabled_color", "TabContainer", Color(0,0,0,0.5))
+	
 	th.set_stylebox("panel", "TabContainer", StyleBoxEmpty.new())
 	th.set_stylebox("tab_focus", "TabContainer", sb_focus)
 	th.set_stylebox("tab_hovered", "TabContainer", sb_hover)
@@ -147,3 +248,9 @@ func refresh():
 	# Tooltips
 	#
 	th.set_color("font_color", "TooltipLabel", Color.WHITE)
+	
+	# we only swap the shared theme with the new one at the end
+	# so it only updates ONCE, after all properties have been set again
+	var shared_theme : Theme = cfg.theme
+	shared_theme.clear()
+	shared_theme.merge_with(th)
