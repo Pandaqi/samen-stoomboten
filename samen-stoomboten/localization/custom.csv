@@ -12,6 +12,9 @@ SETTINGS_TAB_GAME,Game,Spel
 SETTING_NUM_GIFTS,Number of gifts,Hoeveelheid pakjes (totaal)
 SETTING_NUM_OBSTACLES,Number of islands,Hoeveelheid eilanden (totaal)
 SETTING_ADD_CANDY,Allow spawning candy gifts,Sta chocoladeletterpakjes toe
+SETTING_ADD_CANDY_TT,Candy gifts make your boat faster + carrots rotate faster.,"Deze pakjes maken je boot sneller, maar ook de draaiing van de wortels."
 SETTING_ADD_BOOKS,Allow spawning book gifts,Sta boekpakjes toe
+SETTING_ADD_BOOKS_TT,Book gifts allow you to see where gifts are (temporarily).,Het Grote Boek laat je (tijdelijk) zien waar andere pakjes (buiten het scherm) zijn.
 SETTING_BOAT_SPEED,Boat speed (px/s),Snelheid van de stoomboot (px/s)
 SETTING_MAP_NUM_CHUNKS,Size of generated map (#areas),Grootte van zeekaart (#gebieden)
+SETTING_MAP_NUM_CHUNKS_TT,The map is just a bunch of areas next to each other; an area is about 20x the size of the boat.,De kaart is een hoop gebieden die achter elkaar staan; elk gebied is ongeveer 20x zo groot als de boot.

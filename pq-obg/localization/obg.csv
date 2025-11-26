@@ -18,20 +18,37 @@ SETTINGS_CLOSE,Close,Teruggaan
 ST_TAB_CORE,Core,Algemeen
 ST_TAB_THEME,Theme,Visueel
 ST_LANGUAGE_SELECT,Select Language,Selecteer taal
+ST_LANGUAGE_SELECT_TT,Instantly changes the language for the entire game.,Verandert direct de taal voor het hele spel.
 ST_VOLUME_GAME,Volume Game,Volume spel
+ST_VOLUME_GAME_TT,Changes the volume of all game sounds (mostly quick sound effects).,Verandert het volume van alle geluiden in het spel (voornamelijk geluidseffecten).
 ST_VOLUME_BACKGROUND,Volume Background,Volume achtergrondmuziek
+ST_VOLUME_BACKGROUND_TT,Changes the volume of the background track that always plays.,Verandert het volume van de achtergrondmuziek die altijd speelt.
 ST_VOLUME_UI,Volume Interface,Volume Interface
-ST_TUT_SCALE,Tutorial Image Scale,Grootte uitlegplaatjes
-ST_TUT_DELAY,Delay between tutorial images,Vertraging tonen uitlegplaatjes
+ST_VOLUME_UI_TT,Changes the volume of the interface click/change sounds.,Verandert het volume van de klikgeluiden in het menu.
 ST_ALLOW_MOUSE,Mouse,Muis
-ST_MAX_PLAYERS,Maximum player count,Maximaal aantal spelers
-ST_LOGOUT_HOLD_DUR,Logout hold duration,Duratie indrukken voor uitloggen
-ST_ALLOW_DYN_LOGOUT,Allow removing players while playing?,Mogen spelers uitloggen tijdens het spelen?
-ST_ALLOW_DYN_LOGIN,Allow adding players while playing?,Mogen spelers inloggen tijdens het spelen?
+ST_ALLOW_MOUSE_TT,Whether mouse buttons are valid buttons for players.,Of muisknoppen mogen worden gebruikt om spelers te besturen.
 ST_ALLOW_KEYBOARD,Keyboard,Toetsenbord
+ST_ALLOW_KEYBOARD_TT,Whether keyboard buttons are valid buttons for players.,Of toetsenbordknoppen mogen worden gebruikt om spelers te besturen.
 ST_ALLOW_GAMEPAD,Gamepads,Controller
+ST_ALLOW_GAMEPAD_TT,Whether controller buttons are valid buttons for players.,Of knoppen van een externe controller mogen worden gebruikt om spelers te besturen.
+ST_ALLOW_TOUCH,Touchscreen,Touchscreen
+ST_ALLOW_TOUCH_TT,"If enabled, players get a special area on the screen they can touch as their button.",Als aangezet krijgen spelers een speciaal gebiedje op het scherm dat ze met hun vinger kunnen aanraken als hun knop.
+ST_MAX_PLAYERS,Maximum player count,Maximaal aantal spelers
+ST_MAX_PLAYERS_TT,Once reached no more players can login.,Wanneer deze limiet is bereikt kunnen geen nieuwe spelers meer worden toegevoegd.
+ST_LOGOUT_HOLD_DUR,Logout hold duration,Duratie indrukken voor uitloggen
+ST_LOGOUT_HOLD_DUR_TT,"If you set logout mode to hold, this determines how long you must hold your button to log out.","Als je uitlogmodus is gezet naar ingedrukt houden, bepaalt dit hoe lang je dit moet doen om jezelf te verwijderen."
+ST_ALLOW_DYN_LOGOUT,Allow removing players while playing?,Mogen spelers uitloggen tijdens het spelen?
+ST_ALLOW_DYN_LOGOUT_TT,Allows adding a player when not paused.,Staat toe dat spelers erbij komen terwijl het spel niet is gepauzeerd.
+ST_ALLOW_DYN_LOGIN,Allow adding players while playing?,Mogen spelers inloggen tijdens het spelen?
+ST_ALLOW_DYN_LOGIN_TT,Allows removing a player when not paused.,Staat toe dat spelers het spel verlaten terwijl het spel niet is gepauzeerd.
 ST_FULLSCREEN,Fullscreen,Volledig scherm
+ST_FULLSCREEN_TT,Makes the game fullscreen (instead of windowed).,Laat het spel het volledige scherm in beslag nemen.
 ST_BUTTON_SCALE,Button Instructions Scale,Grootte speelknoppen
+ST_BUTTON_SCALE_TT,How large instructions should be for which button to press.,Hoe groot de knoppen moeten zijn die je vertellen wat je moet indrukken.
+ST_TUT_SCALE,Tutorial Image Scale,Grootte uitlegplaatjes
+ST_TUT_SCALE_TT,How large the images should be that explain how to play at the start.,Hoe groot de plaatjes moeten zijn die uitleggen hoe je het spel speelt.
+ST_TUT_DELAY,Delay between tutorial images,Vertraging tonen uitlegplaatjes
+ST_TUT_DELAY_TT,How much time the system waits before showing the next explanation image.,Hoe lang het systeem wacht voordat het doorgaat naar het volgende uitlegplaatje.
 ST_GROUP_VIDEO,Video,Video
 ST_GROUP_TUTORIAL,Tutorial,Uitleg
 ST_GROUP_LOGIN_OUT,Login / Logout,Inloggen / uitloggen
@@ -39,3 +56,5 @@ ST_GROUP_ALLOW,Buttons Allowed,Knoppen toegestaan
 ST_GROUP_AUDIO,Audio,Audio
 ST_GROUP_MAIN,Main,Algemeen
 ST_GROUP_COLORS,Colors,Kleuren
+ST_GROUP_UI,Interface,Interface
+ST_GROUP_FONTS,Fonts,Lettertypes

@@ -6,18 +6,11 @@
 script = ExtResource("1_pfpaf")
 type = 3
 type_display = 0
-type_unit = null
 key = "language_default"
 label = "ST_LANGUAGE_SELECT"
-section = null
+tooltip = "ST_LANGUAGE_SELECT_TT"
 default = "en"
 callback = "TranslationServer.set_locale(v)"
-min_value = null
-max_value = null
-step_value = null
-options = null
 callback_init = "s.default = Global.config_shared.language_default
 s.options = TranslationServer.get_loaded_locales()"
-needs_theme_refresh = null
-needs_input_refresh = null
 metadata/_custom_type_script = "uid://cu5ytdnryre03"

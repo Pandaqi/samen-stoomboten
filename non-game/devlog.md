@@ -150,19 +150,19 @@ Tiamo
 
 **THEME SETTINGS**:
 * Add all these individual theme settings (with `needsThemeRefresh` ON), grouped and all
+  * Some don't need a refresh though, such as instruction scale or touch area size
 * QOL: Also add an option to _generate_ this color scheme on the fly from a single accent color -> so add option to set COLOR, and a TOGGLE to tell the system to use it
-* QOL: Also allow changing the ICONS (whether they're used, and which ONES to use) -> though this can't be set in theme, it will have to be set dynamically in GDScript when loading menu/pause/etc
-* ALSO set the ButtonInstructions to be updated based on Global config settings (separation between stuff, font size, etc)
-  * QOL: Allow rescaling the button instructions + button visualizers from settings
-* QOL: Support TOOLTIPS in settings too (which are translated too, of course)
-* QOL: Decouple _visualizing_ from _reading/setting_, so I can also use all proper settings when bypassing menu + possibly speed up first load. ---> or did I already do this? Make it a Config toggle (`config_shared.read_settings_on_menu_bypass` or something)
-* QOL: Only apply "reset all" to the current _tab_? Add a little "reset" button to EVERY setting?
 
-**AND OF COURSE:** Support touchscreen. Add semi-transparent areas on the screen that send input signal when touched.
+**TOUCHSCREEN SUPPORT**
+* Update text/image for TOUCH instructions ---> move AFFINITY file to tablet first
+* Update ButtonVisualizer to show "touch" (just a hand with little arrows at finger tip)
+* Proper background/texture for semi-transparent touch area 
 
 SAMEN STOOMBOTEN:
 
-* I really want settings to look a little better than this.
+* FOR RELEASE:
+  * Set main scene to menu, set chunks back to 8 or something
+  * I really want settings to look a little better than this.
 * Do we NEED a tutorial?
 * REFACTOR: Have fewer dependencies; if we do need them, INJECT them upon activation/ready
  

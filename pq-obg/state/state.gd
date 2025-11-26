@@ -11,7 +11,6 @@ enum GameState
 @export var player_data : PlayerData
 
 @export var start_game_immediately := false
-@export var disable_removing_if_paused := false
 
 @export var pause_menu : PauseMenu
 @export var tutorial : Tutorial
@@ -24,27 +23,25 @@ func _ready() -> void:
 	
 	state_data.reset()
 	state_data.objective_registered.connect(on_objective_registered)
-	Global.input.open_to_input = true
+	Global.input.set_active(true)
 	
 	pause_menu.forward_pressed.connect(_on_forward_pressed)
 	pause_menu.backward_pressed.connect(_on_backward_pressed)
+	pause_menu.restart_pressed.connect(_on_restart_pressed)
 	
 	# @NOTE: yes, this double call is on purpose, the first call initializes everything properly
 	set_paused(true)
 	if start_game_immediately: set_paused(false)
 
 func _exit_tree() -> void:
-	Global.input.open_to_input = false
+	Global.input.set_active(false)
 
 func set_paused(val:bool) -> void:
 	paused = val
 	pause_menu.set_enabled(paused)
 	if tutorial: tutorial.set_active(paused)
 	get_tree().paused = paused
-	
-	# by default, the pause menu is what allows removing players
-	if not disable_removing_if_paused:
-		Global.input.pause_mode = paused
+	Global.input.set_paused(paused)
 	
 	# if it's the first unpause, start the game
 	if not paused and state == GameState.PREGAME:
@@ -81,3 +78,7 @@ func _on_backward_pressed() -> void:
 
 func _on_forward_pressed() -> void:
 	set_paused(false)
+
+func _on_restart_pressed() -> void:
+	set_paused(false)
+	get_tree().reload_current_scene()

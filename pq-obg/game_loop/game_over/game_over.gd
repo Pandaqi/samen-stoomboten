@@ -5,8 +5,10 @@ class_name GameOver extends Node2D
 var state := GameOverState.MATCH_RANK
 var result_list : GameResultList
 
+@export var backward_btn : Button
+@export var forward_btn : Button
+
 @onready var rankings_container : Control = $Rankings/Container/CenterContainer/VBoxContainer/ScrollContainer/MarginContainer
-@onready var forward_btn : Button = $Rankings/Container/CenterContainer/VBoxContainer/HBoxContainer/Forward
 @onready var table_heading : Label = $Rankings/Container/CenterContainer/VBoxContainer/TableHeading
 
 enum GameOverState
@@ -18,11 +20,16 @@ enum GameOverState
 func _ready() -> void:
 	state_data.debug_set_to_gameover()
 	state_data.make_temporary_results_permanent()
-	forward_btn.set_text("GO_CONTINUE")
-	forward_btn.grab_focus()
 	table_heading.set_text("GO_RESULTS_MATCH")
 	state = GameOverState.MATCH_RANK
+	refresh_buttons()
 	show_results()
+
+func refresh_buttons() -> void:
+	backward_btn.icon = Global.config_shared.icon_quit
+	forward_btn.icon = Global.config_shared.icon_play
+	forward_btn.set_text("GO_CONTINUE")
+	forward_btn.grab_focus()
 
 func show_results() -> void:
 	if result_list: result_list.queue_free()

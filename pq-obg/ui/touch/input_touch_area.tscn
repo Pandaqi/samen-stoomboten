@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0p851l7262y7"]
+
+[ext_resource type="Script" uid="uid://bsfvggkgn1nh3" path="res://pq-obg/ui/touch/input_touch_area.gd" id="1_kr5yn"]
+[ext_resource type="Texture2D" uid="uid://ynrcpekw4sdl" path="res://pq-obg/ui/styles/background_button_keyboard.tres" id="2_pc4rq"]
+
+[node name="InputTouchArea" type="MarginContainer" unique_id=2030268404 node_paths=PackedStringArray("sprite", "container")]
+offset_right = 64.0
+offset_bottom = 64.0
+script = ExtResource("1_kr5yn")
+sprite = NodePath("Container/Sprite2D")
+container = NodePath("Container")
+
+[node name="Container" type="Control" parent="." unique_id=1887704397]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Container" unique_id=1313222365]
+texture = ExtResource("2_pc4rq")

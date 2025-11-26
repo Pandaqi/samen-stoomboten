@@ -13,9 +13,12 @@
 
 [node name="BG" parent="." unique_id=1882044302 instance=ExtResource("1_klxda")]
 
-[node name="Main" type="CanvasLayer" parent="." unique_id=638506886 node_paths=PackedStringArray("settings")]
+[node name="Main" type="CanvasLayer" parent="." unique_id=638506886 node_paths=PackedStringArray("settings", "play_btn", "settings_btn", "quit_btn")]
 script = ExtResource("1_g206a")
 settings = NodePath("../Settings")
+play_btn = NodePath("Control/CenterContainer/VBoxContainer/Play")
+settings_btn = NodePath("Control/CenterContainer/VBoxContainer/Settings")
+quit_btn = NodePath("Control/CenterContainer/VBoxContainer/Quit")
 
 [node name="Control" type="Control" parent="Main" unique_id=1841443822]
 layout_mode = 3
@@ -35,7 +38,6 @@ grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Main/Control/CenterContainer" unique_id=1378582599]
 layout_mode = 2
-theme_override_constants/separation = 16
 
 [node name="Play" type="Button" parent="Main/Control/CenterContainer/VBoxContainer" unique_id=1395823207]
 layout_mode = 2
@@ -55,8 +57,10 @@ theme = ExtResource("1_axedv")
 text = "MENU_QUIT"
 icon = ExtResource("6_p2nwr")
 
-[node name="Settings" type="CanvasLayer" parent="." unique_id=1838816528]
+[node name="Settings" type="CanvasLayer" parent="." unique_id=1838816528 node_paths=PackedStringArray("reset_btn", "close_btn")]
 script = ExtResource("3_qagmd")
+reset_btn = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Reset")
+close_btn = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Close")
 
 [node name="CenterContainer" type="CenterContainer" parent="Settings" unique_id=2130010837]
 anchors_preset = 15

@@ -5,6 +5,7 @@ enum InputType
 	KEYBOARD,
 	GAMEPAD,
 	MOUSE,
+	TOUCH,
 	NONE
 }
 
@@ -17,7 +18,14 @@ func _init(tp:InputType, k:int, d:int = 0):
 	key = k
 	device = d
 
+func is_none() -> bool:
+	return type == InputType.NONE
+
+func is_touch() -> bool:
+	return type == InputType.TOUCH
+
 func get_input_map_key() -> String:
+	if is_touch() or is_none(): return ""
 	var type_as_string : String = InputType.keys()[type]
 	return "button_" + str(device) + "_" + type_as_string + "_" + str(key)
 
@@ -25,7 +33,12 @@ func get_input_map_key() -> String:
 func get_input_hint_string() -> String:
 	return OS.get_keycode_string(key)
 
+func uses_input_map() -> bool:
+	return [InputType.KEYBOARD, InputType.MOUSE, InputType.GAMEPAD].has(type)
+
 func add_to_input_map() -> void:
+	if not uses_input_map(): return
+	
 	var map_key := get_input_map_key()
 	var ev : InputEvent
 	

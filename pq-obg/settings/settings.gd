@@ -6,13 +6,21 @@ var active := false
 var all_tabs : Array[SettingTab] = []
 var reader : SettingReader
 
+@export var reset_btn : Button
+@export var close_btn : Button
+
 signal active_changed(ac:bool)
 
 func _ready() -> void:
 	collect_all_tabs()
+	set_icons()
 	initialize()
 	visualize()
 	set_active(false)
+
+func set_icons() -> void:
+	reset_btn.icon = Global.config_shared.icon_reset
+	close_btn.icon = Global.config_shared.icon_quit
 
 func collect_all_tabs() -> void:
 	reader = SettingReader.new()

@@ -9,6 +9,7 @@ type_display = 3
 type_unit = 1
 key = "volume_background"
 label = "ST_VOLUME_BACKGROUND"
+tooltip = "ST_VOLUME_BACKGROUND_TT"
 callback = "Global.audio.change_volume_of_bus(\"Background\", linear_to_db(v))"
 min_value = 0.0
 max_value = 1.0

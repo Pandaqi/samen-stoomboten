@@ -28,7 +28,6 @@ func visualize(r:SettingReader) -> PanelContainer:
 	var vbox := VBoxContainer.new()
 	cont.add_child(vbox)
 	vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	vbox.add_theme_constant_override("separation", 12)
 	
 	var heading := Label.new()
 	vbox.add_child(heading)

@@ -11,11 +11,18 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	
 	create_instructions()
+	create_touch_area_layer()
 	Global.input.buttons_changed.connect(on_buttons_changed)
 	# prepare_anchor_tool()
 	on_buttons_changed()
 
 	Global.pause_mode_change.connect(_on_pause_changed)
+
+func create_touch_area_layer() -> void:
+	var node := CanvasLayer.new()
+	node.layer = 32
+	node.name = "TouchAreas"
+	get_parent().call_deferred("add_child", node)
 
 func _on_pause_changed() -> void:
 	instruction_container.modulate.a = 1.0 if get_tree().paused else 0.5

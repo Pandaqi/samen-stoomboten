@@ -10,16 +10,22 @@ var prev_press_time := 0.0
 var is_down := false
 var is_held := false
 
-func _init(k:String, d:float = 0.0) -> void:
-	input_key = k
+func _init(d:float = 0.0) -> void:
 	delay = d
 
 func _unhandled_input(ev:InputEvent) -> void:
+	track_key_self(ev)
+
+## Most likely, the holder is part of ModuleInput which tracks press/release for it already
+func track_key_self(ev:InputEvent) -> void:
+	if input_key == "": return
+	if not InputMap.has_action(input_key): return
+	
 	if ev.is_action_pressed(input_key):
 		start_tracking()
 	
 	if ev.is_action_released(input_key):
-		stop_tracking()
+		stop_tracking(0.0)
 
 func start_tracking() -> void:
 	prev_press_time = Time.get_ticks_msec()
@@ -30,7 +36,7 @@ func hold() -> void:
 	is_held = true
 	started.emit()
 
-func stop_tracking() -> void:
+func stop_tracking(_time_held_raw:float) -> void:
 	is_down = false
 	is_held = false
 	ended.emit(get_time_held())

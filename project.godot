@@ -24,6 +24,10 @@ Global="*uid://b5unykew3rfwt"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [internationalization]
 
 locale/translations=PackedStringArray("res://pq-obg/localization/obg.en.translation", "res://pq-obg/localization/obg.nl.translation", "res://samen-stoomboten/localization/custom.en.translation", "res://samen-stoomboten/localization/custom.nl.translation")

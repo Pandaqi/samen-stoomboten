@@ -34,7 +34,7 @@ enum TypeUnit
 @export var type_unit := TypeUnit.NONE
 @export var key : String
 @export var label : String
-@export var section := "Shared"
+var section := "Shared"
 ## @NOTE: very important, don't duplicate settings with a default set, because it will share reference to that one string, which breaks all those resources! Just retype any strings
 @export var default : String
 @export_multiline var callback : String
@@ -47,10 +47,13 @@ enum TypeUnit
 @export var needs_theme_refresh := false
 @export var needs_input_refresh := false
 
+var reset_button_scene := preload("res://pq-obg/settings/settings_reset_button.tscn")
+
 var value : Variant # last known/changed value
 var value_node : Label
 var control_node : Control
 var label_node : Label
+var reset_btn : Button
 
 func fast_construct_helper(tp:Type, l:String, k:String, def:String = "") -> Setting:
 	type = tp
@@ -99,11 +102,16 @@ func reset(r:SettingReader) -> void:
 	on_value_changed(get_default(), r)
 	force_update_control()
 
+func get_tooltip_key() -> String:
+	var id := label + "_TT"
+	var is_translatable := tr(id) != id
+	if is_translatable: return id
+	return ""
+
 func visualize(r:SettingReader) -> HBoxContainer:
 	var hbox := HBoxContainer.new()
 	hbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	hbox.alignment = BoxContainer.ALIGNMENT_CENTER
-	hbox.add_theme_constant_override("separation", 12)
 	
 	create_label_node()
 	create_value_node()
@@ -178,6 +186,15 @@ func visualize(r:SettingReader) -> HBoxContainer:
 	hbox.add_child(control_node)
 	hbox.add_child(value_node)
 	
+	var give_tooltip_to_control := control_node is CheckButton
+	var tooltip_node := control_node if give_tooltip_to_control else hbox
+	var tooltip = get_tooltip_key()
+	tooltip_node.tooltip_text = tooltip
+	
+	reset_btn = reset_button_scene.instantiate()
+	reset_btn.pressed.connect(func(): reset(r))
+	hbox.add_child(reset_btn)
+	
 	# init call
 	on_value_changed(value, r)
 	force_update_control()
@@ -229,11 +246,17 @@ func force_update_control() -> void:
 	if control_node is ColorPickerButton:
 		control_node.color = Color(value)
 
+func is_value_default() -> bool:
+	return value == get_default()
+
 func on_value_changed(new_val:Variant, r:SettingReader) -> void:
 	# save the value on ourselves, so it permanently enters into the ConfigFile
 	value = new_val
 	update_display_value()
 	r.save_value(self)
+	
+	if reset_btn:
+		reset_btn.set_visible(not is_value_default())
 	
 	# update the value in the global config, if it exists
 	# @NOTE: this must come BEFORE the callback, as that relies on all information being set

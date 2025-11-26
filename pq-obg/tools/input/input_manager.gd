@@ -11,6 +11,7 @@ var keyboard_buttons := []
 const mouse_buttons := [MOUSE_BUTTON_LEFT, MOUSE_BUTTON_RIGHT, MOUSE_BUTTON_MIDDLE]
 const gamepad_buttons := [JOY_BUTTON_A, JOY_BUTTON_B, JOY_BUTTON_Y, JOY_BUTTON_X]
 const max_gamepads := 4
+const max_touch := 4 # @TODO: handle through config?
 
 var buttons : Array[InputButton] = []
 var buttons_available_all : Array[InputButton] = []
@@ -19,7 +20,9 @@ var buttons_used : Array[InputButton] = []
 
 var removal_type := ButtonRemovalType.NONE
 var pause_mode := false
-var open_to_input := false # set to true during gameplay, false to prevent changes during menus and stuff
+
+# set to true during gameplay, false to prevent changes during menus and stuff -> see set_active()
+var open_to_input := false 
 
 signal button_added(btn:InputButton)
 signal button_removed(btn:InputButton)
@@ -32,6 +35,15 @@ func _ready() -> void:
 	generate_all_buttons() # fills the input map with everything
 	refresh_button_selection() # only makes available what is possible/selected => preferably called on every reload/restart of the game
 	Input.joy_connection_changed.connect(on_gamepad_change)
+	
+	ProjectSettings.set_setting("input_devices/pointing/emulate_touch_from_mouse", true)
+	ProjectSettings.set_setting("input_devices/pointing/emulate_mouse_from_touch", true)
+
+func set_active(val:bool) -> void:
+	open_to_input = val
+
+func set_paused(p:bool) -> void:
+	pause_mode = p
 
 # there are 2 shared buttons: the typical "go forward / go backward" combo
 func add_shared_buttons() -> void:
@@ -79,6 +91,11 @@ func generate_all_buttons() -> void:
 		for gamepad_button in gamepad_buttons:
 			var btn := InputButton.new(InputButton.InputType.GAMEPAD, gamepad_button, i)
 			register_button(btn)
+	
+	# TOUCH
+	for i in range(max_touch):
+		var btn := InputButton.new(InputButton.InputType.TOUCH, 0, i)
+		register_button(btn)
 
 func register_button(btn:InputButton) -> void:
 	btn.add_to_input_map()
@@ -94,13 +111,24 @@ func refresh_button_selection(shuffle = true) -> void:
 		types_allowed.append(InputButton.InputType.MOUSE)
 	if Global.config_shared.input_allow_gamepad: 
 		types_allowed.append(InputButton.InputType.GAMEPAD)
+	if Global.config_shared.input_allow_touch: 
+		types_allowed.append(InputButton.InputType.TOUCH)
 	
-	# filter out those that aren't allowed
+	# filter out those that aren't allowed (no matter what settings say)
+	# -> gamepads not even connected
+	# -> don't even have a touch screen
 	var num_connected_gamepads := Input.get_connected_joypads().size()
+	var has_touch_capability := DisplayServer.is_touchscreen_available()
 	for btn in buttons:
 		var tp := btn.type
 		if not types_allowed.has(tp): continue
-		if btn.type == InputButton.InputType.GAMEPAD and btn.device >= num_connected_gamepads: continue
+		
+		var unconnected_gamepad := btn.type == InputButton.InputType.GAMEPAD and btn.device >= num_connected_gamepads
+		if unconnected_gamepad: continue
+		
+		var touch_impossible := btn.type == InputButton.InputType.TOUCH and not has_touch_capability
+		if touch_impossible: continue
+		
 		if not (btn.type in buttons_available): buttons_available[tp] = []
 		buttons_available[tp].append(btn)
 	
@@ -161,6 +189,11 @@ func give_back_button(btn:InputButton) -> void:
 	buttons_available[btn.type].append(btn)
 	buttons_changed.emit()
 
+## It sends a signal, the PlayerSpawner responds by making the node + officially grabbing the button
+func request_login(btn:InputButton) -> void:
+	button_added.emit(btn)
+
+## Same thing, it asks the PlayerSpawner to actually remove it if needed
 func request_button_removal(btn:InputButton) -> void:
 	button_removed.emit(btn)
 
@@ -182,8 +215,9 @@ func check_new_login(ev:InputEvent) -> void:
 	for type in get_all_input_types():
 		var next_button := get_next_button(type)
 		if not next_button: continue
+		if type == InputButton.InputType.TOUCH: continue
 		if ev.is_action_released(next_button.get_input_map_key()):
-			button_added.emit(next_button)
+			request_login(next_button)
 
 func is_full() -> bool:
 	return count() >= Global.config_shared.input_max_players

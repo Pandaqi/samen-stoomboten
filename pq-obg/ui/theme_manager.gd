@@ -11,7 +11,7 @@ func refresh():
 	#
 	# Main Properties
 	#
-	th.default_font = cfg.font_heading
+	th.default_font = cfg.font_body_regular
 	th.default_font_size = cfg.font_size
 	
 	#
@@ -62,6 +62,7 @@ func refresh():
 	# @NOTE: The Button styles are directly inherited by a lot of other things (e.g. CheckButton, OptionButton)
 	# So making sure these are correct and set here is important
 	#
+	th.set_font("font", "Button", cfg.font_heading)
 	th.set_font_size("font_size", "Button",cfg.button_font_size)
 	th.set_stylebox("focus", "Button", sb_focus)
 	th.set_stylebox("hover", "Button", sb_hover)
@@ -109,6 +110,7 @@ func refresh():
 	#
 	# TabContainer
 	#
+	th.set_font("font", "TabContainer", cfg.font_heading)
 	th.set_stylebox("panel", "TabContainer", StyleBoxEmpty.new())
 	th.set_stylebox("tab_focus", "TabContainer", sb_focus)
 	th.set_stylebox("tab_hovered", "TabContainer", sb_hover)
@@ -127,4 +129,21 @@ func refresh():
 	th.set_stylebox("grabber_area_highlight", "HSlider", sb_focus)
 	th.set_stylebox("slider", "HSlider", sb_hover)
 	
+	#
+	# MarginContainer
+	#
+	th.set_constant("margin_bottom", "MarginContainer", cfg.container_margin_default)
+	th.set_constant("margin_top", "MarginContainer", cfg.container_margin_default)
+	th.set_constant("margin_left", "MarginContainer", cfg.container_margin_default)
+	th.set_constant("margin_right", "MarginContainer", cfg.container_margin_default)
 	
+	#
+	# HBox / VBox
+	#
+	th.set_constant("separation", "HBoxContainer", cfg.container_separation_default)
+	th.set_constant("separation", "VBoxContainer", cfg.container_separation_default)
+	
+	#
+	# Tooltips
+	#
+	th.set_color("font_color", "TooltipLabel", Color.WHITE)

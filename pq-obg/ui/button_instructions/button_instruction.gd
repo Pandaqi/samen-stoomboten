@@ -13,14 +13,18 @@ enum Type
 func activate(btn: InputButton, tp:Type) -> void:
 	set_type(tp)
 	set_button(btn)
+	refresh_size()
+
+func refresh_size() -> void:
+	var icon_size : float = Global.config_shared.button_instructions_icon_size
+	button_container.refresh_size(Vector2.ONE * icon_size)
+	label.custom_minimum_size.y = icon_size
 
 func set_type(tp:Type) -> void:
 	if tp == Type.LOGIN:
-		button_container.show()
 		label.set_text("BUTTON_NEW_PLAYER")
 	
 	if tp == Type.LOGOUT:
-		button_container.hide()
 		label.set_text(get_logout_text())
 
 func get_logout_text() -> String:
@@ -33,6 +37,6 @@ func get_logout_text() -> String:
 	return "{tr_1} ({time}s)".format({ tr_1 = tr("BUTTON_LOGOUT"), time = time })
 
 func set_button(btn:InputButton) -> void:
-	button_visualizer.set_visible(btn != null)
+	button_container.set_visible(btn != null)
 	if not btn: return
-	button_visualizer.set_button(btn)
+	button_container.set_button(btn)

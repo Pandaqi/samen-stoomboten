@@ -69,13 +69,27 @@ class_name ConfigSharedData
 @export_subgroup("Buttons")
 @export var button_font_size : int = 32
 
+@export_subgroup("Margins")
+@export var container_margin_default := 16
+@export var container_separation_default := 8
+
 @export_group("Input")
+@export_subgroup("Players")
 @export var input_min_players_bound := 2
 @export var input_max_players_bound := 8
 @export var input_max_players := 8
+
+@export_subgroup("Input Types")
 @export var input_allow_keyboard := true
 @export var input_allow_mouse := true
 @export var input_allow_gamepad := true
+@export var input_allow_touch := true
+
+@export_subgroup("Touch")
+@export var touch_area_size := Vector2(128.0, 128.0)
+@export var touch_area_alpha := 0.4
+
+@export_subgroup("Login / Logout")
 @export var input_login_while_playing := true
 @export var input_logout_while_playing := true
 @export var input_logout_hold_duration := 3000.0
@@ -121,6 +135,21 @@ class_name ConfigSharedData
 @export var tutorial_only_once := false # if so, doesn't repeat the tutorial any time you pause
 
 @export_group("UI")
-@export var button_instructions_anchor := ScreenAnchorTool.Anchor.TOP
 @export var tutorial_anchor := ScreenAnchorTool.Anchor.CENTER
 @export var pause_menu_anchor := ScreenAnchorTool.Anchor.BOTTOM
+@export var ui_overlay_alpha := 0.25
+
+@export_subgroup("Button Instructions")
+@export var button_instructions_anchor := ScreenAnchorTool.Anchor.TOP
+@export var button_instructions_icon_size := 48.0
+
+@export_subgroup("Button Visualizer")
+@export var button_visualizer_scene := preload("res://pq-obg/ui/button_visualizer/button_visualizer.tscn")
+@export var button_visualizer_scale_base := 0.1
+@export var button_visualizer_scale := 1.0
+
+@export_subgroup("Icons")
+@export var icon_play : Texture = preload("res://pq-obg/ui/styles/icon_play.tres")
+@export var icon_quit : Texture = preload("res://pq-obg/ui/styles/icon_quit.tres")
+@export var icon_reset : Texture = preload("res://pq-obg/ui/styles/icon_reset.tres")
+@export var icon_settings : Texture = preload("res://pq-obg/ui/styles/icon_settings.tres")

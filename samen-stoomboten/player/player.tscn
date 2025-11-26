@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dn7g2jfclep18"]
+[gd_scene load_steps=4 format=3 uid="uid://dn7g2jfclep18"]
 
 [ext_resource type="Script" uid="uid://d3acbwm0x278s" path="res://samen-stoomboten/player/player.gd" id="1_uxrak"]
 [ext_resource type="Script" uid="uid://cbh8pskekcq4r" path="res://pq-obg/tools/input/module_input.gd" id="2_n8uy5"]
 [ext_resource type="Resource" uid="uid://cqn477x4eqflj" path="res://pq-obg/tools/players/player_data.tres" id="3_duos5"]
-[ext_resource type="PackedScene" uid="uid://bfclclol7g0ea" path="res://pq-obg/ui/button_visualizer/button_visualizer.tscn" id="3_hevfg"]
 
 [node name="Player" type="Node2D" unique_id=356441944 node_paths=PackedStringArray("input")]
 script = ExtResource("1_uxrak")
@@ -11,8 +10,6 @@ input = NodePath("ModuleInput")
 
 [node name="ModuleInput" type="Node2D" parent="." unique_id=1605055111]
 script = ExtResource("2_n8uy5")
-button_visualizer_scene = ExtResource("3_hevfg")
-button_visualizer_scale = Vector2(0.1, 0.1)
 player_data = ExtResource("3_duos5")
 num_button_visualizers = 0
 metadata/_custom_type_script = "uid://cbh8pskekcq4r"
