@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ConfigSharedData" load_steps=17 format=3 uid="uid://dqqwvgnpvim5n"]
+[gd_resource type="Resource" script_class="ConfigSharedData" load_steps=22 format=3 uid="uid://dqqwvgnpvim5n"]
 
 [ext_resource type="Texture2D" uid="uid://b7b3swg3h06jq" path="res://samen-stoomboten/ui/bg_image.png" id="1_8bcak"]
 [ext_resource type="FontFile" uid="uid://crq2bmbd60bmo" path="res://samen-stoomboten/ui/fonts/body_black.otf" id="1_jff45"]
@@ -10,11 +10,16 @@
 [ext_resource type="Resource" uid="uid://bkdl045h6lnih" path="res://pq-obg/settings/default/tab_core.tres" id="3_2vomq"]
 [ext_resource type="FontFile" uid="uid://d7mos0rr3b31" path="res://samen-stoomboten/ui/fonts/body_italic.otf" id="3_8bcak"]
 [ext_resource type="Theme" uid="uid://ba2lixeo4d30y" path="res://pq-obg/ui/default_theme.tres" id="4_arftu"]
+[ext_resource type="PackedScene" uid="uid://bfclclol7g0ea" path="res://pq-obg/ui/button_visualizer/button_visualizer.tscn" id="4_rbbwf"]
 [ext_resource type="FontFile" uid="uid://d1lemkj24xadb" path="res://samen-stoomboten/ui/fonts/body_regular.otf" id="4_ub74n"]
 [ext_resource type="FontFile" uid="uid://r4wr5f23gxn5" path="res://samen-stoomboten/ui/fonts/heading.otf" id="5_gb26m"]
 [ext_resource type="FontFile" uid="uid://c6hbb35jgav1g" path="res://samen-stoomboten/ui/fonts/special.ttf" id="6_pjx57"]
 [ext_resource type="Resource" uid="uid://7et8y7u6jc6i" path="res://samen-stoomboten/ui/settings/tab_game.tres" id="10_ng21y"]
+[ext_resource type="Texture2D" uid="uid://cikhqhc0hfaxm" path="res://pq-obg/ui/textures/icon_play.tres" id="11_wt0c5"]
+[ext_resource type="Texture2D" uid="uid://b3xoiwk76ch5f" path="res://pq-obg/ui/textures/icon_quit.tres" id="12_hpelv"]
 [ext_resource type="Resource" uid="uid://rof0eke27qbk" path="res://pq-obg/settings/default/theme/tab_theme.tres" id="13_1vc01"]
+[ext_resource type="Texture2D" uid="uid://cbue28i4wsoti" path="res://pq-obg/ui/textures/icon_reset.tres" id="13_blxwe"]
+[ext_resource type="Texture2D" uid="uid://bex3uoa5xtsv8" path="res://pq-obg/ui/textures/icon_settings.tres" id="14_iegkw"]
 [ext_resource type="Script" uid="uid://b8gcpdtp867fe" path="res://pq-obg/ui/tutorial/tutorial_stage.gd" id="15_pjx57"]
 
 [resource]

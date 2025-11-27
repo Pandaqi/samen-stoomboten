@@ -4,6 +4,7 @@ class_name PlayerData
 var players : Array[Player] = []
 var colors_available : Array[Color] = []
 var colors_used : Array[Color] = []
+var touch_area_layer : Control
 
 func reset(colors:Array[Color]) -> void:
 	players = []

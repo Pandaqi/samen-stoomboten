@@ -3,11 +3,11 @@
 [ext_resource type="Theme" uid="uid://ba2lixeo4d30y" path="res://pq-obg/ui/default_theme.tres" id="1_axedv"]
 [ext_resource type="Script" uid="uid://pv457xnnplpy" path="res://pq-obg/game_loop/menu/main_menu.gd" id="1_g206a"]
 [ext_resource type="PackedScene" uid="uid://cg8edv702g8dd" path="res://pq-obg/ui/bg/bg.tscn" id="1_klxda"]
-[ext_resource type="Texture2D" uid="uid://cikhqhc0hfaxm" path="res://pq-obg/ui/styles/icon_play.tres" id="3_408xl"]
+[ext_resource type="Texture2D" uid="uid://cikhqhc0hfaxm" path="res://pq-obg/ui/textures/icon_play.tres" id="3_408xl"]
 [ext_resource type="Script" uid="uid://cm54dthffyvp5" path="res://pq-obg/settings/settings.gd" id="3_qagmd"]
-[ext_resource type="Texture2D" uid="uid://bex3uoa5xtsv8" path="res://pq-obg/ui/styles/icon_settings.tres" id="4_cqcj2"]
-[ext_resource type="Texture2D" uid="uid://b3xoiwk76ch5f" path="res://pq-obg/ui/styles/icon_quit.tres" id="6_p2nwr"]
-[ext_resource type="Texture2D" uid="uid://cbue28i4wsoti" path="res://pq-obg/ui/styles/icon_reset.tres" id="9_clq6r"]
+[ext_resource type="Texture2D" uid="uid://bex3uoa5xtsv8" path="res://pq-obg/ui/textures/icon_settings.tres" id="4_cqcj2"]
+[ext_resource type="Texture2D" uid="uid://b3xoiwk76ch5f" path="res://pq-obg/ui/textures/icon_quit.tres" id="6_p2nwr"]
+[ext_resource type="Texture2D" uid="uid://cbue28i4wsoti" path="res://pq-obg/ui/textures/icon_reset.tres" id="9_clq6r"]
 
 [node name="Menu" type="Node2D" unique_id=1659929561]
 

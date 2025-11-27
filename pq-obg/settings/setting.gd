@@ -204,7 +204,7 @@ func create_value_node() -> Label:
 	value_node = Label.new()
 	value_node.custom_minimum_size = Vector2(64,0)
 	value_node.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	value_node.add_theme_font_override("font", Global.theme.get_italic_font())
+	value_node.add_theme_font_override("font", Global.theme.get_font(ThemeManager.FontType.BODY_ITALIC))
 	value_node.modulate.a = 0.66
 	return value_node
 

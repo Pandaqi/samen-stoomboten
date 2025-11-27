@@ -4,8 +4,9 @@ class_name InputTouchArea
 signal pressed()
 signal released()
 
-@export var sprite : Sprite2D
+@export var container_sprites : Node2D
 @export var container : Control
+@export var label : Label
 var button : InputButton
 var base_alpha := 0.5
 
@@ -14,8 +15,8 @@ func _ready() -> void:
 	container.custom_minimum_size = size
 	
 	var base_scale := Vector2(512.0, 512.0)
-	sprite.set_position(0.5*size)
-	sprite.set_scale(Vector2.ONE * size / base_scale)
+	container_sprites.set_position(0.5*size)
+	container_sprites.set_scale(Vector2.ONE * size / base_scale)
 	
 	base_alpha = Global.config_shared.touch_area_alpha
 
@@ -24,18 +25,19 @@ func _on_input_event(ev:InputEvent) -> void:
 	if not is_click: return
 	
 	if ev.pressed: 
-		sprite.modulate.a = 1.5*base_alpha
+		container.modulate.a = 1.0
 		pressed.emit()
 	else:
-		sprite.modulate.a = 1.0*base_alpha
+		container.modulate.a = base_alpha
 		released.emit()
 
 func set_color(c:Color) -> void:
-	sprite.modulate = c
-	sprite.modulate.a = base_alpha
+	container.modulate = c
+	container.modulate.a = base_alpha
 
 func set_button(b:InputButton) -> void:
 	button = b
+	label.set_text(str(button.device + 1))
 
 func get_touch_area_index() -> int:
 	return button.device

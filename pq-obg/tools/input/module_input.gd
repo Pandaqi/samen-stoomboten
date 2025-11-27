@@ -60,8 +60,7 @@ func create_touch_area() -> void:
 	touch_area.set_button(button)
 	touch_area.set_color(player_data.get_color_for(entity))
 	
-	# @TODO: Something cleaner than grabbing this directly
-	var area_layer = get_node("/root/Main/State/TouchAreas")
+	var area_layer = player_data.touch_area_layer
 	area_layer.add_area(touch_area)
 
 func clear_button_visualizers() -> void:

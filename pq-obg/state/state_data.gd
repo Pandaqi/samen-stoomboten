@@ -1,6 +1,7 @@
 extends Resource
 class_name StateData
 
+var touch_area_layer : Control
 var tracker_temporary : ObjectiveTracker
 var tracker_permanent : ObjectiveTracker
 

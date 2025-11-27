@@ -26,7 +26,7 @@ func set_icons() -> void:
 	restart_btn.icon = Global.config_shared.icon_reset
 	forward_btn.icon = Global.config_shared.icon_play
 	
-	heading.add_theme_font_override("font", Global.theme.get_heading_font())
+	heading.add_theme_font_override("font", Global.theme.get_font(ThemeManager.FontType.HEADING))
 
 func _on_backward_pressed() -> void:
 	backward_pressed.emit()

@@ -9,12 +9,13 @@
 [ext_resource type="Theme" uid="uid://ba2lixeo4d30y" path="res://pq-obg/ui/default_theme.tres" id="7_q42ym"]
 [ext_resource type="Script" uid="uid://cua7u6fes6yxk" path="res://pq-obg/ui/touch/touch_areas.gd" id="8_ttvql"]
 
-[node name="State" type="CanvasLayer" unique_id=1145839826 node_paths=PackedStringArray("pause_menu", "tutorial")]
+[node name="State" type="CanvasLayer" unique_id=1145839826 node_paths=PackedStringArray("pause_menu", "tutorial", "touch_areas")]
 script = ExtResource("1_t3kc4")
 state_data = ExtResource("2_pnxkm")
 player_data = ExtResource("3_q42ym")
 pause_menu = NodePath("PauseMenu")
 tutorial = NodePath("Tutorial")
+touch_areas = NodePath("TouchAreas")
 metadata/_custom_type_script = "uid://c51fddt4uf8oa"
 
 [node name="PauseMenu" parent="." unique_id=1738070768 instance=ExtResource("4_mwql8")]

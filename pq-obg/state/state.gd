@@ -14,12 +14,15 @@ enum GameState
 
 @export var pause_menu : PauseMenu
 @export var tutorial : Tutorial
+@export var touch_areas : Control
 
 var paused := false
 var state := GameState.PREGAME
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	
+	player_data.touch_area_layer = touch_areas
 	
 	state_data.reset()
 	state_data.objective_registered.connect(on_objective_registered)

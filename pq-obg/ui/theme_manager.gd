@@ -1,6 +1,25 @@
 extends Node
 class_name ThemeManager
 
+enum FontType
+{
+	BODY_REGULAR,
+	BODY_ITALIC,
+	BODY_BOLD,
+	BODY_BOLD_ITALIC,
+	HEADING,
+	SPECIAL
+}
+
+const FONT_TYPE_CONFIG_KEYS : Dictionary[FontType, String] = {
+	FontType.BODY_REGULAR: "font_body_regular",
+	FontType.BODY_ITALIC: "font_body_italic",
+	FontType.BODY_BOLD: "font_body_bold",
+	FontType.BODY_BOLD_ITALIC: "font_body_bold_italic",
+	FontType.HEADING: "font_heading",
+	FontType.SPECIAL: "font_special",
+}
+
 var system_font : SystemFont
 
 func _ready() -> void:
@@ -13,12 +32,10 @@ func cache_system_font() -> void:
 	system_font = SystemFont.new()
 	system_font.font_names = ["Helvetica", "Arial", "Georgia"]
 
-# @TODO: Is there a smarter way to provide this "default fallback"?
-func get_italic_font() -> Font:
-	return system_font if Global.config_shared.use_system_fonts else Global.config_shared.font_body_italic
-
-func get_heading_font() -> Font:
-	return system_font if Global.config_shared.use_system_fonts else Global.config_shared.font_heading
+func get_font(type:FontType) -> Font:
+	if Global.config_shared.use_system_fonts: return system_font
+	var key := FONT_TYPE_CONFIG_KEYS[type]
+	return Global.config_shared[key]
 
 ## It looks better when darkening colors to also move their hue towards dark blue/purple
 static func darken_smart(c:Color, diff:float) -> Color:
@@ -226,7 +243,7 @@ func refresh():
 	#
 	# HSlider
 	#
-	th.set_stylebox("grabber_area", "HSlider", sb_normal) # @TODO? A third "sb_area" or "sb_progress" thing?
+	th.set_stylebox("grabber_area", "HSlider", sb_normal)
 	th.set_stylebox("grabber_area_highlight", "HSlider", sb_focus)
 	th.set_stylebox("slider", "HSlider", sb_hover)
 	

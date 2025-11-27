@@ -11,7 +11,7 @@ var keyboard_buttons := []
 const mouse_buttons := [MOUSE_BUTTON_LEFT, MOUSE_BUTTON_RIGHT, MOUSE_BUTTON_MIDDLE]
 const gamepad_buttons := [JOY_BUTTON_A, JOY_BUTTON_B, JOY_BUTTON_Y, JOY_BUTTON_X]
 const max_gamepads := 4
-const max_touch := 4 # @TODO: handle through config?
+const max_touch := 4
 
 var buttons : Array[InputButton] = []
 var buttons_available_all : Array[InputButton] = []

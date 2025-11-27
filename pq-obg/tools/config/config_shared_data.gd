@@ -152,7 +152,7 @@ class_name ConfigSharedData
 @export var button_visualizer_scale := 1.0
 
 @export_subgroup("Icons")
-@export var icon_play : Texture = preload("res://pq-obg/ui/styles/icon_play.tres")
-@export var icon_quit : Texture = preload("res://pq-obg/ui/styles/icon_quit.tres")
-@export var icon_reset : Texture = preload("res://pq-obg/ui/styles/icon_reset.tres")
-@export var icon_settings : Texture = preload("res://pq-obg/ui/styles/icon_settings.tres")
+@export var icon_play : Texture = preload("res://pq-obg/ui/textures/icon_play.tres")
+@export var icon_quit : Texture = preload("res://pq-obg/ui/textures/icon_quit.tres")
+@export var icon_reset : Texture = preload("res://pq-obg/ui/textures/icon_reset.tres")
+@export var icon_settings : Texture = preload("res://pq-obg/ui/textures/icon_settings.tres")

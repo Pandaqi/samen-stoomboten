@@ -6,6 +6,5 @@
 script = ExtResource("2_0rsb8")
 max_compass_indicators = 3
 compass_radius = 192.0
-map_num_chunks = 2
 book_compass_duration = 28.0
 metadata/_custom_type_script = "uid://l6p18bfs4vfy"
